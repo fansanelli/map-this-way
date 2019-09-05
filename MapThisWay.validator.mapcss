@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.92";
+  version: "0.93";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -203,24 +203,17 @@ way[landuse][name] {
 	group: "MapThisWay";
 }
 
-/* mtw landusewithname - suggested by Andrea Musuruane */
-
-way[landuse][name] {
-	throwWarning: tr("{0} with {1}", "{0.key}", "{1.key}");
-	group: "MapThisWay";
-}
-
-/* mtw landusewithname - suggested by Andrea Musuruane */
-
-way[landuse][name] {
-	throwWarning: tr("{0} with {1}", "{0.key}", "{1.key}");
-	group: "MapThisWay";
-}
-
 /* mtw onlychristian - suggested by Andrea Musuruane */
 
 *[amenity=place_of_worship][religion=christian][!denomination] {
 	throwWarning: tr("{0} without {1}", "{0.value}", "{2.key}");
 	group: "MapThisWay";
+}
+
+/* mtw trafficsingunconnected - suggested by Andrea Musuruane */
+
+node:unconnected[traffic_sign][traffic_sign=city_limit] {
+	throwWarning: tr("{0}", "{2.tag}");
+	group: tr("isolated node which must be connected to a way");
 }
 
