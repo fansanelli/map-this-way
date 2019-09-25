@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.93";
+  version: "0.94";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -9,14 +9,14 @@ meta
 
 /* mtw missingdispensing */
 
-*[amenity=pharmacy][!dispensing] {
+*[amenity=pharmacy][!dispensing][inside("IT")] {
 	throwWarning: tr("{0} without {1}", "{0.value}", "{1.key}");
 	group: "MapThisWay";
 }
 
 /* mtw missingoven */
 
-*[cuisine=~/pizza/][!oven] {
+*[cuisine ~= "pizza"][!oven][inside("IT")] {
 	throwWarning: tr("{0} without {1}", "{0.value}", "{1.key}");
 	group: "MapThisWay";
 }
@@ -30,22 +30,15 @@ meta
 
 /* mtw restaurantkebab */
 
-*[amenity!=fast_food][cuisine=~/kebab/] {
+*[amenity!=fast_food][cuisine ~= "kebab"][inside("IT")] {
 	throwWarning: tr("{0} without {1}", "{1.value}", "{0.value}");
 	group: "MapThisWay";
 }
 
 /* mtw addressonbuilding */
 
-way[building][addr:street] {
-	throwWarning: tr("{0} with {1}", "{0.key}", "{1.key}");
-	group: "MapThisWay";
-}
-
-/* mtw addressonbuilding */
-
-way[building][addr:housenumber] {
-	throwWarning: tr("{0} with {1}", "{0.key}", "{1.key}");
+way[building][tag_regex("^addr:*")][inside("IT")] {
+	throwWarning: tr("building with addr:*");
 	group: "MapThisWay";
 }
 
@@ -66,7 +59,7 @@ way[building][roof:levels=0] {
 
 /* mtw missingauthorization */
 
-*[shop=tobacco][!authorization] {
+*[shop=tobacco][!authorization][inside("IT")] {
 	throwWarning: tr("{0} without {1}", "{0.value}", "{1.key}");
 	group: "MapThisWay";
 }
@@ -126,7 +119,7 @@ node[traffic_sign=city_limit][!direction] {
 
 /* mtw numerocivicoerrato */
 
-*[addr:housenumber][addr:housenumber !~ /^[0-9]+[a-z]*$/] {
+*[addr:housenumber][addr:housenumber !~ /^[0-9]+(([a-z]*)|(\/[0-9]+))(\b rosso\b)?$/][inside("IT")] {
 	throwWarning: tr("Numero Civico");
 	group: "MapThisWay";
 }
@@ -177,16 +170,6 @@ way[junction=roundabout][name] {
 	fixRemove: "office";
         fixAdd: "shop=travel_agency";
 }
-
-/* mtw cyclewaycrossingasnode SEE JOSM TICKET
-node[cycleway=crossing] {
-	throwWarning: tr("wrong crossing tag on a node");
-	suggestAlternative: "highway=crossing";
-	group: "MapThisWay";
-	fixChangeKey: "cycleway => highway";
-        fixAdd: "bicycle=yes";
-}
-*/
 
 /* mtw refwithspace - suggested by Andrea Musuruane */
 
