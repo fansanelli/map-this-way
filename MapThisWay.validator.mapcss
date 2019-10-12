@@ -103,13 +103,6 @@ node[building] {
 	group: "MapThisWay";
 }
 
-/* mtw unusualvending SEE JOSM TICKET
-*[amenity=vending_machine][vending!~/(admission_tickets|animal_feed|art|bicycle_tube|books|bottle_return|bread|candles|chemist|chewing_gums|cigarettes|coffee|condoms|drinks|electronics|elongated_coin|excrement_bags|feminine_hygiene|first_aid|fishing_bait|fishing_tackle|flowers|food|fuel|ice_cream|ice_cubes|ink_cartridges|laundry_detergent|lottery|milk|newspapers|parcel_mail_in|parcel_pickup|parking_tickets|public_transport_plans|public_transport_tickets|sex_toys|SIM_cards|stamps|sweets|syringes|telephone_vouchers|toll|toys|umbrellas|water)(?:$|[;](?R))/] {
-	throwWarning: tr("unusual value of {0}", "{0.value}");
-	group: "MapThisWay";
-}
-*/
-
 /* mtw citylimitwithoutdirection */
 
 node[traffic_sign=city_limit][!direction] {
@@ -140,6 +133,42 @@ node[traffic_sign=city_limit][!direction] {
 	assertNoMatch: "0";
 	assertNoMatch: "0a";
 }
+
+/* ENABLE AFTER MY PATCH GET MERGED:
+ * https://josm.openstreetmap.de/ticket/18166
+ *
+*["addr:housenumber"][replace(tag("addr:housenumber"),",",";") != join_list(";",filter("^(0|[1-9][0-9]*)([a-z]{0,1}|(\\/[1-9][0-9]*[a-z]{0,1})|bis|((qua)?ter))(\\b rosso\\b)?$",split(";",replace(tag("addr:housenumber"),",",";"))))][inside("IT")] {
+	throwWarning: tr("Numero Civico");
+	group: "MapThisWay";
+	assertMatch: "00";
+	assertMatch: "01";
+	assertMatch: "a";
+	assertMatch: "1A";
+	assertMatch: "1 a";
+	assertMatch: "1/BIS";
+	assertMatch: "0/0";
+	assertMatch: "1 nero";
+	assertNoMatch: "1";
+	assertNoMatch: "1a";
+	assertNoMatch: "1bis";
+	assertNoMatch: "1ter";
+	assertNoMatch: "1quater";
+	assertNoMatch: "1/1";
+	assertNoMatch: "95/1a";
+	assertNoMatch: "1 rosso";
+	assertNoMatch: "0";
+	assertNoMatch: "0a";
+	assertNoMatch: "1;3";
+	assertNoMatch: "1,3";
+}*/
+
+/* mtw unusualvending
+ * https://josm.openstreetmap.de/ticket/17751
+ *
+*[amenity=vending_machine][vending][tag("vending") != join_list(";",filter("^(admission_tickets|animal_feed|art|bicycle_tube|books|bottle_return|bread|candles|chemist|chewing_gums|cigarettes|coffee|condoms|drinks|electronics|elongated_coin|excrement_bags|feminine_hygiene|first_aid|fishing_bait|fishing_tackle|flowers|food|fuel|ice_cream|ice_cubes|ink_cartridges|laundry_detergent|lottery|milk|newspapers|parcel_mail_in|parcel_pickup|parking_tickets|public_transport_plans|public_transport_tickets|sex_toys|SIM_cards|stamps|sweets|syringes|telephone_vouchers|toll|toys|umbrellas|water)$",split(";",tag("vending"))))] {
+	throwWarning: tr("unusual value of {0}", "{1.key}");
+	group: "MapThisWay";
+}*/
 
 /* mtw roundaboutwithname */
 
