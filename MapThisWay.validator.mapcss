@@ -118,10 +118,27 @@ node[traffic_sign=city_limit][!direction] {
 }
 
 /* mtw numerocivicoerrato */
-
-*[addr:housenumber][addr:housenumber !~ /^[0-9]+(([a-z]*)|(\/[0-9]+))(\b rosso\b)?$/][inside("IT")] {
+*[addr:housenumber][addr:housenumber !~ /^(0|[1-9][0-9]*)([a-z]{0,1}|(\/[1-9][0-9]*[a-z]{0,1})|bis|((qua)?ter))(\b rosso\b)?$/][inside("IT")] {
 	throwWarning: tr("Numero Civico");
 	group: "MapThisWay";
+	assertMatch: "00";
+	assertMatch: "01";
+	assertMatch: "a";
+	assertMatch: "1A";
+	assertMatch: "1 a";
+	assertMatch: "1/BIS";
+	assertMatch: "0/0";
+	assertMatch: "1 nero";
+	assertNoMatch: "1";
+	assertNoMatch: "1a";
+	assertNoMatch: "1bis";
+	assertNoMatch: "1ter";
+	assertNoMatch: "1quater";
+	assertNoMatch: "1/1";
+	assertNoMatch: "95/1a";
+	assertNoMatch: "1 rosso";
+	assertNoMatch: "0";
+	assertNoMatch: "0a";
 }
 
 /* mtw roundaboutwithname */
