@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.94";
+  version: "0.95";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -243,6 +243,29 @@ way[landuse][name] {
 
 node:unconnected[traffic_sign][traffic_sign=city_limit] {
 	throwWarning: tr("{0}", "{2.tag}");
-	group: tr("isolated node which must be connected to a way");
+	group: "MapThisWay";
+}
+
+/* mtw facebookaswebsite */
+
+*[website =~ /facebook/] {
+	throwWarning: tr("{0}", "{0.tag}");
+	group: "MapThisWay";
+}
+
+/* mtw invalidphone */
+
+*["contact:phone"]["contact:phone" !~ /^\+39[- ][08][0-9]+[- ][0-9]+$/][inside("IT")],
+*[phone][phone !~ /^\+39[- ][08][0-9]+[- ][0-9]+$/][inside("IT")] {
+	throwWarning: tr("{0}", "{0.key}");
+	group: "MapThisWay";
+}
+
+/* mtw invalidmobilephone */
+
+*["contact:mobile"]["contact:mobile" !~ /^\+39[- ]3[0-9]{2}[- ][0-9]{6,7}$/][inside("IT")],
+*["phone:mobile"]["phone:mobile" !~ /^\+39[- ]3[0-9]{2}[- ][0-9]{6,7}$/][inside("IT")] {
+	throwWarning: tr("{0}", "{0.key}");
+	group: "MapThisWay";
 }
 
