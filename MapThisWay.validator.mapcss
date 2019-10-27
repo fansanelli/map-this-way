@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.96";
+  version: "0.97";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -225,12 +225,13 @@ way[junction=roundabout][name] {
 }
 
 
-/* mtw landusewithname - suggested by Andrea Musuruane */
-
+/* mtw landusewithname - suggested by Andrea Musuruane
+SHOULD BE INVESTIGATED MORE BEFORE ENABILING...
 way[landuse][name] {
 	throwWarning: tr("{0} with {1}", "{0.key}", "{1.key}");
 	group: "MapThisWay";
 }
+*/
 
 /* mtw onlychristian - suggested by Andrea Musuruane */
 
@@ -274,5 +275,15 @@ node[public_transport != "stop_position"][bus="yes"] {
 	throwWarning: tr("{0} on suspicious object", "{1.tag}");
 	group: "MapThisWay";
 	fixRemove: "bus";
+}
+
+/* mtw shoplamps */
+
+*[shop=lamps] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "shop=lighting";
+	group: "MapThisWay";
+	fixRemove: "shop";
+        fixAdd: "shop=lighting";
 }
 
