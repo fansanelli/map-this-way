@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.98";
+  version: "0.99";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -23,7 +23,7 @@ meta
 
 /* mtw unknownoven */
 
-*[oven][oven !~ /^(electric|wood_fired|gas_fired)$/] {
+*[oven][oven !~ /^(no|electric|wood_fired|gas_fired)$/] {
 	throwWarning: tr("unusual value of {0}", "{0.key}");
 	group: "MapThisWay";
 }
@@ -288,7 +288,7 @@ node[public_transport != "stop_position"][bus="yes"] {
 	suggestAlternative: "shop=lighting";
 	group: "MapThisWay";
 	fixRemove: "shop";
-        fixAdd: "shop=lighting";
+	fixAdd: "shop=lighting";
 }
 
 /* mtw naturaltreenotmonumental - suggested by canfe */
@@ -305,3 +305,23 @@ way[highway][highway != "cycleway"][highway != "path"][name][name !~ /^(?i)(arco
 	group: "MapThisWay";
 }
 
+/* mtw crossingzebranouk */
+
+node[highway=crossing][crossing=zebra][!inside("UK")] {
+	throwWarning: tr("{0} outside of UK", "{1.tag}");
+	suggestAlternative: "crossing=uncontrolled";
+	group: "MapThisWay";
+	fixRemove: "crossing";
+	fixAdd: "crossing=uncontrolled";
+	fixAdd: "crossing_ref=zebra";
+}
+
+/* mtw crossingmarked */
+
+node[highway=crossing][crossing=marked] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "crossing=uncontrolled";
+	group: "MapThisWay";
+	fixRemove: "crossing";
+	fixAdd: "crossing=uncontrolled";
+}
