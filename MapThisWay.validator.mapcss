@@ -307,7 +307,7 @@ way[highway][highway != "cycleway"][highway != "path"][name][name !~ /^(?i)(arco
 
 /* mtw crossingzebranouk */
 
-node[highway=crossing][crossing=zebra][!inside("UK")] {
+node[highway=crossing][crossing=zebra][outside("UK")] {
 	throwWarning: tr("{0} outside of UK", "{1.tag}");
 	suggestAlternative: "crossing=uncontrolled";
 	group: "MapThisWay";
