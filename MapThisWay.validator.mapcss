@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.99";
+  version: "0.100";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -330,5 +330,101 @@ node[highway=crossing][crossing=marked] {
 
 *["start_date"]["start_date" !~ /^[0-9]{1,4}(-[0-9]{2})?(-[0-9]{2})?$/] {
 	throwWarning: tr("{0}", "{0.key}");
+	group: "MapThisWay";
+}
+
+/* mtw fblink */
+
+*["contact:facebook"]["contact:facebook" !~ /^https:\/\/www\.facebook\.com\//] {
+	throwWarning: tr("{0}", "{0.tag}");
+	group: "MapThisWay";
+}
+
+/* mtw iglink */
+
+*["contact:instagram"]["contact:instagram" !~ /^(https:\/\/www\.instagram\.com\/)|@/] {
+	throwWarning: tr("{0}", "{0.tag}");
+	group: "MapThisWay";
+}
+
+/* mtw ischedit */
+
+*["isced:level"]["isced:level" !~ /^[0-3]$/][inside("IT")] {
+	throwWarning: tr("{0}", "{0.tag}");
+	group: "MapThisWay";
+}
+
+/* mtw scuolainfanzia */
+
+*[amenity!=kindergarten]["name" =~ /(?i)(scuola (materna|dell'infanzia))|asilo/] {
+	throwWarning: tr("{0}", "{0.tag}");
+	group: "MapThisWay";
+}
+
+/* mtw nidonotnursery */
+
+*[amenity=kindergarten]["name" =~ /(?i)nido/][nursery!=yes] {
+	throwWarning: tr("{0} without {1}", "{0.value}", "{2.tag}");
+	group: "MapThisWay";
+	fixAdd: "nursery=yes";
+}
+
+/* mtw scuolainfanzianoisched */
+
+*[amenity=kindergarten]["isced:level" != "0"] {
+	throwWarning: tr("{0} without {1}", "{0.value}", "{1.key}");
+	group: "MapThisWay";
+	fixRemove: "isced:level";
+	fixAdd: "isced:level=0";
+}
+
+/* mtw scuolaelementare */
+
+*["name" =~ /(?i)scuola (primaria|elementare)/] {
+	set scuola_elementare;
+}
+
+*[amenity!=school].scuola_elementare {
+	throwWarning: tr("scuola elementare senza amenity=school");
+	group: "MapThisWay";
+}
+
+*["isced:level" != "1"][amenity=school].scuola_elementare {
+	throwWarning: tr("scuola elementare senza isched:level o isched:level non valido");
+	group: "MapThisWay";
+	fixRemove: "isced:level";
+	fixAdd: "isced:level=1";
+}
+
+/* mtw scuolemedie */
+
+*["name" =~ /(?i)scuola media( inferiore)?/] {
+	set scuola_media;
+}
+
+*["isced:level" != "2"][amenity=school].scuola_media {
+	throwWarning: tr("scuola media senza isched:level o isched:level non valido");
+	group: "MapThisWay";
+	fixRemove: "isced:level";
+	fixAdd: "isced:level=2";
+}
+
+/* mtw scuolesuperiori */
+
+*["name" =~ /(?i)((scuola|istituto di istruzione) superiore)|liceo/] {
+	set scuola_superiore;
+}
+
+*["isced:level" != "3"][amenity=school].scuola_superiore {
+	throwWarning: tr("scuola superiore senza isched:level o isched:level non valido");
+	group: "MapThisWay";
+	fixRemove: "isced:level";
+	fixAdd: "isced:level=3";
+}
+
+/* mtw unkwnownschool */
+
+*[amenity=school]!.scuola_superiore!.scuola_media!.scuola_elementare {
+	throwWarning: tr("scuola non riconosciuta");
 	group: "MapThisWay";
 }
