@@ -411,7 +411,7 @@ node[highway=crossing][crossing=marked] {
 
 /* mtw scuolesuperiori */
 
-*["name" =~ /(?i)((scuola|istituto di istruzione) superiore)|liceo/] {
+*["name" =~ /(?i)(istituto (magistrale|(di istruzione superiore)|tecnico|commerciale))|liceo/] {
 	set scuola_superiore;
 }
 
