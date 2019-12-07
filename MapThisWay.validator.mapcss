@@ -398,7 +398,7 @@ node[highway=crossing][crossing=marked] {
 
 /* mtw scuolemedie */
 
-*["name" =~ /(?i)scuola media( inferiore)?/] {
+*["name" =~ /(?i)scuola (media( inferiore)?)|(secondaria)/] {
 	set scuola_media;
 }
 
