@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.101";
+  version: "0.102";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -443,4 +443,11 @@ way[highway=cycleway][cycleway=crossing] {
 	group: "MapThisWay";
 	fixRemove: "crossing";
 	fixAdd: "crossing=uncontrolled";
+}
+
+/* mtw tracktypenottrack */
+
+way[tracktype][highway!=track] {
+	throwWarning: tr("{0} not {1}", "{0.key}", "{1.tag}");
+	group: "MapThisWay";
 }
