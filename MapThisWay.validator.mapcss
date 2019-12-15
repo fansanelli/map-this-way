@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.100";
+  version: "0.101";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -305,27 +305,6 @@ way[highway][highway != "cycleway"][highway != "path"][name][name !~ /^(?i)(arco
 	group: "MapThisWay";
 }
 
-/* mtw crossingzebranouk */
-
-node[highway=crossing][crossing=zebra][outside("UK")] {
-	throwWarning: tr("{0} outside of UK", "{1.tag}");
-	suggestAlternative: "crossing=uncontrolled";
-	group: "MapThisWay";
-	fixRemove: "crossing";
-	fixAdd: "crossing=uncontrolled";
-	fixAdd: "crossing_ref=zebra";
-}
-
-/* mtw crossingmarked */
-
-node[highway=crossing][crossing=marked] {
-	throwWarning: tr("{0} is deprecated", "{0.tag}");
-	suggestAlternative: "crossing=uncontrolled";
-	group: "MapThisWay";
-	fixRemove: "crossing";
-	fixAdd: "crossing=uncontrolled";
-}
-
 /* mtw invalidstartdate */
 
 *["start_date"]["start_date" !~ /^[0-9]{1,4}(-[0-9]{2})?(-[0-9]{2})?$/] {
@@ -427,4 +406,41 @@ node[highway=crossing][crossing=marked] {
 *[amenity=school]!.scuola_superiore!.scuola_media!.scuola_elementare {
 	throwWarning: tr("scuola non riconosciuta");
 	group: "MapThisWay";
+}
+
+/* mtw crossing */
+
+way[highway] > node[highway=crossing],
+way[highway=footway][footway=crossing],
+way[highway=cycleway][cycleway=crossing] {
+	set attraversamento_pedonale;
+}
+
+/* mtw crossingunknown */
+
+*[crossing][crossing!=no]!.attraversamento_pedonale,
+*[highway=crossing]!.attraversamento_pedonale {
+        throwWarning: tr("Attraversamento pedonale non riconosciuto");
+	group: "MapThisWay";
+}
+
+/* mtw crossingzebranouk */
+
+*[crossing=zebra][outside("UK")].attraversamento_pedonale {
+	throwWarning: tr("{0} outside of UK", "{0.tag}");
+	suggestAlternative: "crossing=uncontrolled";
+	group: "MapThisWay";
+	fixRemove: "crossing";
+	fixAdd: "crossing=uncontrolled";
+	fixAdd: "crossing_ref=zebra";
+}
+
+/* mtw crossingmarked */
+
+*[crossing=marked].attraversamento_pedonale {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "crossing=uncontrolled";
+	group: "MapThisWay";
+	fixRemove: "crossing";
+	fixAdd: "crossing=uncontrolled";
 }
