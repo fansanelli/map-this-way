@@ -314,6 +314,13 @@ way[highway][highway != "cycleway"][highway != "path"][name][name !~ /^(?i)(arco
 
 /* mtw fblink */
 
+*[facebook] {
+	throwWarning: tr("{0} is deprecated", "{0.key}");
+	suggestAlternative: "contact:facebook";
+	group: "MapThisWay";
+	fixChangeKey: "facebook => contact:facebook";
+}
+
 *["contact:facebook"]["contact:facebook" !~ /^https:\/\/www\.facebook\.com\//] {
 	throwWarning: tr("{0}", "{0.tag}");
 	group: "MapThisWay";
