@@ -458,3 +458,10 @@ way[tracktype][highway!=track] {
 	throwWarning: tr("{0} not {1}", "{0.key}", "{1.tag}");
 	group: "MapThisWay";
 }
+
+/* mtw comma */
+
+*[cuisine =~ /,/] {
+	throwWarning: tr("{0} with comma", "{0.key}");
+	group: "MapThisWay";
+}
