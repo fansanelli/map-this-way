@@ -456,6 +456,15 @@ way[highway=cycleway][cycleway=crossing] {
 	fixAdd: "crossing=uncontrolled";
 }
 
+/* mtw crossingcalming */
+
+*[traffic_calming][traffic_calming!=table].attraversamento_pedonale {
+	throwWarning: tr("{0}", "{0.key}");
+	group: "MapThisWay";
+	fixRemove: "traffic_calming";
+	fixAdd: "traffic_calming=table";
+}
+
 /* mtw tracktypenottrack */
 
 way[tracktype][highway!=track] {
