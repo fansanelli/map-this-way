@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.104";
+  version: "0.105";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -476,5 +476,12 @@ way[tracktype][highway!=track] {
 
 *[cuisine =~ /,/] {
 	throwWarning: tr("{0} with comma", "{0.key}");
+	group: "MapThisWay";
+}
+
+/* mtw randomhighwayservice */
+
+way[highway!=service][service] {
+	throwWarning: tr("{0} not {1}", "{0.key}", "{1.key}");
 	group: "MapThisWay";
 }
