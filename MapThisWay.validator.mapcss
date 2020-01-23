@@ -44,8 +44,8 @@ way[building][tag_regex("^addr:*")][inside("IT")] {
 
 /* mtw buildingnoroof */
 
-way[building][roof:levels=0] {
-	throwWarning: tr("{0} with {1} {2}", "{0.key}", "{1.key}", "{1.value}");
+way[building][roof:levels=0][roof:shape!=flat] {
+	throwWarning: tr("{0} with {1} {2} not {3} {4}", "{0.key}", "{1.key}", "{1.value}", "{2.key}", "{2.value}");
 	group: "MapThisWay";
 }
 
