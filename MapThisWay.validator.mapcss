@@ -485,3 +485,12 @@ way[highway!=service][service] {
 	throwWarning: tr("{0} not {1}", "{0.key}", "{1.key}");
 	group: "MapThisWay";
 }
+
+/* mtw towervsmast */
+
+node["tower:type"=communication][man_made != mast] {
+	throwWarning: tr("{0} not {1}", "{0.key}", "{1.value}");
+	group: "MapThisWay";
+	fixRemove: "man_made";
+	fixAdd: "man_made=mast";
+}
