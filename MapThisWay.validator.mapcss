@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.105";
+  version: "0.106";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -493,4 +493,13 @@ node["tower:type"=communication][man_made != mast] {
 	group: "MapThisWay";
 	fixRemove: "man_made";
 	fixAdd: "man_made=mast";
+}
+
+/* mtw coinsinstadofcash */
+
+*[amenity!="vending_machine"]["payment:coins"] {
+	throwWarning: tr("{0}", "{1.key}");
+	group: "MapThisWay";
+	suggestAlternative: "payment:cash";
+	fixChangeKey: "payment:coins => payment:cash";
 }
