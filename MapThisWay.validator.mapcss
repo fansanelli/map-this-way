@@ -503,3 +503,13 @@ node["tower:type"=communication][man_made != mast] {
 	suggestAlternative: "payment:cash";
 	fixChangeKey: "payment:coins => payment:cash";
 }
+
+/* mtw inknotprinter */
+
+*[shop=ink] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "shop=printer_ink";
+	group: "MapThisWay";
+	fixRemove: "shop";
+	fixAdd: "shop=printer_ink";
+}
