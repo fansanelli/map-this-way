@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.106";
+  version: "0.107";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -219,7 +219,7 @@ way[junction=roundabout][name] {
 
 /* mtw refwithspace - suggested by Andrea Musuruane */
 
-*[ref =~ /\s+/] {
+way[highway][ref =~ /\s+/] {
 	throwWarning: tr("ref with spaces");
 	group: "MapThisWay";
 }
@@ -513,3 +513,18 @@ node["tower:type"=communication][man_made != mast] {
 	fixRemove: "shop";
 	fixAdd: "shop=printer_ink";
 }
+
+/* mtw farmyardwithoutfarm - Suggested by Andrea Musuruane */
+
+*[place=farm] ⊈ area:closed2[landuse=farmyard] {
+	throwWarning: tr("{0} without place=farm", "{1.tag}");
+	group: "MapThisWay";
+}
+
+/* mtw farmnotinsidefarmyard - Suggested by Andrea Musuruane */
+
+area[landuse=farmyard] ⊉ *[place=farm] {
+	throwWarning: tr("{0} not inside landuse=farmyard", "{0.tag}");
+	group: "MapThisWay";
+}
+
