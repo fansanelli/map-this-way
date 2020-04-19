@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.109";
+  version: "0.110";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -551,4 +551,12 @@ way[highway][lanes>=2][passing_places] {
 	group: "MapThisWay";
 	fixAdd: "lane_markings=no";
 	fixRemove: "passing_places";
+}
+
+/* mtw onelanelanemarkings */
+
+way[highway][lanes<2][lane_markings] {
+	throwWarning: tr("{0} {1}<{2} with {3}", "{0.key}", "{1.key}", "{1.value}", "{2.key}");
+	group: "MapThisWay";
+	fixRemove: "lane_markings";
 }
