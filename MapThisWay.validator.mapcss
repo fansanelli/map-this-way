@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.108";
+  version: "0.109";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -531,15 +531,24 @@ area[landuse=farmyard] ⊉ *[place=farm] {
 
 /* mtw onelanenooneway - Suggested by Volker */
 
-way[highway][lanes=1][!oneway] {
-	throwWarning: tr("{0} {1} without {2}", "{0.key}", "{1.tag}", "{2.key}");
+way[highway][lanes<2][!oneway] {
+	throwWarning: tr("{0} {1}<{2} without {3}", "{0.key}", "{1.key}", "{1.value}", "{2.key}");
 	group: "MapThisWay";
 }
 
 /* mtw onelanenopassingplaces - Suggested by Andrea Musuruane */
 
-way[highway][lanes=1][oneway=no][passing_places!=yes] {
-	throwWarning: tr("{0} {1} with {2} without {3}", "{0.key}", "{1.tag}", "{2.tag}", "{3.tag}");
+way[highway][lanes<2][oneway=no][passing_places!=yes] {
+	throwWarning: tr("{0} {1}<{2} with {3} without {4}", "{0.key}", "{1.key}", "{1.value}", "{2.tag}", "{3.tag}");
 	group: "MapThisWay";
 	fixAdd: "passing_places=yes";
+}
+
+/* mtw passingplacesmanylanes */
+
+way[highway][lanes>=2][passing_places] {
+	throwWarning: tr("{0} {1}>={2} with {3}", "{0.key}", "{1.key}", "{1.value}", "{2.key}");
+	group: "MapThisWay";
+	fixAdd: "lane_markings=no";
+	fixRemove: "passing_places";
 }
