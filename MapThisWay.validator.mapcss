@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.107";
+  version: "0.108";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -528,3 +528,18 @@ area[landuse=farmyard] ⊉ *[place=farm] {
 	group: "MapThisWay";
 }
 
+
+/* mtw onelanenooneway - Suggested by Volker */
+
+way[highway][lanes=1][!oneway] {
+	throwWarning: tr("{0} {1} without {2}", "{0.key}", "{1.tag}", "{2.key}");
+	group: "MapThisWay";
+}
+
+/* mtw onelanenopassingplaces - Suggested by Andrea Musuruane */
+
+way[highway][lanes=1][oneway=no][passing_places!=yes] {
+	throwWarning: tr("{0} {1} with {2} without {3}", "{0.key}", "{1.tag}", "{2.tag}", "{3.tag}");
+	group: "MapThisWay";
+	fixAdd: "passing_places=yes";
+}
