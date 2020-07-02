@@ -560,3 +560,13 @@ way[highway][lanes<2][lane_markings] {
 	group: "MapThisWay";
 	fixRemove: "lane_markings";
 }
+
+/* mtw clinicnothealthcare */
+
+*[social_facility][social_facility=healthcare] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "amenity=clinic";
+	group: "MapThisWay";
+	fixRemove: "social_facility";
+	fixAdd: "amenity=clinic";
+}
