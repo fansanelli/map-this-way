@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.110";
+  version: "0.111";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -569,4 +569,16 @@ way[highway][lanes<2][lane_markings] {
 	group: "MapThisWay";
 	fixRemove: "social_facility";
 	fixAdd: "amenity=clinic";
+}
+
+/* mtw milestone */
+*[addr:milestone][addr:milestone !~ /^(?:km|mi)\. [0-9]*[.+]?[0-9]+$/] {
+	throwWarning: tr("Invalid milestone");
+	group: "MapThisWay";
+}
+
+/* mtw milestoneswithhousenumber */
+*[addr:milestone][addr:housenumber] {
+	throwWarning: tr("{0} with {1}", "{0.key}", "{1.key}");
+	group: "MapThisWay";
 }
