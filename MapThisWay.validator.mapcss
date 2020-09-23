@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.111";
+  version: "0.112";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -580,5 +580,47 @@ way[highway][lanes<2][lane_markings] {
 /* mtw milestoneswithhousenumber */
 *[addr:milestone][addr:housenumber] {
 	throwWarning: tr("{0} with {1}", "{0.key}", "{1.key}");
+	group: "MapThisWay";
+}
+
+/* mtw accessyes */
+way[highway][access=permissive],
+way[highway][access=yes] {
+	throwWarning: tr("{0} with {1} is harmful", "{0.key}", "{1.tag}");
+	group: "MapThisWay";
+	fixRemove: "access";
+}
+
+/* mtw pathwithfootyes */
+way[highway=path][foot=yes][!horse] {
+	throwWarning: tr("{0} with {1} is redundant", "{0.value}", "{1.tag}");
+	group: "MapThisWay";
+	suggestAlternative: "foot=designated";
+	fixAdd: "foot=designated";
+}
+
+/* mtw pathwithbicycleyes */
+way[highway=path][bicycle=yes][!horse] {
+	throwWarning: tr("{0} with {1} is redundant", "{0.value}", "{1.tag}");
+	group: "MapThisWay";
+	suggestAlternative: "bicycle=designated";
+	fixAdd: "bicycle=designated";
+}
+
+/* mtw segregatednofoot */
+way[segregated][!foot] {
+	throwWarning: tr("{0} without {1}", "{0.key}", "{1.key}");
+	group: "MapThisWay";
+}
+
+/* mtw segregatednobicicle */
+way[segregated][!bicycle] {
+	throwWarning: tr("{0} without {1}", "{0.key}", "{1.key}");
+	group: "MapThisWay";
+}
+
+/* mtw segregatedwronghighway */
+*[segregated][highway != path][highway != cycleway][highway != footway] {
+	throwWarning: tr("{0} without {1}, {2}, {3}", "{0.key}", "{1.tag}", "{2.tag}", "{3.tag}");
 	group: "MapThisWay";
 }
