@@ -531,7 +531,7 @@ area[landuse=farmyard] ⊉ *[place=farm] {
 
 /* mtw onelanenooneway - Suggested by Volker */
 
-way[highway][lanes<2][!oneway] {
+way[highway][lanes<2][!oneway][!junction] {
 	throwWarning: tr("{0} {1}<{2} without {3}", "{0.key}", "{1.key}", "{1.value}", "{2.key}");
 	group: "MapThisWay";
 }
