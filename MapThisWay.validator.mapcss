@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.112";
+  version: "0.113";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -623,4 +623,48 @@ way[segregated][!bicycle] {
 *[segregated][highway != path][highway != cycleway][highway != footway] {
 	throwWarning: tr("{0} without {1}, {2}, {3}", "{0.key}", "{1.tag}", "{2.tag}", "{3.tag}");
 	group: "MapThisWay";
+}
+
+/* mtw caiscaleonway */
+way[cai_scale] {
+	throwWarning: tr("{0} on a way", "{0.key}");
+	group: "MapThisWay";
+	fixRemove: "cai_scale";
+}
+
+/* mtw rnsacscale */
+relation[sac_scale],
+node[sac_scale] {
+	throwWarning: tr("{0} not on way", "{0.key}");
+	group: "MapThisWay";
+	fixRemove: "sac_scale";
+}
+
+/* mtw rntrailvisibility */
+relation[trail_visibility],
+node[trail_visibility] {
+	throwWarning: tr("{0} not on way", "{0.key}");
+	group: "MapThisWay";
+	fixRemove: "trail_visibility";
+}
+
+/* mtw highwayonrelation */
+relation[highway] {
+	throwWarning: tr("{0} on a relation", "{0.key}");
+	group: "MapThisWay";
+	fixRemove: "highway";
+}
+
+/* mtw biketrack */
+way[highway!=path][highway!=footway][bicycle=yes] {
+	throwWarning: tr("{0} is redundant", "{2.tag}");
+	group: "MapThisWay";
+	fixRemove: "bicycle";
+}
+
+/* mtw foottrack */
+way[highway!=path][highway!=cycleway][foot=yes] {
+	throwWarning: tr("{0} is redundant", "{2.tag}");
+	group: "MapThisWay";
+	fixRemove: "foot";
 }
