@@ -486,7 +486,7 @@ way[highway!=service][service] {
 	group: "MapThisWay";
 }
 
-/* mtw towervsmast */
+/* mtw towervsmast
 
 node["tower:type"=communication][man_made != mast] {
 	throwWarning: tr("{0} not {1}", "{0.key}", "{1.value}");
@@ -494,6 +494,7 @@ node["tower:type"=communication][man_made != mast] {
 	fixRemove: "man_made";
 	fixAdd: "man_made=mast";
 }
+*/
 
 /* mtw coinsinstadofcash */
 
