@@ -669,3 +669,9 @@ way[highway!=path][highway!=cycleway][foot=yes] {
 	group: "MapThisWay";
 	fixRemove: "foot";
 }
+
+/* mtw busstopconnected */
+way[highway] > node[highway=bus_stop] {
+	throwWarning: tr("{0} collegato alla way", "{0.tag}");
+	group: "MapThisWay";
+}
