@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.113";
+  version: "0.114";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -673,5 +673,34 @@ way[highway!=path][highway!=cycleway][foot=yes] {
 /* mtw busstopconnected */
 way[highway] > node[highway=bus_stop] {
 	throwWarning: tr("{0} collegato alla way", "{0.tag}");
+	group: "MapThisWay";
+}
+
+/* mtw sentierocai */
+
+relation["ref:REI"] {
+	set sentiero_cai;
+}
+
+/* mtw refrei */
+
+relation.sentiero_cai["ref:REI" !~ /^((?:E(?:AL|AT|BI|CN|NO|TO|VB|VC)[A-Z0-9]{4}000[A-Z0-9])|(?:[^E][A-Z0-9]{10}))$/] {
+	throwWarning: tr("unusual value of {0}", "{1.key}");
+	group: "MapThisWay";
+	set invalid_ref_rei;
+}
+
+/* mtw missingcairef */
+
+relation.sentiero_cai[!ref] {
+	throwWarning: tr("{0} without {1}", "Sentiero CAI", "{1.key}");
+	group: "MapThisWay";
+}
+
+/* mtw invalidcairef */
+
+relation!.invalid_ref_rei[tag(ref)!=concat(substring(tag("ref:REI"), 4, 7), replace(substring(tag("ref:REI"), 10, 11), "0", ""))] {
+	throwWarning: tr("ref non compatibile con ref:REI");
+	fixAdd: concat("ref=", substring(tag("ref:REI"), 4, 7), replace(substring(tag("ref:REI"), 10, 11), "0", ""));
 	group: "MapThisWay";
 }
