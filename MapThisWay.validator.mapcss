@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.116";
+  version: "0.117";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -730,7 +730,7 @@ relation.sentiero_cai[tag_regex("^(?!(type|route|network|name|ref|cai_scale|roun
 
 /* mtw unknowncaiscale */
 
-relation[cai_scale !~ /^(T|E|EE|EEA|EAI)$/] { 
+relation[cai_scale][cai_scale !~ /^(T|E|EE|EEA|EAI)$/] { 
 	throwWarning: tr("unusual value of {0}", "{0.tag}");
 	group: "MapThisWay";
 }
@@ -738,7 +738,7 @@ relation[cai_scale !~ /^(T|E|EE|EEA|EAI)$/] {
 /* mtw nosacscale */
 
 relation[cai_scale] > way[!sac_scale] { 
-	throwWarning: tr("strada senza {0} parte di un sentiero CAI", "{0.tag}");
+	throwWarning: tr("strada senza {0} parte di un sentiero CAI", "{0.key}");
 	group: "MapThisWay";
 }
 
@@ -749,13 +749,11 @@ relation[cai_scale="T"] > way[sac_scale][sac_scale!="hiking"] {
 	group: "MapThisWay";
 }
 
-/* mtw sacscalee
-VERIFICARE SE TENERLA COSI' O FONDERLA CON LA REGOLA PRECEDENTE
-relation[cai_scale="E"] > way[sac_scale][sac_scale!="hiking"][sac_scale!="mountain_hiking"] { 
+/* mtw sacscalee */
+relation[cai_scale="E"] > way[sac_scale][sac_scale!="hiking"] { 
 	throwWarning: tr("strada con {0} parte di un sentiero con cai_scale=E", "{0.tag}");
 	group: "MapThisWay";
 }
-*/
 
 /* mtw sacscaleee */
 
