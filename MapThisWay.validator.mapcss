@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.117";
+  version: "0.118";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -715,8 +715,8 @@ relation.sentiero_cai[!"rwn:name"] {
 
 /* mtw cairpe */
 
-relation["ref:REI" =~ /^E/]["rwn:name"!="Rete Patrimonio Escursionistico Piemonte (RPE)"] {
-	throwWarning: tr("unusual value of {0}", "{1.key}");
+relation["rwn:name"]["ref:REI" =~ /^E/]["rwn:name"!="Rete Patrimonio Escursionistico Piemonte (RPE)"] {
+	throwWarning: tr("unusual value of {0}", "{2.key}");
 	fixAdd: "rwn:name=Rete Patrimonio Escursionistico Piemonte (RPE)";
 	group: "MapThisWay";
 }
