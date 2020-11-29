@@ -311,7 +311,7 @@ way[highway][highway != "cycleway"][highway != "path"][name][name !~ /^(?i)(arco
 
 /* mtw invalidstartdate */
 
-*["start_date"]["start_date" !~ /^[0-9]{1,4}(-[0-9]{2})?(-[0-9]{2})?$/] {
+*["start_date"]["start_date" !~ /^(?:(?:mid|before|after|late) )?(?:(?:[0-9]{1,4}(?:-[0-9]{2}){0,2})|(?:[~C]*[0-9]+[s]?))(?: BC)?$/] {
 	throwWarning: tr("{0}", "{0.key}");
 	group: "MapThisWay";
 }
@@ -766,5 +766,12 @@ relation[cai_scale="EE"] > way[sac_scale][sac_scale!="hiking"][sac_scale!="mount
 
 relation[cai_scale="EAI"] > way[sac_scale][sac_scale!="hiking"][sac_scale!="mountain_hiking"][sac_scale!="demanding_mountain_hiking"][sac_scale!="alpine_hiking"] { 
 	throwWarning: tr("strada con {0} parte di un sentiero con cai_scale=EAI", "{0.tag}");
+	group: "MapThisWay";
+}
+
+/* mtw survey:date */
+
+*["survey:date"]["survey:date" !~ /^(?:[0-9]{1,4}(?:-[0-9]{2}){0,2})$/] {
+	throwWarning: tr("{0}", "{0.key}");
 	group: "MapThisWay";
 }
