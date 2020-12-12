@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.118";
+  version: "0.119";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -184,7 +184,7 @@ way[junction=roundabout][name] {
 	suggestAlternative: "internet_access=wlan";
 	group: "MapThisWay";
 	fixRemove: "wifi";
-        fixAdd: "internet_access=wlan";
+	fixAdd: "internet_access=wlan";
 }
 
 /* mtw wifino */
@@ -203,8 +203,8 @@ way[junction=roundabout][name] {
 	suggestAlternative: "internet_access=wlan";
 	group: "MapThisWay";
 	fixRemove: "wifi";
-        fixAdd: "internet_access=wlan";
-        fixAdd: "internet_access:fee=no";
+	fixAdd: "internet_access=wlan";
+	fixAdd: "internet_access:fee=no";
 }
 
 /* mtw officetravelagent */
@@ -214,13 +214,13 @@ way[junction=roundabout][name] {
 	suggestAlternative: "shop=travel_agency";
 	group: "MapThisWay";
 	fixRemove: "office";
-        fixAdd: "shop=travel_agency";
+	fixAdd: "shop=travel_agency";
 }
 
 /* mtw refwithspace - suggested by Andrea Musuruane */
 
-way[highway][ref =~ /\s+/] {
-	throwWarning: tr("ref with spaces");
+way[highway][ref =~ /(\s+)|[;]/] {
+	throwWarning: tr("unusual value of {0}", "{1.key}");
 	group: "MapThisWay";
 }
 
@@ -431,7 +431,7 @@ way[highway=cycleway][cycleway=crossing] {
 
 *[crossing][crossing!=no]!.attraversamento_pedonale,
 *[highway=crossing]!.attraversamento_pedonale {
-        throwWarning: tr("Attraversamento pedonale non riconosciuto");
+	throwWarning: tr("Attraversamento pedonale non riconosciuto");
 	group: "MapThisWay";
 }
 
@@ -773,5 +773,13 @@ relation[cai_scale="EAI"] > way[sac_scale][sac_scale!="hiking"][sac_scale!="moun
 
 *["survey:date"]["survey:date" !~ /^(?:[0-9]{1,4}(?:-[0-9]{2}){0,2})$/] {
 	throwWarning: tr("{0}", "{0.key}");
+	group: "MapThisWay";
+}
+
+/* mtw refalreadyonrel */
+
+relation[type=route][ref] *[tag("ref")=parent_tag("ref")] {
+	throwWarning: tr("Ref già sulla relazione");
+	fixRemove: "ref";
 	group: "MapThisWay";
 }
