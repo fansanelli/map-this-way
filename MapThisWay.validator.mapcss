@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.119";
+  version: "0.120";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -346,9 +346,10 @@ way[highway][highway != "cycleway"][highway != "path"][name][name !~ /^(?i)(arco
 
 /* mtw scuolainfanzia */
 
-*[amenity!=kindergarten]["name" =~ /(?i)(scuola (materna|dell'infanzia))|asilo/] {
-	throwWarning: tr("{0}", "{0.tag}");
+*[!highway][amenity!=kindergarten]["name" =~ /(?i)(scuola (materna|dell'infanzia))|asilo/] {
+	throwWarning: tr("Asilo senza {0}", "{1.tag}");
 	group: "MapThisWay";
+	fixAdd: "amenity=kindergarten";
 }
 
 /* mtw nidonotnursery */
