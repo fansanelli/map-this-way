@@ -783,3 +783,25 @@ relation[type=route][ref] *[tag("ref")=parent_tag("ref")] {
 	fixRemove: "ref";
 	group: "MapThisWay";
 }
+
+/* addr:unit senza addr:housenumber */
+
+*[addr:unit][!addr:housenumber] {
+	throwWarning: tr("{0} without {1}", "{0.key}", "{1.key}");
+	group: "MapThisWay";
+}
+
+/* place con addr:postcode */
+
+*[place]["addr:postcode"] {
+	throwWarning: tr("{0} with {1}", "{0.key}", "{1.key}");
+	group: "MapThisWay";
+}
+
+/* name che contiene le virgolette */
+
+*["name" =~ /"/] {
+	throwWarning: tr("{0} with quotation mark(s)", "{0.key}");
+	group: "MapThisWay";
+}
+
