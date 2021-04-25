@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.120b";
+  version: "0.120c";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -622,7 +622,7 @@ way[segregated][!bicycle] {
 }
 
 /* mtw segregatedwronghighway */
-*[segregated][highway != path][highway != cycleway][highway != footway] {
+*[segregated][highway != path][highway != cycleway][highway != footway][highway != crossing] {
 	throwWarning: tr("{0} without {1}, {2}, {3}", "{0.key}", "{1.tag}", "{2.tag}", "{3.tag}");
 	group: "MapThisWay";
 }
