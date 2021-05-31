@@ -360,7 +360,7 @@ way[highway][highway != "cycleway"][highway != "path"][name][name !~ /^(?i)(arco
 	fixAdd: "nursery=yes";
 }
 
-/* mtw scuolainfanzianoisched */
+/* mtw scuolainfanzianoisced */
 
 *[amenity=kindergarten]["isced:level" != "0"] {
 	throwWarning: tr("{0} without {1}", "{0.value}", "{1.key}");
@@ -418,6 +418,13 @@ way[highway][highway != "cycleway"][highway != "path"][name][name !~ /^(?i)(arco
 *[amenity=school]!.scuola_superiore!.scuola_media!.scuola_elementare {
 	throwWarning: tr("scuola non riconosciuta");
 	group: "MapThisWay";
+}
+
+/* mtw schoolnoref */
+
+*[amenity=kindergarten][!ref], *[amenity=school][!ref] {
+	group: "MapThisWay";
+	throwWarning: tr("scuola senza ref (cercare su cercalatuascuola.istruzione.it)");
 }
 
 /* mtw crossing */
