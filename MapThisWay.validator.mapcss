@@ -813,3 +813,7 @@ relation[type=route][ref] *[tag("ref")=parent_tag("ref")] {
 	group: "MapThisWay";
 }
 
+/* mtw refvatin */
+*[ref:vatin][ref:vatin !~ /^IT[0-9]{11}$/][inside("IT")] {
+	throwWarning: tr("ref:vatin deve essere IT seguito da 11 cifre")
+}
