@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.120c";
+  version: "0.121";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -815,5 +815,12 @@ relation[type=route][ref] *[tag("ref")=parent_tag("ref")] {
 
 /* mtw refvatin */
 *[ref:vatin][ref:vatin !~ /^IT[0-9]{11}$/][inside("IT")] {
-	throwWarning: tr("ref:vatin deve essere IT seguito da 11 cifre")
+	throwWarning: tr("ref:vatin deve essere IT seguito da 11 cifre");
+	group: "MapThisWay";
+}
+
+/* mtw guidepostontheway - suggested by Ivo Reano */
+way[highway] > node[information=guidepost] {
+	throwWarning: tr("scollegare il segnavia");
+	group: "MapThisWay";
 }
