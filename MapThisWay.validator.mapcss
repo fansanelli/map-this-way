@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.121";
+  version: "0.122";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -822,5 +822,11 @@ relation[type=route][ref] *[tag("ref")=parent_tag("ref")] {
 /* mtw guidepostontheway - suggested by Ivo Reano */
 way[highway] > node[information=guidepost] {
 	throwWarning: tr("scollegare il segnavia");
+	group: "MapThisWay";
+}
+
+/* mtw historicamenity */
+*[historic][amenity] {	
+	throwWarning: tr("{0} together with {1}", "{0.key}", "{1.key}");
 	group: "MapThisWay";
 }
