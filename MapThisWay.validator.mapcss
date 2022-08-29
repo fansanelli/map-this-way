@@ -381,7 +381,7 @@ way[highway][highway != "cycleway"][highway != "path"][name][name !~ /^(?i)(arco
 }
 
 *["isced:level" != "1"][amenity=school].scuola_elementare {
-	throwWarning: tr("scuola elementare senza isched:level o isched:level non valido");
+	throwWarning: tr("scuola elementare senza isced:level o isced:level non valido");
 	group: "MapThisWay";
 	fixRemove: "isced:level";
 	fixAdd: "isced:level=1";
@@ -394,7 +394,7 @@ way[highway][highway != "cycleway"][highway != "path"][name][name !~ /^(?i)(arco
 }
 
 *["isced:level" != "2"][amenity=school].scuola_media {
-	throwWarning: tr("scuola media senza isched:level o isched:level non valido");
+	throwWarning: tr("scuola media senza isced:level o isced:level non valido");
 	group: "MapThisWay";
 	fixRemove: "isced:level";
 	fixAdd: "isced:level=2";
@@ -407,7 +407,7 @@ way[highway][highway != "cycleway"][highway != "path"][name][name !~ /^(?i)(arco
 }
 
 *["isced:level" != "3"][amenity=school].scuola_superiore {
-	throwWarning: tr("scuola superiore senza isched:level o isched:level non valido");
+	throwWarning: tr("scuola superiore senza isced:level o isced:level non valido");
 	group: "MapThisWay";
 	fixRemove: "isced:level";
 	fixAdd: "isced:level=3";
