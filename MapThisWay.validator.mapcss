@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.124b";
+  version: "0.124c";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -896,6 +896,17 @@ way["parking:lane:right:parallel"]["parking:lane:right:parallel" =on_street] {
 	fixRemove: "parking:lane:both";
 }
 
+/* mtw oldparkingrightparallelunknown */
+way["parking:lane:right"=parallel][!"parking:lane:right:parallel"] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "parking:right";
+	group: "MapThisWay";
+	fixAdd: "parking:right=yes";
+	fixAdd: "parking:right:orientation=parallel";
+	fixRemove: "parking:lane:right";
+	fixRemove: "parking:lane:both";
+}
+
 /* mtw oldparkingleftparallel */
 way["parking:lane:left:parallel"]["parking:lane:left:parallel" =~ /(half_on_kerb|on_kerb|street_side|shoulder)/] {
 	throwWarning: tr("{0} is deprecated", "{0.tag}");
@@ -919,6 +930,16 @@ way["parking:lane:left:parallel"]["parking:lane:left:parallel" =on_street] {
 	fixRemove: "parking:lane:both";
 }
 
+/* mtw oldparkingleftparallelunknown */
+way["parking:lane:left"=parallel][!"parking:lane:left:parallel"] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "parking:left";
+	group: "MapThisWay";
+	fixAdd: "parking:left=yes";
+	fixAdd: "parking:left:orientation=parallel";
+	fixRemove: "parking:lane:left";
+	fixRemove: "parking:lane:both";
+}
 
 /* mtw oldparkingrightperpendicular */
 way["parking:lane:right:perpendicular"]["parking:lane:right:perpendicular" =~ /(half_on_kerb|on_kerb|street_side|shoulder)/] {
@@ -939,6 +960,17 @@ way["parking:lane:right:perpendicular"]["parking:lane:right:perpendicular" =on_s
 	fixAdd: "parking:right=lane";
 	fixAdd: "parking:right:orientation=perpendicular";
 	fixRemove: "parking:lane:right:perpendicular";
+	fixRemove: "parking:lane:right";
+	fixRemove: "parking:lane:both";
+}
+
+/* mtw oldparkingrightperpendicularunknown */
+way["parking:lane:right"=perpendicular][!"parking:lane:right:perpendicular"] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "parking:right";
+	group: "MapThisWay";
+	fixAdd: "parking:right=yes";
+	fixAdd: "parking:right:orientation=perpendicular";
 	fixRemove: "parking:lane:right";
 	fixRemove: "parking:lane:both";
 }
@@ -966,6 +998,17 @@ way["parking:lane:left:perpendicular"]["parking:lane:left:perpendicular" =on_str
 	fixRemove: "parking:lane:both";
 }
 
+/* mtw oldparkingleftperpendicularunknown */
+way["parking:lane:left"=perpendicular][!"parking:lane:left:perpendicular"] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "parking:left";
+	group: "MapThisWay";
+	fixAdd: "parking:left=yes";
+	fixAdd: "parking:left:orientation=perpendicular";
+	fixRemove: "parking:lane:left";
+	fixRemove: "parking:lane:both";
+}
+
 /* mtw oldparkingrightdiagonal */
 way["parking:lane:right:diagonal"]["parking:lane:right:diagonal" =~ /(half_on_kerb|on_kerb|street_side|shoulder)/] {
 	throwWarning: tr("{0} is deprecated", "{0.tag}");
@@ -989,6 +1032,17 @@ way["parking:lane:right:diagonal"]["parking:lane:right:diagonal" =on_street] {
 	fixRemove: "parking:lane:both";
 }
 
+/* mtw oldparkingrightdiagonalunknown */
+way["parking:lane:right"=diagonal][!"parking:lane:right:diagonal"] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "parking:right";
+	group: "MapThisWay";
+	fixAdd: "parking:right=yes";
+	fixAdd: "parking:right:orientation=diagonal";
+	fixRemove: "parking:lane:right";
+	fixRemove: "parking:lane:both";
+}
+
 /* mtw oldparkingleftdiagonal */
 way["parking:lane:left:diagonal"]["parking:lane:left:diagonal" =~ /(half_on_kerb|on_kerb|street_side|shoulder)/] {
 	throwWarning: tr("{0} is deprecated", "{0.tag}");
@@ -1008,6 +1062,17 @@ way["parking:lane:left:diagonal"]["parking:lane:left:diagonal" =on_street] {
 	fixAdd: "parking:left=lane";
 	fixAdd: "parking:left:orientation=diagonal";
 	fixRemove: "parking:lane:left:diagonal";
+	fixRemove: "parking:lane:left";
+	fixRemove: "parking:lane:both";
+}
+
+/* mtw oldparkingleftdiagonalunknown */
+way["parking:lane:left"=diagonal][!"parking:lane:left:diagonal"] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "parking:left";
+	group: "MapThisWay";
+	fixAdd: "parking:left=yes";
+	fixAdd: "parking:left:orientation=diagonal";
 	fixRemove: "parking:lane:left";
 	fixRemove: "parking:lane:both";
 }
