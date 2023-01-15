@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.124c";
+  version: "0.125";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -466,11 +466,9 @@ way[highway=cycleway][cycleway=crossing] {
 
 /* mtw crossingcalming */
 
-*[traffic_calming][traffic_calming!=table].attraversamento_pedonale {
-	throwWarning: tr("{0}", "{0.key}");
+*[traffic_calming][traffic_calming!=table][traffic_calming!=hump].attraversamento_pedonale {
+	throwWarning: tr("Attraversamento su {0}", "{0.tag}");
 	group: "MapThisWay";
-	fixRemove: "traffic_calming";
-	fixAdd: "traffic_calming=table";
 }
 
 /* mtw tracktypenottrack */
