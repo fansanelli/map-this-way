@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.125";
+  version: "0.125b";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -1123,5 +1123,32 @@ way["parking:condition:both" = ticket] {
 	suggestAlternative: "parking:both:fee=yes";
 	group: "MapThisWay";
 	fixAdd: "parking:both:fee=yes";
+	fixRemove: "parking:condition:both";
+}
+
+/* mtw oldparkingleftfree */
+way["parking:condition:left" = free] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "parking:left:fee=no";
+	group: "MapThisWay";
+	fixAdd: "parking:left:fee=no";
+	fixRemove: "parking:condition:left";
+}
+
+/* mtw oldparkingrightfree */
+way["parking:condition:right" = free] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "parking:right:fee=no";
+	group: "MapThisWay";
+	fixAdd: "parking:right:fee=no";
+	fixRemove: "parking:condition:right";
+}
+
+/* mtw oldparkingbothfree */
+way["parking:condition:both" = free] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "parking:both:fee=no";
+	group: "MapThisWay";
+	fixAdd: "parking:both:fee=no";
 	fixRemove: "parking:condition:both";
 }
