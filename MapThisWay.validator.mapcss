@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.126";
+  version: "0.127";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -821,7 +821,7 @@ relation[cai_scale="EAI"] > way[sac_scale][sac_scale!="hiking"][sac_scale!="moun
 
 /* mtw refalreadyonrel */
 
-relation[type=route][ref] *[tag("ref")=parent_tag("ref")] {
+relation[type=route][ref] way[tag("ref")=parent_tag("ref")] {
 	throwWarning: tr("Ref già sulla relazione");
 	fixRemove: "ref";
 	group: "MapThisWay";
@@ -1188,4 +1188,10 @@ way["parking:condition:both" = free] {
 	group: "MapThisWay";
 	fixAdd: "parking:both:fee=no";
 	fixRemove: "parking:condition:both";
+}
+
+/* mtw wrongroleguidepost - Suggested by Ivo Reano */
+relation[type=route] >[role != "guidepost"] node[information=guidepost] {
+  throwWarning: tr("Segnavia senza ruolo guidepost");
+	group: "MapThisWay";
 }
