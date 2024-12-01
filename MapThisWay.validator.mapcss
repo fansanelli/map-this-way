@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.127";
+  version: "0.128";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
