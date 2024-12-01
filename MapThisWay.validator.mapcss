@@ -728,7 +728,7 @@ relation["ref:REI"] {
 
 /* mtw refrei */
 
-relation["ref:REI"]["ref:REI" !~ /^((?:E(?:AL|AT|BI|CN|NO|TO|VB|VC)[A-Z0-9]{4}000[A-Z0-9])|(?:[^E][A-Z0-9]{10}))$/] {
+relation["ref:REI"]["ref:REI" !~ /^((?:E(?:AL|AT|BI|CN|NO|TO|VB|VC)[A-Z][A-Z0-9]{3}[A-Z0-9])|(?:[A-DF-Z][A-Z]{2}[A-Z][A-Z0-9]{3}[A-Z0-9]))$/] {
 	throwWarning: tr("unusual value of {0}", "{1.key}");
 	group: "MapThisWay";
 	set invalid_ref_rei;
@@ -743,9 +743,9 @@ relation.sentiero_cai[!ref] {
 
 /* mtw invalidcairef */
 
-relation["ref:REI"]!.invalid_ref_rei[tag(ref)!=concat(substring(tag("ref:REI"), 4, 7), replace(substring(tag("ref:REI"), 10, 11), "0", ""))] {
+relation["ref:REI"]!.invalid_ref_rei[tag(ref)!=concat(substring(tag("ref:REI"), 4, 7), replace(substring(tag("ref:REI"), 7, 8), "0", ""))] {
 	throwWarning: tr("ref non compatibile con ref:REI");
-	fixAdd: concat("ref=", substring(tag("ref:REI"), 4, 7), replace(substring(tag("ref:REI"), 10, 11), "0", ""));
+	fixAdd: concat("ref=", substring(tag("ref:REI"), 4, 7), replace(substring(tag("ref:REI"), 7, 8), "0", ""));
 	group: "MapThisWay";
 }
 
@@ -766,7 +766,7 @@ relation["rwn:name"]["ref:REI" =~ /^E/]["rwn:name"!="Rete Patrimonio Escursionis
 
 /* mtw caitagblacklist */
 
-relation.sentiero_cai[tag_regex("^(?!(type|route|network|name|ref|cai_scale|roundtrip|source|source:ref|survey:date|osmc:symbol|symbol(?::it)*|operator|old_ref|ascent|descent|distance|duration:forward|duration:backward|from|to|rwn:name|ref:REI|maintenance(?::it)*|state|note(?::it)*|note:project_page|website|wikimedia_commons|description(?::it)*)$)(\\w*)")] {
+relation.sentiero_cai[tag_regex("^(?!(type|route|network|name|ref|cai_scale|roundtrip|source|source:ref|survey:date|osmc:symbol|symbol(?::it)*|operator|old_ref|ascent|descent|distance|duration:forward|duration:backward|from|to|rwn:name|reg_ref|ref:REI|maintenance(?::it)*|state|note(?::it)*|note:project_page|website|wikimedia_commons|description(?::it)*)$)(\\w*)")] {
 	throwWarning: tr("tag non nello schema CAI");
 	group: "MapThisWay";
 }
