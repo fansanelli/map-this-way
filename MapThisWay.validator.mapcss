@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.128";
+  version: "0.129";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -341,7 +341,7 @@ node[natural=tree][!tag_regex("^(name|genus|species)")] {
 
 /* mtw invaliddug - suggested by canfe */
 
-way[highway][highway != "cycleway"][highway != "path"][name][name !~ /^(?i)(arco|autostrada|belvedere|calata|calle|cavalcavia|circonvallazione|corso|corte|cortile|discesa|galleria|gradinata|larghetto|largo|litoranea|lungargine|lungo[a-z]+|molo|parcheggio|passaggio|passeggiata|percorso ciclabile|percorso ciclopedonale|percorso pedonale|piazza|piazzale|piazzetta|pista ciclabile|ponte|raccordo|rampa|ronco|rotatoria|rotonda|salita|scalinata|scesa|sentiero|slargo|sottopasso|sovrappasso|spiazzo|strada|strada antica|strada comunale|strada consortile|strada nuova|strada panoramica|strada poderale|strada privata|strada provinciale|strada regionale|strada statale|strada vecchia|strada vicinale|stradella|stradello|stradone|tangenziale|traversa|traversa privata|via|via antica|via comunale|via nazionale|via nuova|via panoramica|via privata|via provinciale|via vecchia|viale|vialetto|vico|vico chiuso|vico cieco|vico privato|vicoletto|vicolo|vicolo chiuso|vicolo cieco|vicolo privato|viottolo)[ ]/][inside("IT")] {
+way[highway][highway != "cycleway"][highway != "path"][highway != "via_ferrata"][name][name !~ /^(?i)(arco|autostrada|belvedere|calata|calle|cavalcavia|circonvallazione|corso|corte|cortile|discesa|galleria|gradinata|larghetto|largo|litoranea|lungargine|lungo[a-z]+|molo|parcheggio|passaggio|passeggiata|percorso ciclabile|percorso ciclopedonale|percorso pedonale|piazza|piazzale|piazzetta|pista ciclabile|ponte|raccordo|rampa|ronco|rotatoria|rotonda|salita|scalinata|scesa|sentiero|slargo|sottopasso|sovrappasso|spiazzo|strada|strada antica|strada comunale|strada consortile|strada nuova|strada panoramica|strada poderale|strada privata|strada provinciale|strada regionale|strada statale|strada vecchia|strada vicinale|stradella|stradello|stradone|tangenziale|traversa|traversa privata|via|via antica|via comunale|via nazionale|via nuova|via panoramica|via privata|via provinciale|via vecchia|viale|vialetto|vico|vico chiuso|vico cieco|vico privato|vicoletto|vicolo|vicolo chiuso|vicolo cieco|vicolo privato|viottolo)[ ]/][inside("IT")] {
 	throwWarning: tr("unusual value of {0}", "{3.key}");
 	group: "MapThisWay";
 }
