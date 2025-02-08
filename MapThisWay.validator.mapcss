@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.129";
+  version: "0.130";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -824,6 +824,13 @@ relation[cai_scale="EAI"] > way[sac_scale][sac_scale!="hiking"][sac_scale!="moun
 relation[type=route][ref] way[tag("ref")=parent_tag("ref")] {
 	throwWarning: tr("Ref già sulla relazione");
 	fixRemove: "ref";
+	group: "MapThisWay";
+}
+
+/* mtw unknowncaisourceref */
+
+relation.sentiero_cai["source:ref"]["source:ref" !~ /^9[1-2][0-9]{5}$/] {
+	throwWarning: tr("source:ref non riconosciuto");
 	group: "MapThisWay";
 }
 
