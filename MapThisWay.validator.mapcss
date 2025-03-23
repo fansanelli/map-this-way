@@ -1,7 +1,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.130";
+  version: "0.131";
   description: "Map This Way";
   author: "Francesco Ansanelli";
   watch-modified: true;
@@ -1200,5 +1200,35 @@ way["parking:condition:both" = free] {
 /* mtw wrongroleguidepost - Suggested by Ivo Reano */
 relation[type=route] >[role != "guidepost"] node[information=guidepost] {
   throwWarning: tr("Segnavia senza ruolo guidepost");
+	group: "MapThisWay";
+}
+
+/* mtw unusualmaxspeed */
+way[maxspeed][maxspeed =~ /^(?!5$|10$|15$|20$|30$|40$|50$|60$|70$|80$|90$|100$|110$|120$|130$).*/][inside("IT")] {
+	throwWarning: tr("unusual value of {0}", "{0.tag}");
+	group: "MapThisWay";
+}
+
+/* mtw unusualmaxspeedp */
+way[highway=primary][maxspeed][maxspeed > 110][inside("IT")] {
+	throwWarning: tr("highway=secondary with maxspeed > 110", "{0.tag}");
+	group: "MapThisWay";
+}
+
+/* mtw unusualmaxspeeds */
+way[highway=secondary][maxspeed][maxspeed > 90][inside("IT")] {
+	throwWarning: tr("highway=secondary with maxspeed > 90", "{0.tag}");
+	group: "MapThisWay";
+}
+
+/* mtw unusualmaxspeedt */
+way[highway=tertiary][maxspeed][maxspeed > 90][inside("IT")] {
+	throwWarning: tr("highway=tertiary with maxspeed > 90", "{0.tag}");
+	group: "MapThisWay";
+}
+
+/* mtw unusualmaxspeedr */
+way[highway=residential][maxspeed][maxspeed > 50][inside("IT")] {
+	throwWarning: tr("highway=residential with maxspeed > 50", "{0.tag}");
 	group: "MapThisWay";
 }
