@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-25913' action='modify' visible='true' lat='44.40284892912' lon='7.51955487406'>
+    <tag k='addr:housenumber' v='2 A' />
+    <tag k='addr:street' v='Via' />
+  </node>
+</osm>

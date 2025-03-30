@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-25954' action='modify' visible='true' lat='44.40779050706' lon='7.51492855035'>
+    <tag k='amenity' v='pharmacy' />
+  </node>
+</osm>

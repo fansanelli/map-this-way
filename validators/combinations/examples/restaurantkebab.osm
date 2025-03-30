@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-25976' action='modify' visible='true' lat='44.39931897501' lon='7.53482623389'>
+    <tag k='amenity' v='restaurant' />
+    <tag k='cuisine' v='kebab' />
+  </node>
+  <node id='-26023' action='modify' visible='true' lat='44.39925479206' lon='7.53698219057'>
+    <tag k='amenity' v='restaurant' />
+    <tag k='cuisine' v='kebab;moroccan' />
+  </node>
+</osm>

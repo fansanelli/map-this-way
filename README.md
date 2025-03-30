@@ -1,25 +1,30 @@
 # map-this-way
 
-Controlli "mapcss" aggiuntivi pensati per chi mappa in Italia.
+Controlli "mapcss" pensati per chi mappa in Italia.
 
 # SETUP
 
-da JOSM:
+Da JOSM:
 - Modifica -> Preferenze -> Validatore dati (menu laterale) -> Regole controllo etichette
 - Aggiungi (icona + in alto a destra)
 - Indirizzo URL: https://raw.githubusercontent.com/fansanelli/map-this-way/master/MapThisWay.validator.mapcss
 - OK
 
-# TODO
+# DEV (WIP)
 
-- documentare i controlli
+Per generare il file MapThisWay.validator.mapcss con tutti i controlli eseguire:
+
+`$ ./make.sh`
+
+# CONTROLLI (WIP)
+
+I controlli sono suddivisi per tipologia e si trovano nella cartella validators
 
 # CONTRIBUTE
 
 - ti piace il mio progetto? Clicca sulla stella in alto a destra (occorre fare la registrazione gratuita a GitHub)
 - unisciti al canale telegram (http://t.me/osmcuneo) e aiutaci ad espandere la community
 - segnala problemi con i controlli esistenti o suggeriscine di nuovi
-- vota questa segnalazione in modo che venga presa in carico dal team di JOSM: https://josm.openstreetmap.de/ticket/18166
 
 # ABOUT MAPCSS
 
