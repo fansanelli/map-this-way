@@ -18,15 +18,18 @@ Per generare il file MapThisWay.validator.mapcss con tutti i controlli eseguire:
 
 # CONTROLLI (WIP)
 
-I controlli sono suddivisi per tipologia e si trovano nella cartella validators
+I controlli sono suddivisi per tipologia e si trovano nella cartella validators.
+
+- [addresses](validators/addresses/addresses.md)
+- [combinations](validators/combinations/combinations.md)
+- [highways](validators/highways/highways.md)
 
 # CONTRIBUTE
 
 - ti piace il mio progetto? Clicca sulla stella in alto a destra (occorre fare la registrazione gratuita a GitHub)
-- unisciti al canale telegram (http://t.me/osmcuneo) e aiutaci ad espandere la community
 - segnala problemi con i controlli esistenti o suggeriscine di nuovi
 
 # ABOUT MAPCSS
 
-https://josm.openstreetmap.de/wiki/Help/Styles/MapCSSImplementation
-https://josm.openstreetmap.de/wiki/Help/Validator/MapCSSTagChecker
+- https://josm.openstreetmap.de/wiki/Help/Styles/MapCSSImplementation
+- https://josm.openstreetmap.de/wiki/Help/Validator/MapCSSTagChecker
