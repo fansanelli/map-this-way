@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-26739' action='modify' visible='true' lat='44.40740546403' lon='7.51061663698'>
+    <tag k='contact:phone' v='+3901712345' />
+    <tag k='phone' v='+3901712345' />
+  </node>
+  <node id='-26740' action='modify' visible='true' lat='44.40560856307' lon='7.51250309908'>
+    <tag k='contact:phone' v='+39 0171 234 5111' />
+    <tag k='phone' v='+39 0171 234 5111' />
+  </node>
+  <node id='-26742' action='modify' visible='true' lat='44.40308671286' lon='7.50080000809'>
+    <tag k='contact:mobile' v='+39 333 234 5111' />
+    <tag k='contact:phone' v='+39 333 234 5111' />
+    <tag k='phone' v='+39 333 234 5111' />
+    <tag k='phone:mobile' v='+39 333 234 5111' />
+  </node>
+</osm>

@@ -6,21 +6,21 @@
 
 way[inside("IT")][building][tag_regex("^addr:*")] {
 	throwWarning: tr("{0} together with {1}", "{1.key}", "addr:*");
-	group: "MapThisWay";
+	group: "MapThisWay (Addresses)";
 }
 
 /* mtw namenotcapitalized */
 
 *[inside("IT")][addr:street =~ /^[a-z]/] {
 	throwWarning: tr("unusual value of {0}", "{1.key}: iniziale non in maiuscolo");
-	group: "MapThisWay";
+	group: "MapThisWay (Addresses)";
 }
 
 /* mtw numerocivicoerrato */
 
 *[inside("IT")][addr:housenumber][addr:housenumber !~ /^(0|[1-9][0-9]*)([a-z]{0,1}|(\/[1-9][0-9]*[a-z]{0,1})|bis|((qua)?ter))(\b rosso\b)?$/] {
 	throwWarning: tr("unusual value of {0}", "{1.key}: https://wiki.openstreetmap.org/wiki/IT:Addresses#Come_inserire_gli_indirizzi_2");
-	group: "MapThisWay";
+	group: "MapThisWay (Addresses)";
 	assertMatch: "node \"addr:housenumber\"=\"00\"";
 	assertMatch: "node \"addr:housenumber\"=\"01\"";
 	assertMatch: "node \"addr:housenumber\"=\"a\"";
@@ -39,19 +39,5 @@ way[inside("IT")][building][tag_regex("^addr:*")] {
 	assertNoMatch: "node \"addr:housenumber\"=\"1 rosso\"";
 	assertNoMatch: "node \"addr:housenumber\"=\"0\"";
 	assertNoMatch: "node \"addr:housenumber\"=\"0a\"";
-}
-
-/* mtw roundaboutwithname */
-
-way[inside("IT")][junction=roundabout][name] {
-	throwWarning: tr("{0} together with {1}", "{1.tag}", "{2.key}");
-	group: "MapThisWay";
-}
-
-/* mtw invaliddug - suggested by canfe */
-
-way[inside("IT")][highway][name][highway !~ /cycleway|path|via_ferrata/][name !~ /^(?i)(arco|autostrada|belvedere|calata|calle|cavalcavia|circonvallazione|corso|corte|cortile|discesa|galleria|gradinata|larghetto|largo|litoranea|lungargine|lungo[a-z]+|molo|parcheggio|passaggio|passeggiata|percorso ciclabile|percorso ciclopedonale|percorso pedonale|piazza|piazzale|piazzetta|pista ciclabile|ponte|raccordo|rampa|ronco|rotatoria|rotonda|salita|scalinata|scesa|sentiero|slargo|sottopasso|sovrappasso|spiazzo|strada|strada antica|strada comunale|strada consortile|strada nuova|strada panoramica|strada poderale|strada privata|strada provinciale|strada regionale|strada statale|strada vecchia|strada vicinale|stradella|stradello|stradone|tangenziale|traversa|traversa privata|via|via antica|via comunale|via nazionale|via nuova|via panoramica|via privata|via provinciale|via vecchia|viale|vialetto|vico|vico chiuso|vico cieco|vico privato|vicoletto|vicolo|vicolo chiuso|vicolo cieco|vicolo privato|viottolo)[ ]/] {
-	throwWarning: tr("unusual value of {0}", "{2.key}: non trovato in elenco Registro delle Denominazioni Urbanistiche Generiche (DUG)");
-	group: "MapThisWay";
 }
 

@@ -6,7 +6,7 @@
 
 *[inside("IT")][amenity=pharmacy][!dispensing] {
 	throwWarning: tr("{0} without {1}", "{1.tag}", "{2.key}");
-	group: "MapThisWay";
+	group: "MapThisWay (Combinations)";
 }
 
 /* mtw restaurantkebab */
@@ -14,7 +14,7 @@
 *[inside("IT")][amenity=restaurant][cuisine ~= "kebab"] {
 	throwWarning: tr("{0} together with {1}", "{1.tag}", "{2.key}=kebab");
   suggestAlternative: "amenity=fast_food";
-	group: "MapThisWay";
+	group: "MapThisWay (Combinations)";
   fixRemove: "{1.key}";
 	fixAdd: "{1.key}=fast_food";
 }

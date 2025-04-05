@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-27046' action='modify' visible='true' lat='44.40471009189' lon='7.50594539751'>
+    <tag k='contact:phone:IT' v='+39 3332345111' />
+    <tag k='phone:IT' v='+39123' />
+  </node>
+</osm>

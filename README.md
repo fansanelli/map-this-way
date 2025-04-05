@@ -23,6 +23,7 @@ I controlli sono suddivisi per tipologia e si trovano nella cartella validators.
 - [addresses](validators/addresses/addresses.md)
 - [combinations](validators/combinations/combinations.md)
 - [highways](validators/highways/highways.md)
+- [phones](validators/phones/phones.md)
 
 # CONTRIBUTE
 

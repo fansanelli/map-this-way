@@ -12,7 +12,7 @@ meta
   title: "MapThisWay";
   version: "$VERSION";
   description: "Map This Way";
-  author: "Francesco Ansanelli";
+  author: "francians";
   watch-modified: true;
 }
 

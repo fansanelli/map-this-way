@@ -1,42 +1,59 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <osm version='0.6' generator='JOSM'>
-  <node id='-25809' action='modify' visible='true' lat='44.40230631478' lon='7.5238775258' />
-  <node id='-25810' action='modify' visible='true' lat='44.40230640249' lon='7.5238776971' />
-  <node id='-25811' action='modify' visible='true' lat='44.4023062433' lon='7.52387769447' />
-  <node id='-25813' action='modify' visible='true' lat='44.40230624854' lon='7.52387758481' />
-  <node id='-25817' action='modify' visible='true' lat='44.40230638798' lon='7.52387756558' />
-  <node id='-25819' action='modify' visible='true' lat='44.40231992794' lon='7.52385313231' />
-  <node id='-25820' action='modify' visible='true' lat='44.40228292543' lon='7.52386838536' />
-  <node id='-25898' action='modify' visible='true' lat='44.40230632228' lon='7.52387776855' />
-  <node id='-25899' action='modify' visible='true' lat='44.40232064978' lon='7.52389662353' />
-  <way id='-621' action='modify' visible='true'>
-    <nd ref='-25809' />
-    <nd ref='-25813' />
-    <nd ref='-25811' />
-    <nd ref='-25898' />
-    <nd ref='-25810' />
-    <nd ref='-25817' />
-    <nd ref='-25809' />
+  <node id='-26078' action='modify' visible='true' lat='44.40230631478' lon='7.5238775258' />
+  <node id='-26079' action='modify' visible='true' lat='44.40230640249' lon='7.5238776971' />
+  <node id='-26080' action='modify' visible='true' lat='44.4023062433' lon='7.52387769447' />
+  <node id='-26081' action='modify' visible='true' lat='44.40230624854' lon='7.52387758481' />
+  <node id='-26082' action='modify' visible='true' lat='44.40230638798' lon='7.52387756558' />
+  <node id='-26083' action='modify' visible='true' lat='44.40231992794' lon='7.52385313231' />
+  <node id='-26084' action='modify' visible='true' lat='44.40228292543' lon='7.52386838536' />
+  <node id='-26085' action='modify' visible='true' lat='44.40230632228' lon='7.52387776855' />
+  <node id='-26087' action='modify' visible='true' lat='44.40232143237' lon='7.52389605914' />
+  <node id='-26088' action='modify' visible='true' lat='44.40232222857' lon='7.52389820664' />
+  <node id='-26089' action='modify' visible='true' lat='44.40232067924' lon='7.52389792153' />
+  <node id='-26097' action='modify' visible='true' lat='44.40232070886' lon='7.52389671547' />
+  <node id='-26099' action='modify' visible='true' lat='44.40232139868' lon='7.52389865205' />
+  <node id='-26101' action='modify' visible='true' lat='44.4023223477' lon='7.52389675719' />
+  <way id='-832' action='modify' visible='true'>
+    <nd ref='-26078' />
+    <nd ref='-26081' />
+    <nd ref='-26080' />
+    <nd ref='-26085' />
+    <nd ref='-26079' />
+    <nd ref='-26082' />
+    <nd ref='-26078' />
     <tag k='highway' v='primary' />
     <tag k='junction' v='roundabout' />
-    <tag k='name' v='Via' />
+    <tag k='name' v='Via A' />
   </way>
-  <way id='-625' action='modify' visible='true'>
-    <nd ref='-25819' />
-    <nd ref='-25817' />
+  <way id='-833' action='modify' visible='true'>
+    <nd ref='-26083' />
+    <nd ref='-26082' />
     <tag k='highway' v='primary' />
-    <tag k='name' v='Via' />
+    <tag k='name' v='Via A' />
   </way>
-  <way id='-626' action='modify' visible='true'>
-    <nd ref='-25811' />
-    <nd ref='-25820' />
+  <way id='-834' action='modify' visible='true'>
+    <nd ref='-26080' />
+    <nd ref='-26084' />
     <tag k='highway' v='primary' />
-    <tag k='name' v='Via' />
+    <tag k='name' v='Via B' />
   </way>
-  <way id='-759' action='modify' visible='true'>
-    <nd ref='-25899' />
-    <nd ref='-25898' />
+  <way id='-835' action='modify' visible='true'>
+    <nd ref='-26097' />
+    <nd ref='-26085' />
     <tag k='highway' v='primary' />
-    <tag k='name' v='Via' />
+    <tag k='name' v='Via A' />
+  </way>
+  <way id='-844' action='modify' visible='true'>
+    <nd ref='-26087' />
+    <nd ref='-26097' />
+    <nd ref='-26089' />
+    <nd ref='-26099' />
+    <nd ref='-26088' />
+    <nd ref='-26101' />
+    <nd ref='-26087' />
+    <tag k='highway' v='primary' />
+    <tag k='junction' v='roundabout' />
+    <tag k='name' v='Rotatoria OK' />
   </way>
 </osm>

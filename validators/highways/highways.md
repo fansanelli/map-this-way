@@ -2,7 +2,7 @@
 
 - roundaboutwithname
 
-Verifica che non sia presente la chiave "name" sulle rotatorie. Normalmente sono collegamenti stradali senza un nome.
+Normalmente le rotatorie sono collegamenti stradali senza un nome. Verifica che non sia presente la chiave "name" sulle rotatorie oppure che sia "Rotatoria X" o "Rotonda Y" (ma non, ad esempio, "Via Z").
 
 - invaliddug
 
