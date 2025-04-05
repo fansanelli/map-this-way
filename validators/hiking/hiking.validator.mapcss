@@ -3,9 +3,47 @@
 /******************************/
 
 /* mtw caiscaleonway */
+
 way[inside("IT")][cai_scale] {
-	throwWarning: tr("Unspecific tag {0}", "{1.key}, https://wiki.openstreetmap.org/wiki/Proposal:Cai_scale#Applies_to");
+	throwWarning: tr("Unspecific tag {0}", "{1.key}: https://wiki.openstreetmap.org/wiki/Proposal:Cai_scale#Applies_to");
 	group: "MapThisWay (Hiking)";
 	fixRemove: "cai_scale";
 }
+
+
+/* mtw unknowncaiscale */
+
+relation[inside("IT")][cai_scale][cai_scale !~ /^(T|E|EE|EEA|EAI)$/] { 
+	throwWarning: tr("unusual value of {0}", "{1.tag}: https://wiki.openstreetmap.org/wiki/Proposal:Cai_scale#Examples");
+	group: "MapThisWay (Hiking)";
+}
+
+/* mtw refrei */
+
+relation[inside("IT")]["ref:REI"]["ref:REI" !~ /^((?:E(?:AL|AT|BI|CN|NO|TO|VB|VC)[A-Z][A-Z0-9]{3}[A-Z0-9])|(?:[A-DF-Z][A-Z]{2}[A-Z][A-Z0-9]{3}[A-Z0-9]))$/] {
+	throwWarning: tr("unusual value of {0}", "{1.key}: https://wiki.openstreetmap.org/wiki/IT:Key:ref:REI");
+	group: "MapThisWay (Hiking)";
+	set invalid_ref_rei;
+}
+
+relation[inside("IT")]["ref:REI"] {
+	set sentiero_cai;
+}
+
+/* mtw missingcairef */
+
+relation[!ref].sentiero_cai!.invalid_ref_rei {
+	throwWarning: tr("{0} without {1}", "Sentiero CAI", "{0.key}");
+	fixAdd: concat("ref=", substring(tag("ref:REI"), 4, 7), replace(substring(tag("ref:REI"), 7, 8), "0", ""));
+	group: "MapThisWay (Hiking)";
+}
+
+/* mtw invalidcairef */
+
+relation[ref][tag(ref)!=concat(substring(tag("ref:REI"), 4, 7), replace(substring(tag("ref:REI"), 7, 8), "0", ""))].sentiero_cai!.invalid_ref_rei {
+  throwError: tr("wrong value: {0}", "{0.tag}");
+	fixAdd: concat("ref=", substring(tag("ref:REI"), 4, 7), replace(substring(tag("ref:REI"), 7, 8), "0", ""));
+	group: "MapThisWay (Hiking)";
+}
+
 

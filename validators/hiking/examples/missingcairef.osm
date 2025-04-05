@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-25908' action='modify' visible='true' lat='44.39983243612' lon='7.51043697393' />
+  <node id='-25909' action='modify' visible='true' lat='44.3869303602' lon='7.53136772005' />
+  <way id='-598' action='modify' visible='true'>
+    <nd ref='-25908' />
+    <nd ref='-25909' />
+    <tag k='highway' v='path' />
+  </way>
+  <relation id='-144' action='modify' visible='true'>
+    <member type='way' ref='-598' role='' />
+    <tag k='network' v='lcn' />
+    <tag k='ref:REI' v='GGEA0000' />
+    <tag k='route' v='hiking' />
+    <tag k='type' v='route' />
+  </relation>
+</osm>
