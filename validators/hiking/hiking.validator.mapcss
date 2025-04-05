@@ -1,0 +1,11 @@
+/******************************/
+/* hiking.validator.mapcss */
+/******************************/
+
+/* mtw caiscaleonway */
+way[inside("IT")][cai_scale] {
+	throwWarning: tr("Unspecific tag {0}", "{1.key}, https://wiki.openstreetmap.org/wiki/Proposal:Cai_scale#Applies_to");
+	group: "MapThisWay (Hiking)";
+	fixRemove: "cai_scale";
+}
+
