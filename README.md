@@ -1,6 +1,6 @@
 # Map This Way
 
-Controlli "mapcss" pensati per chi mappa in Italia 🇮🇹
+Controlli "mapcss" pensati per chi mappa in Italia :it:
 
 # SETUP
 
