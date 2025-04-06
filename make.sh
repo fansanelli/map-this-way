@@ -1,15 +1,16 @@
 #!/bin/bash
 
+TARGET="MapThisWay"
 VERSION="0.132"
 
-cat /dev/null > MapThisWay.validator.mapcss
-cat <<EOF >> MapThisWay.validator.mapcss
+cat /dev/null > "$TARGET".validator.mapcss
+cat <<EOF >> "$TARGET".validator.mapcss
 /**********************************************/
 /* Don't edit this file. It is auto generated */
 /**********************************************/
 meta
 {
-  title: "MapThisWay";
+  title: "$TARGET";
   version: "$VERSION";
   description: "Controlli \"mapcss\" pensati per chi mappa in Italia";
   author: "francians";
@@ -19,4 +20,5 @@ meta
 EOF
 
 # It will generate the MapThisWay.validator file from the validator.mapcss files in validators folder
-cat validators/*/*.validator.mapcss >> MapThisWay.validator.mapcss
+cat validators/*/*.validator.mapcss >> "$TARGET".validator.mapcss
+

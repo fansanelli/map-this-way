@@ -1,0 +1,26 @@
+/**
+ * See: https://wiki.openstreetmap.org/wiki/Tag:office%3Dtravel_agent
+ */
+
+/* mtw officetravelagent */
+*[office=travel_agent] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "shop=travel_agency";
+	group: "MapThisWay";
+	fixRemove: "office";
+	fixAdd: "shop=travel_agency";
+}
+
+/**
+ * See: https://wiki.openstreetmap.org/wiki/Tag:shop%3Dlamps
+ */
+
+/* mtw shoplamps */
+*[shop=lamps] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "shop=lighting";
+	group: "MapThisWay";
+	fixRemove: "shop";
+	fixAdd: "shop=lighting";
+}
+

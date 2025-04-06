@@ -1,0 +1,31 @@
+/**
+ * See: https://wiki.openstreetmap.org/wiki/Key:wifi
+ */
+
+/* mtw wifiyes */
+*[wifi=yes] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "internet_access=wlan";
+	group: "MapThisWay";
+	fixRemove: "wifi";
+	fixAdd: "internet_access=wlan";
+}
+
+/* mtw wifino */
+*[wifi=no] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "internet_access";
+	group: "MapThisWay";
+	fixChangeKey: "wifi => internet_access";
+}
+
+/* mtw wififree */
+*[wifi=free] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "internet_access=wlan";
+	group: "MapThisWay";
+	fixRemove: "wifi";
+	fixAdd: "internet_access=wlan";
+	fixAdd: "internet_access:fee=no";
+}
+

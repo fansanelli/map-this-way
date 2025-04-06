@@ -26,6 +26,7 @@ I controlli sono suddivisi per tipologia e si trovano nella cartella validators:
 - [hiking](validators/hiking/hiking.md)
 - [phones](validators/phones/phones.md)
 - [schools](validators/schools/schools.md)
+- extras - controlli non specifici per l'Italia che potrebbe aver senso spostare direttamente in JOSM o in un altro foglio.
 
 ## CONTRIBUTE
 
