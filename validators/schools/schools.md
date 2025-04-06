@@ -28,7 +28,7 @@ Verifica che sugli elementi con il tag amenity=school sia anche presente la chia
 
 Reciproco rispetto al controllo sopra, ogni elemento con chiave isched:level da 1 a 3, deve avere anche il tag amenity=school. Il tasto correggi va ad integrare o sostituire la chiave amenity.
 
--schoolbadname
+- schoolbadname
 
 Verifica la coerenza tra isched e name. Ad esempio, a "isched:level"=0 deve corrispondere un name che inizia per "Scuola materna" o "Asilo".
 

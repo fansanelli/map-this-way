@@ -1,0 +1,13 @@
+/**
+ * See: https://wiki.openstreetmap.org/wiki/Key:social_facility#Different_types_of_social_facilities
+ */
+
+/* mtw clinicnothealthcare */
+*[social_facility][social_facility=healthcare] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "amenity=clinic";
+	group: "MapThisWay";
+	fixRemove: "social_facility";
+	fixAdd: "amenity=clinic";
+}
+
