@@ -86,3 +86,18 @@
 	group: "MapThisWay (Schools)";
 }
 
+*[inside("IT")][office=educational_institution] {
+	set istituto_comprensivo;
+}
+
+/* mtw unknownschoolref */
+
+*[ref][ref !~ /^[A-Z]{2}I[CS][A-Z0-9]{6}$/].istituto_comprensivo,
+*[ref][ref !~ /^[A-Z]{2}[1A]A[A-Z0-9]{6}$/].scuola_infanzia,
+*[ref][ref !~ /^[A-Z]{2}[1E]E[A-Z0-9]{6}$/].scuola_elementare,
+*[ref][ref !~ /^[A-Z]{2}[1M]M[A-Z0-9]{6}$/].scuola_media,
+*[ref][ref !~ /^[A-Z]{2}[A-Z0-9]{8}$/].scuola_superiore {
+  throwError: tr("wrong value: {0}", "{0.tag}");
+	group: "MapThisWay (Schools)";
+}
+

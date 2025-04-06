@@ -37,3 +37,8 @@ Verifica la coerenza tra isched e name. Ad esempio, a "isched:level"=0 deve corr
 In Italia, i dati delle scuole sono anche forniti dal Ministero tramite il portale: https://unica.istruzione.gov.it/sic
 Per andare ad abbinare il codice "meccanografico" si è scelto di usare la chiave: "ref". Una volta identificata la scuola si può copiare il valore in modo che rimanga il collegamento verso i dati ministeriali. Attenzione: sul sito vengono riportati sia i codici degli Istituti scolastici (ISS, IC) che delle scuole. Vedi anche: https://wiki.openstreetmap.org/wiki/IT:School
 
+- unknownschoolref
+
+A completamento di quanto sopra, questo controllo prova a trovare degli errori sfruttando dei pattern presenti nei codici delle scuole.
+
+
