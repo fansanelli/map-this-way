@@ -18,7 +18,7 @@ way[inside("IT")][building][tag_regex("^addr:*")] {
 
 /* mtw numerocivicoerrato */
 
-*[inside("IT")][addr:housenumber][addr:housenumber !~ /^(0|[1-9][0-9]*)([a-z]{0,1}|(\/[1-9][0-9]*[a-z]{0,1})|bis|((qua)?ter))(\b rosso\b)?$/] {
+*[inside("IT")][addr:housenumber][addr:housenumber !~ /^((0|[1-9][0-9]*)([a-z]?|(\/[1-9][0-9]*[a-z]?)|bis|((qua)?ter))(\b rosso\b)?)([;,](0|[1-9][0-9]*([a-z]?|(\/[1-9][0-9]*[a-z]?)|bis|((qua)?ter))(\b rosso\b)?))*$/] {
 	throwWarning: tr("unusual value of {0}", "{1.key}: https://wiki.openstreetmap.org/wiki/IT:Addresses#Come_inserire_gli_indirizzi_2");
 	group: "MapThisWay (Addresses)";
 	assertMatch: "node \"addr:housenumber\"=\"00\"";
@@ -39,5 +39,12 @@ way[inside("IT")][building][tag_regex("^addr:*")] {
 	assertNoMatch: "node \"addr:housenumber\"=\"1 rosso\"";
 	assertNoMatch: "node \"addr:housenumber\"=\"0\"";
 	assertNoMatch: "node \"addr:housenumber\"=\"0a\"";
+	assertMatch: "node \"addr:housenumber\"=\"00,1\"";
+	assertMatch: "node \"addr:housenumber\"=\"0,01\"";
+	assertMatch: "node \"addr:housenumber\"=\"00;1\"";
+	assertMatch: "node \"addr:housenumber\"=\"0;01\"";
+	assertNoMatch: "node \"addr:housenumber\"=\"1a,1b,1c\"";
+	assertNoMatch: "node \"addr:housenumber\"=\"1a;1b;1c\"";
+	assertMatch: "node \"addr:housenumber\"=\"1-3\"";
 }
 

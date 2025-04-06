@@ -15,6 +15,7 @@ Sempre secondo la wiki:
 https://wiki.openstreetmap.org/wiki/Key:phone#How_to_map
 
 esiste un modo più accurato di mappare i cellulari quindi viene richiesto di usare 'contact:mobile' oppure 'phone:mobile' per essi.
+Per la medesima sezione è anche previsto di passare valori multipli se il separatore è ";".
 
 Infine, per i "numeri verdi" vanno usati i tag 'contact:phone:IT' oppure 'phone:IT', vedi:
 

@@ -19,3 +19,5 @@ Gli indirizzi vanno scritti con iniziale in maiuscolo.
 Verifica che le informazioni siano inserite seguendo le indicazioni della wiki:
 
 https://wiki.openstreetmap.org/wiki/IT:Addresses#Numero_civico
+
+Nota: è possibile separare i numeri con virgola (ad esempio 11,13,15) o punto e virgola (ad esempio 11;13;15).
