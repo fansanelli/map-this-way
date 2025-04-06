@@ -23,3 +23,28 @@ way[inside("IT")][highway=living_street] {
 	group: "MapThisWay (Highways)";
 }
 
+/* mtw unusualmaxspeed */
+
+way[inside("IT")][maxspeed][maxspeed !~ /^(5|10|15|20|30|40|50|60|70|80|90|100|110|120|130)$/] {
+	throwWarning: tr("unusual value of {0}", "{1.tag}");
+	group: "MapThisWay (Highways)";
+	set unusual_maxspeed;
+}
+
+/* mtw maxspeedhigh */
+
+way[inside("IT")][highway=primary][maxspeed][maxspeed > 110]!.unusual_maxspeed,
+way[inside("IT")][highway=secondary][maxspeed][maxspeed > 90]!.unusual_maxspeed,
+way[inside("IT")][highway=tertiary][maxspeed][maxspeed > 90]!.unusual_maxspeed,
+way[inside("IT")][highway=residential][maxspeed][maxspeed > 50]!.unusual_maxspeed {
+	throwWarning: tr("{0} together with {1}", "{1.tag}", "{2.tag}");
+	group: "MapThisWay (Highways)";
+}
+
+/* mtw refwithspace - suggested by Andrea Musuruane */
+
+way[inside("IT")][highway][ref][ref =~ /(\s+)|[;]/] {
+	throwWarning: tr("unusual value of {0}", "{2.key}: https://wiki.openstreetmap.org/wiki/IT:Italian_Roads_Tagging#ref");
+	group: "MapThisWay (Highways)";
+}
+

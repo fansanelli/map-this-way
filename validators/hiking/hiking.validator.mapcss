@@ -46,4 +46,10 @@ relation[ref][tag(ref)!=concat(substring(tag("ref:REI"), 4, 7), replace(substrin
 	group: "MapThisWay (Hiking)";
 }
 
+/* mtw unknowncaisourceref */
+
+relation["source:ref"]["source:ref" !~ /^9[1-2][0-9]{5}$/].sentiero_cai {
+  throwError: tr("wrong value: {0}", "{0.tag}");
+	group: "MapThisWay (Hiking)";
+}
 

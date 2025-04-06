@@ -20,3 +20,6 @@ Quando è presente un ref:REI valido è necessario specificare anche un "ref". �
 
 Quando è presente un ref:REI valido, il "ref" deve essere coerente. È possibile usare la funzione "correggi" per calcolarlo
 
+- unknowncaisourceref
+
+Verifica che il valore usato per come source:ref sia verosimile (tramite match di un pattern)
