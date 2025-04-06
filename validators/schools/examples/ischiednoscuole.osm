@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-28190' action='modify' visible='true' lat='44.40188623548' lon='7.51906080065'>
+    <tag k='isced:level' v='1' />
+  </node>
+  <node id='-28495' action='modify' visible='true' lat='44.39931897501' lon='7.52175574651'>
+    <tag k='isced:level' v='2' />
+  </node>
+  <node id='-28499' action='modify' visible='true' lat='44.40201459555' lon='7.52346254555'>
+    <tag k='isced:level' v='3' />
+  </node>
+</osm>

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-27068' action='modify' visible='true' lat='44.40637867024' lon='7.49094353226'>
+    <tag k='amenity' v='kindergarten' />
+    <tag k='isced:level' v='0' />
+    <tag k='name' v='Asilo Nido' />
+  </node>
+</osm>

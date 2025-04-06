@@ -9,3 +9,80 @@
 	group: "MapThisWay (Schools)";
 }
 
+*[inside("IT")]["isced:level"=0] {
+  set scuola_infanzia;
+}
+
+*[inside("IT")]["isced:level"=1] {
+	set scuola_elementare;
+}
+
+*[inside("IT")]["isced:level"=2] {
+	set scuola_media;
+}
+
+*[inside("IT")]["isced:level"=3] {
+	set scuola_superiore;
+}
+
+/* mtw scuolainfanzia */
+
+*[amenity!=kindergarten].scuola_infanzia {
+	throwWarning: tr("{0} without {1}", "Scuola Infanzia", "{0.tag}");
+	group: "MapThisWay (Schools)";
+	fixAdd: "amenity=kindergarten";
+}
+
+/* mtw nidonotnursery */
+
+*[amenity=kindergarten]["name" =~ /(?i)nido/][nursery!=yes].scuola_infanzia {
+	throwWarning: tr("{0} without {1}", "{0.value}", "{2.tag}");
+	group: "MapThisWay (Schools)";
+	fixAdd: "nursery=yes";
+}
+
+/* mtw scuolainfanzianoisced */
+
+*[inside("IT")][amenity=kindergarten]!.scuola_infanzia {
+	throwWarning: tr("{0} without {1}", "{1.tag}", "isced:level=0");
+	group: "MapThisWay (Schools)";
+	fixRemove: "isced:level";
+	fixAdd: "isced:level=0";
+}
+
+/* mtw unkwnownschool */
+
+*[inside("IT")][amenity=school]!.scuola_superiore!.scuola_media!.scuola_elementare!.scuola_infanzia {
+	throwWarning: tr("{0} without {1}", "{1.tag}", "isced:level: https://wiki.openstreetmap.org/wiki/Key:isced:level#Conversion_of_local_terms");
+	group: "MapThisWay (Schools)";
+}
+
+/* mtw ischiednoscuole */
+
+*[amenity!=school][amenity!=kindergarten].scuola_elementare,
+*[amenity!=school][amenity!=kindergarten].scuola_media,
+*[amenity!=school][amenity!=kindergarten].scuola_superiore {
+	throwWarning: tr("{0} without {1}", "Scuola", "{0.tag}");
+	group: "MapThisWay (Schools)";
+	fixAdd: "amenity=school";
+}
+
+/* mtw schoolbadname */
+
+*[amenity=kindergarten][name][name !~ /(?i)(scuola (materna|dell'infanzia))|asilo/].scuola_infanzia,
+*[amenity=school][name][name !~ /(?i)scuola (primaria|elementare)/].scuola_elementare,
+*[amenity=school][name][name !~ /(?i)scuola (media( inferiore)?)|(secondaria)/].scuola_media,
+*[amenity=school][name][name !~ /(?i)(istituto (magistrale|(di istruzione superiore)|tecnico|commerciale))|liceo/].scuola_superiore {
+	throwWarning: tr("unusual value of {0}", "{2.key}");
+	group: "MapThisWay (Schools)";
+}
+
+/* mtw schoolnoref */
+
+*[inside("IT")][amenity=kindergarten][!ref],
+*[inside("IT")][amenity=school][!ref],
+*[inside("IT")][office=educational_institution][!ref] {
+	throwWarning: tr("{0} without {1}", "{1.tag}", "{2.key}: cercare su https://unica.istruzione.gov.it/sic");
+	group: "MapThisWay (Schools)";
+}
+
