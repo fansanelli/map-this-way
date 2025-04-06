@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-964711' action='modify' visible='true' lat='44.39222512648' lon='7.51901825947'>
+    <tag k='crossing' v='zebra' />
+    <tag k='highway' v='crossing' />
+  </node>
+</osm>

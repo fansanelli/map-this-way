@@ -30,3 +30,33 @@ Verifica che non ci sia un limite di velocità che può far pensare ad un errore
 
 Verifica che sulle strade il tag "ref" non contenga spazi o ";" (punto e virgola). Vedi: https://wiki.openstreetmap.org/wiki/IT:Italian_Roads_Tagging#ref
 
+- crossingzebranouk
+
+In Italia, non è previsto l'uso di crossing=zebra (tag esclusivo del Regno Unito). Per questa ragione è nata questa proposta:
+
+https://wiki.openstreetmap.org/wiki/Proposal:Deprecate_crossing%3Dzebra_in_favor_of_crossing:markings#Countries_without_a_zebra_crossing_type
+
+che prevede di utilizzare la combinazione di tag: crossing=uncontrolled + crossing:markings=zebra.
+Il tasto correggi applica lo schema più recente.
+
+- crossingmarked
+
+Il tag crossing=marked veniva (viene?) proposto dal tasto correggi di iD ed è una delle varie scelte controverse fatte dall'editor: 
+
+https://wiki.openstreetmap.org/wiki/Tag:crossing%3Dmarked#Editors
+
+JOSM propone crossing=uncontrolled nei suoi preset e da quando esiste la chiave crossing:markings, questo tag è probabilmente obsoleto. 
+Il tasto correggi applica lo schema più recente.
+
+- crossingrefzebra
+
+Non si è mai discusso dell'uso della chiave "crossing_ref" in Italia, perciò è meglio utilizzare come suggerito il tag: crossing:markings=zebra.
+Il tasto correggi applica lo schema più recente.
+
+- crossingref
+
+Come già sopra, ma per gli altri casi c'è solo l'indicazione di usare "crossing:markings", la Wiki ha un sacco di esempi su come vanno mappati i vari casi:
+
+https://wiki.openstreetmap.org/wiki/Key:crossing:markings#Examples
+
+

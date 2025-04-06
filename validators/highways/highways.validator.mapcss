@@ -48,3 +48,44 @@ way[inside("IT")][highway][ref][ref =~ /(\s+)|[;]/] {
 	group: "MapThisWay (Highways)";
 }
 
+/* mtw crossingzebranouk */
+
+*[inside("IT")][highway][crossing=zebra] {
+  throwError: tr("wrong value: {0}", "{2.tag}");
+	suggestAlternative: "crossing=uncontrolled + crossing:markings=zebra";
+	group: "MapThisWay (Highways)";
+	fixRemove: "crossing";
+	fixAdd: "crossing=uncontrolled";
+	fixAdd: "crossing:markings=zebra";
+}
+
+/* mtw crossingmarked */
+
+*[inside("IT")][highway][crossing=marked] {
+  throwWarning: tr("{0} together with {1}", "{1.key}", "{2.tag}");
+	suggestAlternative: "crossing=uncontrolled + crossing:markings=*";
+	group: "MapThisWay (Highways)";
+	fixRemove: "crossing";
+	fixAdd: "crossing=uncontrolled";
+	fixAdd: "crossing:markings=yes";
+}
+
+/* mtw crossingrefzebra */
+
+*[inside("IT")][highway][crossing_ref=zebra] {
+  throwWarning: tr("Unspecific tag {0}", "{2.tag}");
+	suggestAlternative: "crossing:markings=zebra";
+	group: "MapThisWay (Highways)";
+	fixRemove: "crossing_ref";
+	fixAdd: "crossing:markings=zebra";
+}
+
+/* mtw crossingref */
+
+*[inside("IT")][highway][crossing_ref][crossing_ref!=zebra] {
+  throwWarning: tr("Unspecific tag {0}", "{2.tag}");
+	suggestAlternative: "crossing:markings=*";
+	group: "MapThisWay (Highways)";
+}
+
+
