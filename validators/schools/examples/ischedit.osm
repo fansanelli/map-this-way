@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-26892' action='modify' visible='true' lat='44.40381160691' lon='7.52746004856'>
+    <tag k='amenity' v='school' />
+    <tag k='isced:level' v='5' />
+  </node>
+</osm>

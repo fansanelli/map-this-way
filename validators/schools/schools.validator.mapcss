@@ -1,0 +1,11 @@
+/****************************/
+/* schools.validator.mapcss */
+/****************************/
+
+/* mtw ischedit */
+
+*[inside("IT")]["isced:level"]["isced:level" !~ /^[0-3]$/] {
+	throwWarning: tr("unusual value of {0}", "{1.tag}: https://wiki.openstreetmap.org/wiki/Key:isced:level#Conversion_of_local_terms");
+	group: "MapThisWay (Schools)";
+}
+
