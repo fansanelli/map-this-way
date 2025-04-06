@@ -1,6 +1,6 @@
-# map-this-way
+# Map This Way
 
-Controlli "mapcss" pensati per chi mappa in Italia.
+Controlli "mapcss" pensati per chi mappa in Italia 🇮🇹
 
 # SETUP
 
@@ -18,7 +18,7 @@ Per generare il file MapThisWay.validator.mapcss con tutti i controlli eseguire:
 
 # CONTROLLI (WIP)
 
-I controlli sono suddivisi per tipologia e si trovano nella cartella validators.
+I controlli sono suddivisi per tipologia e si trovano nella cartella validators:
 
 - [addresses](validators/addresses/addresses.md)
 - [combinations](validators/combinations/combinations.md)

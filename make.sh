@@ -11,7 +11,7 @@ meta
 {
   title: "MapThisWay";
   version: "$VERSION";
-  description: "Map This Way";
+  description: "Controlli \"mapcss\" pensati per chi mappa in Italia";
   author: "francians";
   watch-modified: true;
 }
