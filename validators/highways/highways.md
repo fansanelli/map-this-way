@@ -59,4 +59,17 @@ Come già sopra, ma per gli altri casi c'è solo l'indicazione di usare "crossin
 
 https://wiki.openstreetmap.org/wiki/Key:crossing:markings#Examples
 
+- segregatedwronghighway
+
+La chiave segregated è utile solo per le piste ciclopedonali.
+Per mapparle correttamente usare: highway=cycleway + foot=designated oppure highway=path + foot=designated + bicycle=designated.
+Vedi la Wiki come riferimento:
+
+https://wiki.openstreetmap.org/wiki/IT:Tag:highway%3Dcycleway#Informazioni_specifiche_per_l'Italia
+
+- pathwithfootyes
+
+Verifica se le chiavi foot e bicycle sono uguali al valore default confrontandoli con il tag highway=* (ed eventualmente motorroad=yes). Il tasto correggi rimuove il tag non necessario.
+Per i valori default far riferimento alla wiki:
+https://wiki.openstreetmap.org/wiki/OSM_tags_for_routing/Access_restrictions#Italy
 

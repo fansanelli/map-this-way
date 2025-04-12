@@ -88,4 +88,30 @@ way[inside("IT")][highway][ref][ref =~ /(\s+)|[;]/] {
 	group: "MapThisWay (Highways)";
 }
 
+way[inside("IT")][highway=cycleway][foot=designated],
+way[inside("IT")][highway=path][foot=designated][bicycle=designated] {
+	set pista_ciclopedonale;
+}
+
+/* mtw segregatedwronghighway */
+
+way[inside("IT")][highway][segregated]!.pista_ciclopedonale {
+	throwWarning: tr("{0} together with {1}", "{1.key}", "{2.tag}");
+	group: "MapThisWay (Highways)";
+}
+
+/* mtw pathwithfootyes */
+
+way[inside("IT")][highway][foot=no][motorroad=yes],
+way[inside("IT")][highway][foot=yes][motorroad!=yes],
+way[inside("IT")][highway=cycleway][foot=no],
+way[inside("IT")][highway=cycleway][bicycle=designated],
+way[inside("IT")][highway][bicycle=no][motorroad=yes],
+way[inside("IT")][highway][bicycle=yes][motorroad!=yes],
+way[inside("IT")][highway=footway][bicycle=no],
+way[inside("IT")][highway=footway][foot=designated] {
+  throwWarning: tr("{0} is unnecessary", "{2.tag}");
+	group: "MapThisWay (Highways)";
+	fixRemove: "{2.key}";
+}
 
