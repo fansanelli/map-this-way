@@ -18,6 +18,8 @@
   <node id='-27596' action='modify' visible='true' lat='44.39087710624' lon='7.59762084683' />
   <node id='-27617' action='modify' visible='true' lat='44.40952196362' lon='7.57134512477' />
   <node id='-27618' action='modify' visible='true' lat='44.39469641629' lon='7.60089969762' />
+  <node id='-27622' action='modify' visible='true' lat='44.41116722857' lon='7.57404923553' />
+  <node id='-27623' action='modify' visible='true' lat='44.39634209822' lon='7.60360380838' />
   <way id='-946' action='modify' visible='true'>
     <nd ref='-26335' />
     <nd ref='-26336' />
@@ -72,6 +74,13 @@
     <tag k='foot' v='no' />
     <tag k='highway' v='primary' />
     <tag k='motorroad' v='yes' />
+    <tag k='name' v='Via A' />
+  </way>
+  <way id='-1223' action='modify' visible='true'>
+    <nd ref='-27622' />
+    <nd ref='-27623' />
+    <tag k='foot' v='yes' />
+    <tag k='highway' v='primary' />
     <tag k='name' v='Via A' />
   </way>
 </osm>
