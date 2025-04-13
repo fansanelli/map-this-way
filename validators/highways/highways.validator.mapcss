@@ -103,11 +103,11 @@ way[inside("IT")][highway][segregated]!.pista_ciclopedonale {
 /* mtw pathwithfootyes */
 
 way[inside("IT")][highway][foot=no][motorroad=yes],
-way[inside("IT")][highway][foot=yes][motorroad!=yes],
+way[inside("IT")][highway][foot=yes][motorroad!=yes][highway!=cycleway],
 way[inside("IT")][highway=cycleway][foot=no],
 way[inside("IT")][highway=cycleway][bicycle=designated],
 way[inside("IT")][highway][bicycle=no][motorroad=yes],
-way[inside("IT")][highway][bicycle=yes][motorroad!=yes],
+way[inside("IT")][highway][bicycle=yes][motorroad!=yes][highway!=footway],
 way[inside("IT")][highway=footway][bicycle=no],
 way[inside("IT")][highway=footway][foot=designated] {
   throwWarning: tr("{0} is unnecessary", "{2.tag}");
