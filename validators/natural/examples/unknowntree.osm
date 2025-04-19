@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-25623' action='modify' visible='true' lat='45.33447218357' lon='8.40962066022'>
+    <tag k='natural' v='tree' />
+    <tag k='ref:masaf' v='AA/11/22/33' />
+  </node>
+  <node id='-25681' action='modify' visible='true' lat='45.33219878859' lon='8.41626819332'>
+    <tag k='natural' v='tree' />
+  </node>
+  <node id='-25684' action='modify' visible='true' lat='45.33283029635' lon='8.41734617166'>
+    <tag k='natural' v='tree' />
+  </node>
+  <relation id='-69' action='modify' visible='true'>
+    <member type='node' ref='-25681' role='' />
+    <member type='node' ref='-25684' role='' />
+    <tag k='ref:masaf' v='AA/11/22/33' />
+    <tag k='type' v='site' />
+  </relation>
+</osm>

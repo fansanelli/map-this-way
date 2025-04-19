@@ -10,12 +10,6 @@ Da JOSM:
 - Indirizzo URL: https://raw.githubusercontent.com/fansanelli/map-this-way/master/MapThisWay.validator.mapcss
 - OK
 
-## DEV (WIP)
-
-Per generare il file MapThisWay.validator.mapcss con tutti i controlli eseguire:
-
-`$ ./make.sh`
-
 ## CONTROLLI (WIP)
 
 I controlli sono suddivisi per tipologia e si trovano nella cartella validators:
@@ -24,9 +18,18 @@ I controlli sono suddivisi per tipologia e si trovano nella cartella validators:
 - [combinations](validators/combinations/combinations.md)
 - [highways](validators/highways/highways.md)
 - [hiking](validators/hiking/hiking.md)
+- [natural](validators/natural/natural.md)
 - [phones](validators/phones/phones.md)
 - [schools](validators/schools/schools.md)
 - extras - controlli non specifici per l'Italia che potrebbe aver senso spostare direttamente in JOSM o in un altro foglio.
+
+Insieme ai vari controlli sono anche forniti degli esempi in formato .osm che sono puramente a scopo di test per far "scattare" dei controlli specifici e non vanno assolutamente caricati.
+
+## DEV (WIP)
+
+Per generare il file MapThisWay.validator.mapcss con tutti i controlli eseguire:
+
+`$ ./make.sh`
 
 ## CONTRIBUTE
 

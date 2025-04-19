@@ -1,0 +1,30 @@
+/****************************/
+/* natural.validator.mapcss */
+/****************************/
+
+node[inside("IT")][natural=tree][denotation=natural_monument],
+relation[inside("IT")][type=site][natural=tree_group][denotation=natural_monument] {
+	set albero_monumentale;
+}
+
+/* mtw nomasaf */
+
+*[!ref:masaf].albero_monumentale {
+	throwWarning: tr("{0} without {1}", "Albero monumentale", "{0.key}");
+	group: "MapThisWay (Natural)";
+}
+
+/* mtw nospecies - suggested by canfe */
+
+node[!tag_regex("^species")].albero_monumentale {
+	throwWarning: tr("{0} without {1}", "Albero monumentale", "species");
+	group: "MapThisWay (Natural)";
+}
+
+/* mtw unknowntree */
+
+*[inside("IT")][ref:masaf]!.albero_monumentale {
+	throwWarning: tr("{0} on suspicious object", "{1.key}");
+	group: "MapThisWay (Natural)";
+}
+
