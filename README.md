@@ -10,6 +10,8 @@ Da JOSM:
 - Indirizzo URL: https://raw.githubusercontent.com/fansanelli/map-this-way/master/MapThisWay.validator.mapcss
 - OK
 
+ATTENZIONE: tutti i controlli utilizzano almeno il livello di validazione errore (warning ed error), in quanto il livello informativo è disattivo per default su JOSM. A livello sperimentale fatto nascere anche un 'MapThisWay.ignoretags.cfg' che si può scaricare e configurare nelle preferenze del Validatore dati per ridurre il numero di avvisi qualora si usi anche il livello informativo.
+
 ## CONTROLLI (WIP)
 
 I controlli sono suddivisi per tipologia e si trovano nella cartella validators:
