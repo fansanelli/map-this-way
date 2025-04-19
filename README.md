@@ -18,6 +18,7 @@ I controlli sono suddivisi per tipologia e si trovano nella cartella validators:
 - [combinations](validators/combinations/combinations.md)
 - [highways](validators/highways/highways.md)
 - [hiking](validators/hiking/hiking.md)
+- [landuses](validators/landuses/landuses.md)
 - [natural](validators/natural/natural.md)
 - [phones](validators/phones/phones.md)
 - [schools](validators/schools/schools.md)

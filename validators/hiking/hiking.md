@@ -27,3 +27,9 @@ Quando è presente un ref:REI valido, il "ref" deve essere coerente. È possibil
 - unknowncaisourceref
 
 Verifica che il valore usato per come source:ref sia verosimile (tramite match di un pattern)
+
+- refalreadyonrel 
+
+Verifica se per le relazioni specifiche per escursionismo la chiave ref sia solo sulla relazione e non sui singoli tratti di strada
+NOTA: Questo controllo non è specifico per l'Italia
+

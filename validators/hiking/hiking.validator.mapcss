@@ -53,3 +53,11 @@ relation["source:ref"]["source:ref" !~ /^9[1-2][0-9]{5}$/].sentiero_cai {
 	group: "MapThisWay (Hiking)";
 }
 
+/* mtw refalreadyonrel */
+
+relation[type=route][route =~ /bicycle|mtb|foot|hiking|running/][ref] way[highway][tag("ref")=parent_tag("ref")] {
+  throwWarning: tr("{0} is unnecessary for {1}", "ref", "{0.key}");
+	fixRemove: "ref";
+	group: "MapThisWay (Hiking)";
+}
+

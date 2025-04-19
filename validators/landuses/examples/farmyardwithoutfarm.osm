@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-66535' action='modify' visible='true' lat='44.44144594268' lon='7.53497017179'>
+    <tag k='name' v='Cascina Rosa' />
+    <tag k='place' v='farm' />
+  </node>
+  <node id='-66755' action='modify' visible='true' lat='44.4327868478' lon='7.49795958209' />
+  <node id='-66756' action='modify' visible='true' lat='44.44439615597' lon='7.5122427951' />
+  <node id='-66757' action='modify' visible='true' lat='44.4361864973' lon='7.53146674218' />
+  <node id='-66758' action='modify' visible='true' lat='44.43002849627' lon='7.51592588777' />
+  <way id='-31047' action='modify' visible='true'>
+    <nd ref='-66755' />
+    <nd ref='-66756' />
+    <nd ref='-66757' />
+    <nd ref='-66758' />
+    <nd ref='-66755' />
+    <tag k='landuse' v='farmyard' />
+  </way>
+</osm>

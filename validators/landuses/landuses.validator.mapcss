@@ -1,0 +1,18 @@
+/****************************/
+/* landuses.validator.mapcss */
+/****************************/
+
+/* mtw farmyardwithoutfarm - Suggested by Andrea Musuruane */
+
+node[place=farm] ⊈ area:closed2[landuse=farmyard] {
+	throwWarning: tr("{0} without {1}", "{1.tag}", "place=farm");
+	group: "MapThisWay (Landuses)";
+}
+
+/* mtw farmnotinsidefarmyard - Suggested by Andrea Musuruane */
+
+area[landuse=farmyard] ⊉ node[place=farm] {
+	throwWarning: tr("{0} without {1}", "{0.tag}", "landuse=farmyard");
+	group: "MapThisWay (Landuses)";
+}
+
