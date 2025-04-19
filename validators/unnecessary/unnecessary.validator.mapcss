@@ -1,0 +1,29 @@
+/********************************/
+/* unnecessary.validator.mapcss */
+/********************************/
+
+/* mtw amenitywithname */
+
+*[inside("IT")][name][name=~/^(?i)(fontana)$/][amenity=fountain],
+*[inside("IT")][name][name=~/^(?i)(fontanella)$/][amenity=drinking_water],
+*[inside("IT")][name][name=~/^(?i)(parco)$/][leisure=park],
+*[inside("IT")][name][name=~/^(?i)(laghetto)$/][water=pond],
+*[inside("IT")][name][name=~/^(?i)(parcheggio)$/][amenity=parking],
+*[inside("IT")][name][name=~/^(?i)(parco giochi)$/][leisure=playground],
+*[inside("IT")][name][name=~/^(?i)(casa)$/][building=house],
+*[inside("IT")][name][name=~/^(?i)(sentiero)$/][highway=path],
+*[inside("IT")][name][name=~/^(?i)(cimitero)$/][amenity=grave_yard],
+*[inside("IT")][name][name=~/^(?i)(cimitero)$/][landuse=cemetery],
+*[inside("IT")][name][name=~/^(?i)(monumento ai caduti)$/][historic=memorial][memorial=war_memorial] {
+  throwWarning: tr("descriptive name");
+  group: "MapThisWay (Unnecessary)";
+  fixRemove: "name";
+}
+
+/* the following without fixRemove to avoid information loss, should be checked manually */
+*[inside("IT")][name][name=~/^(?i)(fontana|acqua potabile)$/][tag("amenity")=="drinking_water"||tag("drinking_water")=="yes"],
+*[inside("IT")][name][name=~/^(?i)(cappella)$/][tag("building")=="chapel"||tag("amenity")=="place_of_worship"] {
+  throwWarning: tr("descriptive name");
+  group: "MapThisWay (Unnecessary)";
+}
+
