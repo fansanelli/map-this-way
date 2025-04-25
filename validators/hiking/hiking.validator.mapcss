@@ -61,3 +61,10 @@ relation[type=route][route =~ /bicycle|mtb|foot|hiking|running/][ref] way[highwa
 	group: "MapThisWay (Hiking)";
 }
 
+/* mtw wrongroleguidepost - Suggested by Ivo Reano */
+
+relation[type=route][route =~ /bicycle|mtb|foot|hiking|running/] >[role != "guidepost"] node[tourism=information][information=guidepost] {
+  throwWarning: tr("{0} without {1}", "{1.value}", "role=guidepost");
+	group: "MapThisWay (Hiking)";
+}
+

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-28404' action='modify' visible='true' lat='44.39983243612' lon='7.51043697393' />
+  <node id='-28405' action='modify' visible='true' lat='44.3869303602' lon='7.53136772005' />
+  <node id='-28406' action='modify' visible='true' lat='44.38955898275' lon='7.52966793824'>
+    <tag k='information' v='guidepost' />
+    <tag k='tourism' v='information' />
+  </node>
+  <way id='-954' action='modify' visible='true'>
+    <nd ref='-28404' />
+    <nd ref='-28405' />
+    <tag k='highway' v='path' />
+  </way>
+  <relation id='-147' action='modify' visible='true'>
+    <member type='node' ref='-28406' role='' />
+    <member type='way' ref='-954' role='' />
+    <tag k='network' v='lcn' />
+    <tag k='route' v='hiking' />
+    <tag k='type' v='route' />
+  </relation>
+</osm>

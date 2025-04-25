@@ -33,3 +33,9 @@ Verifica che il valore usato per come source:ref sia verosimile (tramite match d
 Verifica se per le relazioni specifiche per escursionismo la chiave ref sia solo sulla relazione e non sui singoli tratti di strada
 NOTA: Questo controllo non è specifico per l'Italia
 
+- wrongroleguidepost
+
+Verifica che quando un segnavia è stato aggiunto in una relazione, abbia anche il ruolo corretto (guidepost).
+Vedi: https://wiki.openstreetmap.org/wiki/Hiking#Roles
+NOTA: Questo controllo non è specifico per l'Italia
+
