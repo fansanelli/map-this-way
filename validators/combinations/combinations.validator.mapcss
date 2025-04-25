@@ -19,3 +19,13 @@
 	fixAdd: "{1.key}=fast_food";
 }
 
+/* mtw oldauthorization */
+
+*[inside("IT")][shop=tobacco][ref],
+*[inside("IT")][shop=tobacco][authorization] {
+	throwWarning: tr("{0} is deprecated", "{2.key}");
+	group: "MapThisWay (Combinations)";
+	suggestAlternative: "ref:tobacco";
+	fixChangeKey: "{2.key} => ref:tobacco";
+}
+

@@ -16,3 +16,10 @@ Propone il tag amenity=fast_food quando la chiave cuisine contiene kebab:
 
 https://wiki.openstreetmap.org/wiki/Tag:amenity%3Dfast_food
 
+- oldauthorization
+
+Per le autorizzazioni sulla vendita del tabacco in Italia è previsto l'uso del tag "ref:tobacco", le altre opzioni sono deprecate. Vedi:
+
+https://wiki.openstreetmap.org/wiki/Tag:shop%3Dtobacco
+
+Il tasto correggi si occupa di spostare il valore delle chiavi "ref" o "authorization".
