@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-28416' action='modify' visible='true' lat='44.42509330973' lon='7.79696229685' />
+  <node id='-28417' action='modify' visible='true' lat='44.40301994773' lon='7.78160110549'>
+    <tag k='traffic_sign' v='city_limit' />
+  </node>
+  <node id='-28418' action='modify' visible='true' lat='44.39711519465' lon='7.78276891536' />
+  <node id='-28531' action='modify' visible='true' lat='44.42368189061' lon='7.80167845209' />
+  <node id='-28532' action='modify' visible='true' lat='44.40160799577' lon='7.78631726074'>
+    <tag k='traffic_sign' v='city_limit' />
+  </node>
+  <node id='-28533' action='modify' visible='true' lat='44.39570310019' lon='7.7874850706' />
+  <node id='-28977' action='modify' visible='true' lat='44.40038855529' lon='7.79058425833'>
+    <tag k='traffic_sign' v='city_limit' />
+  </node>
+  <way id='-802' action='modify' visible='true'>
+    <nd ref='-28416' />
+    <nd ref='-28417' />
+    <nd ref='-28418' />
+    <tag k='highway' v='service' />
+  </way>
+  <way id='-821' action='modify' visible='true'>
+    <nd ref='-28531' />
+    <nd ref='-28532' />
+    <nd ref='-28533' />
+    <tag k='highway' v='service' />
+    <tag k='oneway' v='yes' />
+  </way>
+</osm>

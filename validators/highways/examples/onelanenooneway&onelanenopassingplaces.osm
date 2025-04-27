@@ -1,35 +1,44 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <osm version='0.6' generator='JOSM'>
-  <node id='-27370' action='modify' visible='true' lat='44.42458007036' lon='7.82570838594' />
-  <node id='-27371' action='modify' visible='true' lat='44.40147963481' lon='7.79920808506' />
-  <node id='-27372' action='modify' visible='true' lat='44.3976286751' lon='7.78411638829' />
-  <node id='-27373' action='modify' visible='true' lat='44.41722864993' lon='7.77376219287' />
-  <node id='-27374' action='modify' visible='true' lat='44.4048169282' lon='7.77612138226' />
-  <node id='-27376' action='modify' visible='true' lat='44.42127679651' lon='7.7928648857' />
-  <node id='-27377' action='modify' visible='true' lat='44.42000059361' lon='7.77861265419' />
-  <way id='-692' action='modify' visible='true'>
-    <nd ref='-27370' />
-    <nd ref='-27371' />
-    <nd ref='-27372' />
+  <node id='-28065' action='modify' visible='true' lat='44.42458007036' lon='7.82570838594' />
+  <node id='-28066' action='modify' visible='true' lat='44.40147963481' lon='7.79920808506' />
+  <node id='-28067' action='modify' visible='true' lat='44.3976286751' lon='7.78411638829' />
+  <node id='-28068' action='modify' visible='true' lat='44.41722864993' lon='7.77376219287' />
+  <node id='-28069' action='modify' visible='true' lat='44.4048169282' lon='7.77612138226' />
+  <node id='-28071' action='modify' visible='true' lat='44.42000059361' lon='7.77861265419' />
+  <node id='-28072' action='modify' visible='true' lat='44.43160498259' lon='7.80297765454' />
+  <node id='-28073' action='modify' visible='true' lat='44.42129846343' lon='7.79364190013' />
+  <way id='-735' action='modify' visible='true'>
+    <nd ref='-28065' />
+    <nd ref='-28066' />
+    <nd ref='-28067' />
     <tag k='highway' v='service' />
     <tag k='lanes' v='1' />
   </way>
-  <way id='-693' action='modify' visible='true'>
-    <nd ref='-27373' />
-    <nd ref='-27374' />
-    <nd ref='-27372' />
+  <way id='-736' action='modify' visible='true'>
+    <nd ref='-28068' />
+    <nd ref='-28069' />
+    <nd ref='-28067' />
     <tag k='highway' v='service' />
     <tag k='lanes' v='1' />
     <tag k='oneway' v='no' />
   </way>
-  <way id='-694' action='modify' visible='true'>
-    <nd ref='-27376' />
-    <nd ref='-27377' />
-    <nd ref='-27373' />
+  <way id='-737' action='modify' visible='true'>
+    <nd ref='-28073' />
+    <nd ref='-28071' />
+    <nd ref='-28068' />
     <tag k='highway' v='service' />
     <tag k='lane_markings' v='yes' />
     <tag k='lanes' v='1' />
     <tag k='oneway' v='no' />
+    <tag k='passing_places' v='no' />
+  </way>
+  <way id='-738' action='modify' visible='true'>
+    <nd ref='-28072' />
+    <nd ref='-28073' />
+    <tag k='highway' v='service' />
+    <tag k='lane_markings' v='yes' />
+    <tag k='lanes' v='2' />
     <tag k='passing_places' v='no' />
   </way>
 </osm>

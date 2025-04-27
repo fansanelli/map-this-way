@@ -89,3 +89,24 @@ NOTA: Questo controllo non è specifico per l'Italia
 Se una strada ha una sola corsia, non ha senso specificare il tag lane_markings=yes.
 NOTA: Questo controllo non è specifico per l'Italia
 
+- passingplacesmanylanes
+
+Il tag passing_places=* prevede che ci sia solo una corsia.
+NOTA: Questo controllo non è specifico per l'Italia
+
+- citylimitwithoutdirection
+
+Il tag traffic_sign=city_limit su una strada a doppio senso di marcia ha bisogno di un tag direction (backward o forward) per capire se stiamo entrando o uscendo in un confine territoriale.
+NOTA: Questo controllo non è specifico per l'Italia
+
+- citylimitwithoutcitylimit
+
+Il tag traffic_sign=city_limit su una strada a senso unico ha bisogno di un tag city_limit (begin o end) per capire se stiamo entrando o uscendo in un confine territoriale.
+Vedi: https://wiki.openstreetmap.org/wiki/Key:city_limit
+NOTA: Questo controllo non è specifico per l'Italia
+
+- trafficsingunconnected
+
+Il tag traffic_sign=city_limit va connesso ad una way (preferibilmente non ad uno degli estremi se utilizzato in combinazione con direction).
+NOTA: Questo controllo non è specifico per l'Italia
+

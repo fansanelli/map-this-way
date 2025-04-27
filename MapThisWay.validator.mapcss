@@ -1,883 +1,649 @@
+/**********************************************/
+/* Don't edit this file. It is auto generated */
+/**********************************************/
 meta
 {
   title: "MapThisWay";
-  version: "0.131";
-  description: "Map This Way";
-  author: "Francesco Ansanelli";
+  version: "0.132";
+  description: "Controlli \"mapcss\" pensati per chi mappa in Italia";
+  author: "francians";
   watch-modified: true;
 }
 
-/* mtw missingdispensing */
-
-*[amenity=pharmacy][!dispensing][inside("IT")] {
-	throwWarning: tr("{0} without {1}", "{0.value}", "{1.key}");
-	group: "MapThisWay";
-}
-
-/* mtw missingoven */
-
-*[cuisine ~= "pizza"][!oven][inside("IT")] {
-	throwWarning: tr("{0} without {1}", "{0.value}", "{1.key}");
-	group: "MapThisWay";
-}
-
-/* mtw unknownoven */
-
-*[oven][oven !~ /^(no|electric|wood_fired|gas_fired)$/] {
-	throwWarning: tr("unusual value of {0}", "{0.key}");
-	group: "MapThisWay";
-}
-
-/* mtw restaurantkebab */
-
-*[amenity!=fast_food][cuisine ~= "kebab"][inside("IT")] {
-	throwWarning: tr("{0} without {1}", "{1.value}", "{0.value}");
-	group: "MapThisWay";
-}
+/******************************/
+/* addresses.validator.mapcss */
+/******************************/
 
 /* mtw addressonbuilding */
 
-way[building][tag_regex("^addr:*")][inside("IT")] {
-	throwWarning: tr("building with addr:*");
-	group: "MapThisWay";
-}
-
-/* mtw buildingnoroof */
-
-way[building][roof:levels=0][roof:shape!=flat] {
-	throwWarning: tr("{0} with {1} {2} not {3} {4}", "{0.key}", "{1.key}", "{1.value}", "{2.key}", "{2.value}");
-	group: "MapThisWay";
+way[inside("IT")][building][tag_regex("^addr:*")] {
+	throwWarning: tr("{0} together with {1}", "{1.key}", "addr:*");
+	group: "MapThisWay (Addresses)";
 }
 
 /* mtw namenotcapitalized */
 
-*[addr:street =~ /^[a-z]/],
-*[name =~ /^[a-z]/] {
-	throwWarning: tr("{0} not capitalized", "{0.key}");
-	group: "MapThisWay";
-}
-
-/* mtw missingauthorization */
-
-*[shop=tobacco][!authorization][inside("IT")] {
-	throwWarning: tr("{0} without {1}", "{0.value}", "{1.key}");
-	group: "MapThisWay";
-}
-
-/* mtw wrongbuildingtype TOO MANY ERRORS
-
-*[office][office!=government] ∈
-*[building][building!~/^(apartments|commercial|office|industrial|retail|supermarket|warehouse|kiosk)$/]{
-	throwWarning: tr("office inside wrong building type");
-	group: "MapThisWay";
-}
-*/
-/* mtw wrongbuildingtype */
-
-*[office=government] ∈
-*[building][building!=government]{
-	throwWarning: tr("office inside wrong building type");
-	group: "MapThisWay";
-}
-
-/* mtw wrongbuildingtype TOO MANY ERRORS
-
-*[shop] ∈
-*[building][building!~/^(apartments|commercial|office|industrial|retail|supermarket|warehouse|kiosk)$/] {
-	throwWarning: tr("shop inside wrong building type");
-	group: "MapThisWay";
-}
- */
-
-/* mtw amenitywithname */
-
-*[amenity=~/^(drinking_water|bbq|charging_station|grit_bin|parking_entrance|ticket_validator|atm|bureau_de_change|baking_oven|bench|clock|photo_booth|post_box|table|telephone|vending_machine|waste_basket|waste_disposal|watering_place|water_point)$/][name] {
-	throwWarning: tr("{0} with {1}", "{0.key}", "{1.key}");
-	group: "MapThisWay";
-}
-
-/* mtw nodewithbuilding */
-
-node[building] {
-	throwWarning: tr("node with {0}", "{0.key}");
-	group: "MapThisWay";
-}
-
-/* mtw citylimitwithoutdirection */
-
-node[traffic_sign=city_limit][!direction] {
-	throwWarning: tr("{0} without {1}", "{0.key}", "{1.key}");
-	group: "MapThisWay";
+*[inside("IT")][addr:street =~ /^[a-z]/] {
+	throwWarning: tr("unusual value of {0}", "{1.key}: iniziale non in maiuscolo");
+	group: "MapThisWay (Addresses)";
 }
 
 /* mtw numerocivicoerrato */
-*[addr:housenumber][addr:housenumber !~ /^(0|[1-9][0-9]*)([a-z]{0,1}|(\/[1-9][0-9]*[a-z]{0,1})|bis|((qua)?ter))(\b rosso\b)?$/][inside("IT")] {
-	throwWarning: tr("Numero Civico");
-	group: "MapThisWay";
-	assertMatch: "00";
-	assertMatch: "01";
-	assertMatch: "a";
-	assertMatch: "1A";
-	assertMatch: "1 a";
-	assertMatch: "1/BIS";
-	assertMatch: "0/0";
-	assertMatch: "1 nero";
-	assertNoMatch: "1";
-	assertNoMatch: "1a";
-	assertNoMatch: "1bis";
-	assertNoMatch: "1ter";
-	assertNoMatch: "1quater";
-	assertNoMatch: "1/1";
-	assertNoMatch: "95/1a";
-	assertNoMatch: "1 rosso";
-	assertNoMatch: "0";
-	assertNoMatch: "0a";
+
+*[inside("IT")][addr:housenumber][addr:housenumber !~ /^((0|[1-9][0-9]*)([a-z]?|(\/[1-9][0-9]*[a-z]?)|bis|((qua)?ter))(\b rosso\b)?)([;,](0|[1-9][0-9]*([a-z]?|(\/[1-9][0-9]*[a-z]?)|bis|((qua)?ter))(\b rosso\b)?))*$/] {
+	throwWarning: tr("unusual value of {0}", "{1.key}: https://wiki.openstreetmap.org/wiki/IT:Addresses#Come_inserire_gli_indirizzi_2");
+	group: "MapThisWay (Addresses)";
+	assertMatch: "node \"addr:housenumber\"=\"00\"";
+	assertMatch: "node \"addr:housenumber\"=\"01\"";
+	assertMatch: "node \"addr:housenumber\"=\"a\"";
+	assertMatch: "node \"addr:housenumber\"=\"1A\"";
+	assertMatch: "node \"addr:housenumber\"=\"1 a\"";
+	assertMatch: "node \"addr:housenumber\"=\"1/BIS\"";
+	assertMatch: "node \"addr:housenumber\"=\"0/0\"";
+	assertMatch: "node \"addr:housenumber\"=\"1 nero\"";
+	assertNoMatch: "node \"addr:housenumber\"=\"1\"";
+	assertNoMatch: "node \"addr:housenumber\"=\"1a\"";
+	assertNoMatch: "node \"addr:housenumber\"=\"1bis\"";
+	assertNoMatch: "node \"addr:housenumber\"=\"1ter\"";
+	assertNoMatch: "node \"addr:housenumber\"=\"1quater\"";
+	assertNoMatch: "node \"addr:housenumber\"=\"1/1\"";
+	assertNoMatch: "node \"addr:housenumber\"=\"95/1a\"";
+	assertNoMatch: "node \"addr:housenumber\"=\"1 rosso\"";
+	assertNoMatch: "node \"addr:housenumber\"=\"0\"";
+	assertNoMatch: "node \"addr:housenumber\"=\"0a\"";
+	assertMatch: "node \"addr:housenumber\"=\"00,1\"";
+	assertMatch: "node \"addr:housenumber\"=\"0,01\"";
+	assertMatch: "node \"addr:housenumber\"=\"00;1\"";
+	assertMatch: "node \"addr:housenumber\"=\"0;01\"";
+	assertNoMatch: "node \"addr:housenumber\"=\"1a,1b,1c\"";
+	assertNoMatch: "node \"addr:housenumber\"=\"1a;1b;1c\"";
+	assertMatch: "node \"addr:housenumber\"=\"1-3\"";
 }
 
-/* ENABLE AFTER MY PATCH GET MERGED:
- * https://josm.openstreetmap.de/ticket/18166
- *
-*["addr:housenumber"][replace(tag("addr:housenumber"),",",";") != join_list(";",filter("^(0|[1-9][0-9]*)([a-z]{0,1}|(\\/[1-9][0-9]*[a-z]{0,1})|bis|((qua)?ter))(\\b rosso\\b)?$",split(";",replace(tag("addr:housenumber"),",",";"))))][inside("IT")] {
-	throwWarning: tr("Numero Civico");
-	group: "MapThisWay";
-	assertMatch: "00";
-	assertMatch: "01";
-	assertMatch: "a";
-	assertMatch: "1A";
-	assertMatch: "1 a";
-	assertMatch: "1/BIS";
-	assertMatch: "0/0";
-	assertMatch: "1 nero";
-	assertNoMatch: "1";
-	assertNoMatch: "1a";
-	assertNoMatch: "1bis";
-	assertNoMatch: "1ter";
-	assertNoMatch: "1quater";
-	assertNoMatch: "1/1";
-	assertNoMatch: "95/1a";
-	assertNoMatch: "1 rosso";
-	assertNoMatch: "0";
-	assertNoMatch: "0a";
-	assertNoMatch: "1;3";
-	assertNoMatch: "1,3";
-}*/
+/******************************/
+/* amenities.validator.mapcss */
+/******************************/
 
-/* mtw unusualvending
- * https://josm.openstreetmap.de/ticket/17751
- *
-*[amenity=vending_machine][vending][tag("vending") != join_list(";",filter("^(admission_tickets|animal_feed|art|bicycle_tube|books|bottle_return|bread|candles|chemist|chewing_gums|cigarettes|coffee|condoms|drinks|electronics|elongated_coin|excrement_bags|feminine_hygiene|first_aid|fishing_bait|fishing_tackle|flowers|food|fuel|ice_cream|ice_cubes|ink_cartridges|laundry_detergent|lottery|milk|newspapers|parcel_mail_in|parcel_pickup|parking_tickets|public_transport_plans|public_transport_tickets|sex_toys|SIM_cards|stamps|sweets|syringes|telephone_vouchers|toll|toys|umbrellas|water)$",split(";",tag("vending"))))] {
-	throwWarning: tr("unusual value of {0}", "{1.key}");
-	group: "MapThisWay";
-}*/
+/* mtw refvatin */
+
+*[inside("IT")][ref:vatin][ref:vatin !~ /^IT[0-9]{11}$/] {
+	throwError: tr("wrong value: {0}", "{1.tag}: deve essere IT seguito da 11 cifre");
+	group: "MapThisWay (Amenities)";
+}
+
+/* mtw namenotcapitalized2 */
+
+*[inside("IT")][name =~ /^[a-z]/] {
+	throwWarning: tr("unusual value of {0}", "{1.key}: iniziale non in maiuscolo");
+	group: "MapThisWay (Amenities)";
+}
+
+/*********************************/
+/* combinations.validator.mapcss */
+/*********************************/
+
+/* mtw missingdispensing */
+
+*[inside("IT")][amenity=pharmacy][!dispensing] {
+	throwWarning: tr("{0} without {1}", "{1.tag}", "{2.key}");
+	group: "MapThisWay (Combinations)";
+}
+
+/* mtw restaurantkebab */
+
+*[inside("IT")][amenity=restaurant][cuisine ~= "kebab"] {
+	throwWarning: tr("{0} together with {1}", "{1.tag}", "{2.key}=kebab");
+  suggestAlternative: "amenity=fast_food";
+	group: "MapThisWay (Combinations)";
+  fixRemove: "{1.key}";
+	fixAdd: "{1.key}=fast_food";
+}
+
+/* mtw oldauthorization */
+
+*[inside("IT")][shop=tobacco][ref],
+*[inside("IT")][shop=tobacco][authorization] {
+	throwWarning: tr("{0} is deprecated", "{2.key}");
+	group: "MapThisWay (Combinations)";
+	suggestAlternative: "ref:tobacco";
+	fixChangeKey: "{2.key} => ref:tobacco";
+}
+
+/******************************/
+/* highways.validator.mapcss */
+/******************************/
 
 /* mtw roundaboutwithname */
 
-way[junction=roundabout][name] {
-	throwWarning: tr("Roundabout with name");
-	group: "MapThisWay";
-}
-
-/* mtw wifiyes */
-
-*[wifi=yes] {
-	throwWarning: tr("{0} is deprecated", "{0.tag}");
-	suggestAlternative: "internet_access=wlan";
-	group: "MapThisWay";
-	fixRemove: "wifi";
-	fixAdd: "internet_access=wlan";
-}
-
-/* mtw wifino */
-
-*[wifi=no] {
-	throwWarning: tr("{0} is deprecated", "{0.tag}");
-	suggestAlternative: "internet_access";
-	group: "MapThisWay";
-	fixChangeKey: "wifi => internet_access";
-}
-
-/* mtw wififree */
-
-*[wifi=free] {
-	throwWarning: tr("{0} is deprecated", "{0.tag}");
-	suggestAlternative: "internet_access=wlan";
-	group: "MapThisWay";
-	fixRemove: "wifi";
-	fixAdd: "internet_access=wlan";
-	fixAdd: "internet_access:fee=no";
-}
-
-/* mtw officetravelagent */
-
-*[office=travel_agent] {
-	throwWarning: tr("{0} is deprecated", "{0.tag}");
-	suggestAlternative: "shop=travel_agency";
-	group: "MapThisWay";
-	fixRemove: "office";
-	fixAdd: "shop=travel_agency";
-}
-
-/* mtw refwithspace - suggested by Andrea Musuruane */
-
-way[highway][ref =~ /(\s+)|[;]/] {
-	throwWarning: tr("unusual value of {0}", "{1.key}");
-	group: "MapThisWay";
-}
-
-
-/* mtw landusewithname - suggested by Andrea Musuruane
-SHOULD BE INVESTIGATED MORE BEFORE ENABILING...
-way[landuse][name] {
-	throwWarning: tr("{0} with {1}", "{0.key}", "{1.key}");
-	group: "MapThisWay";
-}
-*/
-
-/* mtw onlychristian - suggested by Andrea Musuruane */
-
-*[amenity=place_of_worship][religion=christian][!denomination] {
-	throwWarning: tr("{0} without {1}", "{0.value}", "{2.key}");
-	group: "MapThisWay";
-}
-
-/* mtw trafficsingunconnected - suggested by Andrea Musuruane */
-
-node:unconnected[traffic_sign][traffic_sign=city_limit] {
-	throwWarning: tr("{0}", "{2.tag}");
-	group: "MapThisWay";
-}
-
-/* mtw facebookaswebsite */
-
-*[website =~ /facebook/] {
-	throwWarning: tr("{0}", "{0.tag}");
-	group: "MapThisWay";
-}
-
-/* mtw invalidphone */
-/* VALIDI
-+39 0171 123456
-+39-0171-123456
-+39 0171 123 4567
-+39 0171 12345
-+39-0171-12345
-+39 0171 12345
-+39 02 12345
-+39 0171 12345678
-NON VALIDI
-+39-0171-123 4567
-+39 0171-123456
-+39-0171 123456
-+45 0171 123 4567
-+39 0171-123 4567
-*/
-
-*["contact:phone"]["contact:phone" !~ /^(?:(?:\+39-0[0-9]{1,3}-[0-9]+)|(?:\+39 0[0-9]{1,3} [0-9]{3,}(?: [0-9]{4,})?))$/][inside("IT")],
-*[phone][phone !~ /^(?:(?:\+39-0[0-9]{1,3}-[0-9]+)|(?:\+39 0[0-9]{1,3} [0-9]{3,}(?: [0-9]{4,})?))$/][inside("IT")] {
-	throwWarning: tr("{0}", "{0.key}");
-	group: "MapThisWay";
-}
-
-/* mtw invalidmobilephone */
-/*VALIDI
-+39 349 123456
-+39-349-123456
-+39 349 123 4567
-+39 349 123 456
-+39 349 123456
-+39-349-123456
-+39 349 123456
-NON VALIDI
-+39 349 1234 567
-+39 349 12345
-+39-349-12345
-+39 39 123456
-+39 444 12345
-+39-349-123 4567
-+39 349-123456
-+39-349 123456
-+45 349 123 4567
-+39 349-123 4567
-+39 349 12345678
-*/
-
-*["contact:mobile"]["contact:mobile" !~ /^(?:(?:\+39-3[0-9]{2}-[0-9]{6,7})|(?:\+39 3[0-9]{2} [0-9]{6,7})|(?:\+39 3[0-9]{2} [0-9]{3} [0-9]{3,4}))$/][inside("IT")],
-*["phone:mobile"]["phone:mobile" !~ /^(?:(?:\+39-3[0-9]{2}-[0-9]{6,7})|(?:\+39 3[0-9]{2} [0-9]{6,7})|(?:\+39 3[0-9]{2} [0-9]{3} [0-9]{3,4}))$/][inside("IT")] {
-	throwWarning: tr("{0}", "{0.key}");
-	group: "MapThisWay";
-}
-
-/* mtw invalidtollfree */
-
-*["contact:phone:IT"]["contact:phone:IT" !~ /^8[0-9]{2}[- ][0-9]+$/],
-*["phone:IT"]["phone:IT" !~ /^8[0-9]{2}[- ][0-9]+$/] {
-	throwWarning: tr("{0}", "{0.key}");
-	group: "MapThisWay";
-}
-
-/* mtw busonwrongelement */
-node[public_transport != "stop_position"][bus="yes"] {
-	throwWarning: tr("{0} on suspicious object", "{1.tag}");
-	group: "MapThisWay";
-	fixRemove: "bus";
-}
-
-/* mtw shoplamps */
-
-*[shop=lamps] {
-	throwWarning: tr("{0} is deprecated", "{0.tag}");
-	suggestAlternative: "shop=lighting";
-	group: "MapThisWay";
-	fixRemove: "shop";
-	fixAdd: "shop=lighting";
-}
-
-/* mtw naturaltreenotmonumental - suggested by canfe */
-
-node[natural=tree][!tag_regex("^(name|genus|species)")] {
-	throwWarning: tr("{0} without name, genus or species", "{0.tag}");
-	group: "MapThisWay";
+way[inside("IT")][junction=roundabout][name][name !~ /^(?i)(rotatoria|rotonda)[ ]/] {
+	throwWarning: tr("{0} together with {1}", "{1.tag}", "{2.key}");
+	group: "MapThisWay (Highways)";
 }
 
 /* mtw invaliddug - suggested by canfe */
 
-way[highway][highway != "cycleway"][highway != "path"][highway != "via_ferrata"][name][name !~ /^(?i)(arco|autostrada|belvedere|calata|calle|cavalcavia|circonvallazione|corso|corte|cortile|discesa|galleria|gradinata|larghetto|largo|litoranea|lungargine|lungo[a-z]+|molo|parcheggio|passaggio|passeggiata|percorso ciclabile|percorso ciclopedonale|percorso pedonale|piazza|piazzale|piazzetta|pista ciclabile|ponte|raccordo|rampa|ronco|rotatoria|rotonda|salita|scalinata|scesa|sentiero|slargo|sottopasso|sovrappasso|spiazzo|strada|strada antica|strada comunale|strada consortile|strada nuova|strada panoramica|strada poderale|strada privata|strada provinciale|strada regionale|strada statale|strada vecchia|strada vicinale|stradella|stradello|stradone|tangenziale|traversa|traversa privata|via|via antica|via comunale|via nazionale|via nuova|via panoramica|via privata|via provinciale|via vecchia|viale|vialetto|vico|vico chiuso|vico cieco|vico privato|vicoletto|vicolo|vicolo chiuso|vicolo cieco|vicolo privato|viottolo)[ ]/][inside("IT")] {
-	throwWarning: tr("unusual value of {0}", "{3.key}");
-	group: "MapThisWay";
+way[inside("IT")][highway][name][highway !~ /cycleway|path|via_ferrata/][name !~ /^(?i)(arco|autostrada|belvedere|calata|calle|cavalcavia|circonvallazione|corso|corte|cortile|discesa|galleria|gradinata|larghetto|largo|litoranea|lungargine|lungo[a-z]+|molo|parcheggio|passaggio|passeggiata|percorso ciclabile|percorso ciclopedonale|percorso pedonale|piazza|piazzale|piazzetta|pista ciclabile|ponte|raccordo|rampa|ronco|rotatoria|rotonda|salita|scalinata|scesa|sentiero|slargo|sottopasso|sovrappasso|spiazzo|strada|strada antica|strada comunale|strada consortile|strada nuova|strada panoramica|strada poderale|strada privata|strada provinciale|strada regionale|strada statale|strada vecchia|strada vicinale|stradella|stradello|stradone|tangenziale|traversa|traversa privata|via|via antica|via comunale|via nazionale|via nuova|via panoramica|via privata|via provinciale|via vecchia|viale|vialetto|vico|vico chiuso|vico cieco|vico privato|vicoletto|vicolo|vicolo chiuso|vicolo cieco|vicolo privato|viottolo)[ ]/] {
+	throwWarning: tr("unusual value of {0}", "{2.key}: non trovato in elenco Registro delle Denominazioni Urbanistiche Generiche (DUG)");
+	group: "MapThisWay (Highways)";
 }
 
-/* mtw invalidstartdate */
+/* mtw nolivingstreet */
 
-*["start_date"]["start_date" !~ /^(?:(?:mid|before|after|late) )?(?:(?:[0-9]{1,4}(?:-[0-9]{2}){0,2})|(?:[~C]*[0-9]+[s]?))(?: BC)?$/] {
-	throwWarning: tr("{0}", "{0.key}");
-	group: "MapThisWay";
+way[inside("IT")][highway=living_street] {
+  throwWarning: tr("Unspecific tag {0}", "{1.tag}");
+	group: "MapThisWay (Highways)";
 }
 
-/* mtw fblink */
+/* mtw unusualmaxspeed */
 
-*[facebook] {
-	throwWarning: tr("{0} is deprecated", "{0.key}");
-	suggestAlternative: "contact:facebook";
-	group: "MapThisWay";
-	fixChangeKey: "facebook => contact:facebook";
+way[inside("IT")][highway][maxspeed][maxspeed !~ /^(5|10|15|20|30|40|50|60|70|80|90|100|110|120|130)$/] {
+	throwWarning: tr("unusual value of {0}", "{2.tag}");
+	group: "MapThisWay (Highways)";
+	set unusual_maxspeed;
 }
 
-*["contact:facebook"]["contact:facebook" !~ /^https:\/\/www\.facebook\.com\//] {
-	throwWarning: tr("{0}", "{0.tag}");
-	group: "MapThisWay";
+/* mtw maxspeedhigh */
+
+way[inside("IT")][highway=primary][maxspeed][maxspeed > 110]!.unusual_maxspeed,
+way[inside("IT")][highway=secondary][maxspeed][maxspeed > 90]!.unusual_maxspeed,
+way[inside("IT")][highway=tertiary][maxspeed][maxspeed > 90]!.unusual_maxspeed,
+way[inside("IT")][highway=residential][maxspeed][maxspeed > 50]!.unusual_maxspeed {
+	throwWarning: tr("{0} together with {1}", "{1.tag}", "{2.tag}");
+	group: "MapThisWay (Highways)";
 }
 
-/* mtw iglink */
+/* mtw refwithspace - suggested by Andrea Musuruane */
 
-*["contact:instagram"]["contact:instagram" !~ /^(https:\/\/www\.instagram\.com\/)|@/] {
-	throwWarning: tr("{0}", "{0.tag}");
-	group: "MapThisWay";
-}
-
-/* mtw ischedit */
-
-*["isced:level"]["isced:level" !~ /^[0-3]$/][inside("IT")] {
-	throwWarning: tr("{0}", "{0.tag}");
-	group: "MapThisWay";
-}
-
-/* mtw scuolainfanzia */
-
-*[!highway][amenity!=kindergarten]["name" =~ /(?i)(scuola (materna|dell'infanzia))|asilo/] {
-	throwWarning: tr("Asilo senza {0}", "{1.tag}");
-	group: "MapThisWay";
-	fixAdd: "amenity=kindergarten";
-}
-
-/* mtw nidonotnursery */
-
-*[amenity=kindergarten]["name" =~ /(?i)nido/][nursery!=yes] {
-	throwWarning: tr("{0} without {1}", "{0.value}", "{2.tag}");
-	group: "MapThisWay";
-	fixAdd: "nursery=yes";
-}
-
-/* mtw scuolainfanzianoisced */
-
-*[amenity=kindergarten]["isced:level" != "0"] {
-	throwWarning: tr("{0} without {1}", "{0.value}", "{1.key}");
-	group: "MapThisWay";
-	fixRemove: "isced:level";
-	fixAdd: "isced:level=0";
-}
-
-/* mtw scuolaelementare */
-
-*["name" =~ /(?i)scuola (primaria|elementare)/] {
-	set scuola_elementare;
-}
-
-*[amenity!=school].scuola_elementare {
-	throwWarning: tr("scuola elementare senza amenity=school");
-	group: "MapThisWay";
-}
-
-*["isced:level" != "1"][amenity=school].scuola_elementare {
-	throwWarning: tr("scuola elementare senza isced:level o isced:level non valido");
-	group: "MapThisWay";
-	fixRemove: "isced:level";
-	fixAdd: "isced:level=1";
-}
-
-/* mtw scuolemedie */
-
-*["name" =~ /(?i)scuola (media( inferiore)?)|(secondaria)/] {
-	set scuola_media;
-}
-
-*["isced:level" != "2"][amenity=school].scuola_media {
-	throwWarning: tr("scuola media senza isced:level o isced:level non valido");
-	group: "MapThisWay";
-	fixRemove: "isced:level";
-	fixAdd: "isced:level=2";
-}
-
-/* mtw scuolesuperiori */
-
-*["name" =~ /(?i)(istituto (magistrale|(di istruzione superiore)|tecnico|commerciale))|liceo/] {
-	set scuola_superiore;
-}
-
-*["isced:level" != "3"][amenity=school].scuola_superiore {
-	throwWarning: tr("scuola superiore senza isced:level o isced:level non valido");
-	group: "MapThisWay";
-	fixRemove: "isced:level";
-	fixAdd: "isced:level=3";
-}
-
-/* mtw unkwnownschool */
-
-*[amenity=school]!.scuola_superiore!.scuola_media!.scuola_elementare {
-	throwWarning: tr("scuola non riconosciuta");
-	group: "MapThisWay";
-}
-
-/* mtw schoolnoref */
-
-*[amenity=kindergarten][!ref], *[amenity=school][!ref] {
-	group: "MapThisWay";
-	throwWarning: tr("scuola senza ref (cercare su cercalatuascuola.istruzione.it)");
-}
-
-/* mtw crossing */
-
-way[highway] > node[highway=crossing],
-way[highway=footway][footway=crossing],
-way[highway=cycleway][cycleway=crossing] {
-	set attraversamento_pedonale;
-}
-
-/* mtw crossingunknown */
-
-*[crossing][crossing!=no]!.attraversamento_pedonale,
-*[highway=crossing]!.attraversamento_pedonale {
-	throwWarning: tr("Attraversamento pedonale non riconosciuto");
-	group: "MapThisWay";
+way[inside("IT")][highway][ref][ref =~ /(\s+)|[;]/] {
+	throwWarning: tr("unusual value of {0}", "{2.key}: https://wiki.openstreetmap.org/wiki/IT:Italian_Roads_Tagging#ref");
+	group: "MapThisWay (Highways)";
 }
 
 /* mtw crossingzebranouk */
 
-*[crossing=zebra][outside("GB")].attraversamento_pedonale {
-	throwWarning: tr("{0} outside of UK", "{0.tag}");
-	suggestAlternative: "crossing=uncontrolled";
-	group: "MapThisWay";
+*[inside("IT")][highway][crossing=zebra] {
+  throwError: tr("wrong value: {0}", "{2.tag}");
+	suggestAlternative: "crossing=uncontrolled + crossing:markings=zebra";
+	group: "MapThisWay (Highways)";
 	fixRemove: "crossing";
 	fixAdd: "crossing=uncontrolled";
-	fixAdd: "crossing_ref=zebra";
+	fixAdd: "crossing:markings=zebra";
 }
 
 /* mtw crossingmarked */
 
-*[crossing=marked].attraversamento_pedonale {
-	throwWarning: tr("{0} is deprecated", "{0.tag}");
-	suggestAlternative: "crossing=uncontrolled";
-	group: "MapThisWay";
+*[inside("IT")][highway][crossing=marked] {
+  throwWarning: tr("{0} together with {1}", "{1.key}", "{2.tag}");
+	suggestAlternative: "crossing=uncontrolled + crossing:markings=*";
+	group: "MapThisWay (Highways)";
 	fixRemove: "crossing";
 	fixAdd: "crossing=uncontrolled";
+	fixAdd: "crossing:markings=yes";
 }
 
-/* mtw crossingcalming */
+/* mtw crossingrefzebra */
 
-*[traffic_calming][traffic_calming!=table][traffic_calming!=hump].attraversamento_pedonale {
-	throwWarning: tr("Attraversamento su {0}", "{0.tag}");
-	group: "MapThisWay";
+*[inside("IT")][highway][crossing_ref=zebra] {
+  throwWarning: tr("Unspecific tag {0}", "{2.tag}");
+	suggestAlternative: "crossing:markings=zebra";
+	group: "MapThisWay (Highways)";
+	fixRemove: "crossing_ref";
+	fixAdd: "crossing:markings=zebra";
 }
 
-/* mtw tracktypenottrack */
+/* mtw crossingref */
 
-way[tracktype][highway!=track] {
-	throwWarning: tr("{0} not {1}", "{0.key}", "{1.tag}");
-	group: "MapThisWay";
+*[inside("IT")][highway][crossing_ref][crossing_ref!=zebra] {
+  throwWarning: tr("Unspecific tag {0}", "{2.tag}");
+	suggestAlternative: "crossing:markings=*";
+	group: "MapThisWay (Highways)";
 }
 
-/* mtw comma */
-
-*[cuisine =~ /,/] {
-	throwWarning: tr("{0} with comma", "{0.key}");
-	group: "MapThisWay";
+way[inside("IT")][highway=cycleway][foot=designated],
+way[inside("IT")][highway=path][foot=designated][bicycle=designated] {
+	set pista_ciclopedonale;
 }
 
-/* mtw randomhighwayservice */
+/* mtw segregatedwronghighway */
 
-way[highway!=service][service] {
-	throwWarning: tr("{0} not {1}", "{0.key}", "{1.key}");
-	group: "MapThisWay";
+way[inside("IT")][highway][segregated]!.pista_ciclopedonale {
+	throwWarning: tr("{0} together with {1}", "{1.key}", "{2.tag}");
+	group: "MapThisWay (Highways)";
 }
 
-/* mtw towervsmast
+/* mtw pathwithfootyes */
 
-node["tower:type"=communication][man_made != mast] {
-	throwWarning: tr("{0} not {1}", "{0.key}", "{1.value}");
-	group: "MapThisWay";
-	fixRemove: "man_made";
-	fixAdd: "man_made=mast";
+way[inside("IT")][highway][foot=no][motorroad=yes],
+way[inside("IT")][highway][foot=yes][motorroad!=yes][highway!=cycleway],
+way[inside("IT")][highway=cycleway][foot=no],
+way[inside("IT")][highway=cycleway][bicycle=designated],
+way[inside("IT")][highway][bicycle=no][motorroad=yes],
+way[inside("IT")][highway][bicycle=yes][motorroad!=yes][highway!=footway],
+way[inside("IT")][highway=footway][bicycle=no],
+way[inside("IT")][highway=footway][foot=designated] {
+  throwWarning: tr("{0} is unnecessary", "{2.tag}");
+	group: "MapThisWay (Highways)";
+	fixRemove: "{2.key}";
 }
-*/
-
-/* mtw coinsinstadofcash */
-
-*[amenity!="vending_machine"]["payment:coins"] {
-	throwWarning: tr("{0}", "{1.key}");
-	group: "MapThisWay";
-	suggestAlternative: "payment:cash";
-	fixChangeKey: "payment:coins => payment:cash";
-}
-
-/* mtw inknotprinter */
-
-*[shop=ink] {
-	throwWarning: tr("{0} is deprecated", "{0.tag}");
-	suggestAlternative: "shop=printer_ink";
-	group: "MapThisWay";
-	fixRemove: "shop";
-	fixAdd: "shop=printer_ink";
-}
-
-/* mtw farmyardwithoutfarm - Suggested by Andrea Musuruane */
-
-*[place=farm] ⊈ area:closed2[landuse=farmyard] {
-	throwWarning: tr("{0} without place=farm", "{1.tag}");
-	group: "MapThisWay";
-}
-
-/* mtw farmnotinsidefarmyard - Suggested by Andrea Musuruane */
-
-area[landuse=farmyard] ⊉ *[place=farm] {
-	throwWarning: tr("{0} not inside landuse=farmyard", "{0.tag}");
-	group: "MapThisWay";
-}
-
 
 /* mtw onelanenooneway - Suggested by Volker */
 
-way[highway][lanes<2][!oneway][!junction] {
-	throwWarning: tr("{0} {1}<{2} without {3}", "{0.key}", "{1.key}", "{1.value}", "{2.key}");
-	group: "MapThisWay";
+way[highway][lanes<2][!oneway][junction!=roundabout] {
+  throwWarning: tr("{0} together with {1} but without {2}", "{0.key}", "{1.key}<2", "{2.key}");
+	group: "MapThisWay (Highways)";
 }
 
 /* mtw onelanenopassingplaces - Suggested by Andrea Musuruane */
 
-way[highway][lanes<2][oneway=no][passing_places!=yes] {
-	throwWarning: tr("{0} {1}<{2} with {3} without {4}", "{0.key}", "{1.key}", "{1.value}", "{2.tag}", "{3.tag}");
-	group: "MapThisWay";
-	fixAdd: "passing_places=yes";
+way[highway][lanes<2][oneway=no][!passing_places] {
+	throwWarning: tr("{0} together with {1} but without {2}", "{0.key}", "{1.key}<2", "{3.key}");
+	group: "MapThisWay (Highways)";
+}
+
+/* mtw onelanelanemarkings */
+
+way[highway][lanes<2][lane_markings=yes] {
+  throwWarning: tr("{0} together with {1} and {2}", "{0.tag}", "{1.key}<2", "{2.tag}");
+	group: "MapThisWay (Highways)";
 }
 
 /* mtw passingplacesmanylanes */
 
 way[highway][lanes>=2][passing_places] {
-	throwWarning: tr("{0} {1}>={2} with {3}", "{0.key}", "{1.key}", "{1.value}", "{2.key}");
-	group: "MapThisWay";
-	fixAdd: "lane_markings=no";
-	fixRemove: "passing_places";
+  throwWarning: tr("{0} together with {1} and {2}", "{0.tag}", "{1.key}>=2", "{2.key}");
+	group: "MapThisWay (Highways)";
 }
 
-/* mtw onelanelanemarkings */
+/* mtw citylimitwithoutdirection */
 
-way[highway][lanes<2][lane_markings] {
-	throwWarning: tr("{0} {1}<{2} with {3}", "{0.key}", "{1.key}", "{1.value}", "{2.key}");
-	group: "MapThisWay";
-	fixRemove: "lane_markings";
+way[highway][oneway!=yes] > node[traffic_sign=city_limit][!direction] {
+  throwWarning: tr("{0} without {1}", "{1.key}");
+	group: "MapThisWay (Highways)";
 }
 
-/* mtw clinicnothealthcare */
+/* mtw citylimitwithoutcitylimit */
 
-*[social_facility][social_facility=healthcare] {
-	throwWarning: tr("{0} is deprecated", "{0.tag}");
-	suggestAlternative: "amenity=clinic";
-	group: "MapThisWay";
-	fixRemove: "social_facility";
-	fixAdd: "amenity=clinic";
+way[highway][oneway=yes] > node[traffic_sign=city_limit][!city_limit] {
+  throwWarning: tr("{0} without {1}", "{0.tag}", "{1.key}");
+	group: "MapThisWay (Highways)";
 }
 
-/* mtw milestone */
-*[addr:milestone][addr:milestone !~ /^(?:km|mi)\. [0-9]*[.+]?[0-9]+$/] {
-	throwWarning: tr("Invalid milestone");
-	group: "MapThisWay";
+/* mtw trafficsingunconnected - suggested by Andrea Musuruane */
+
+node:unconnected[traffic_sign=city_limit] {
+	throwWarning: tr("isolated node which must be connected to a way");
+	group: "MapThisWay (Highways)";
 }
 
-/* mtw milestoneswithhousenumber */
-*[addr:milestone][addr:housenumber] {
-	throwWarning: tr("{0} with {1}", "{0.key}", "{1.key}");
-	group: "MapThisWay";
-}
-
-/* mtw accessyes */
-way[highway][access=permissive],
-way[highway][access=yes] {
-	throwWarning: tr("{0} with {1} is harmful", "{0.key}", "{1.tag}");
-	group: "MapThisWay";
-	fixRemove: "access";
-}
-
-/* mtw pathwithfootyes */
-way[highway=path][foot=yes][!horse] {
-	throwWarning: tr("{0} with {1} is redundant", "{0.value}", "{1.tag}");
-	group: "MapThisWay";
-	suggestAlternative: "foot=designated";
-	fixAdd: "foot=designated";
-}
-
-/* mtw pathwithbicycleyes */
-way[highway=path][bicycle=yes][!horse] {
-	throwWarning: tr("{0} with {1} is redundant", "{0.value}", "{1.tag}");
-	group: "MapThisWay";
-	suggestAlternative: "bicycle=designated";
-	fixAdd: "bicycle=designated";
-}
-
-/* mtw segregatednofoot */
-way[segregated][!foot] {
-	throwWarning: tr("{0} without {1}", "{0.key}", "{1.key}");
-	group: "MapThisWay";
-}
-
-/* mtw segregatednobicicle */
-way[segregated][!bicycle] {
-	throwWarning: tr("{0} without {1}", "{0.key}", "{1.key}");
-	group: "MapThisWay";
-}
-
-/* mtw segregatedwronghighway */
-*[segregated][highway != path][highway != cycleway][highway != footway][highway != crossing] {
-	throwWarning: tr("{0} without {1}, {2}, {3}", "{0.key}", "{1.tag}", "{2.tag}", "{3.tag}");
-	group: "MapThisWay";
-}
+/******************************/
+/* hiking.validator.mapcss */
+/******************************/
 
 /* mtw caiscaleonway */
-way[cai_scale] {
-	throwWarning: tr("{0} on a way", "{0.key}");
-	group: "MapThisWay";
+
+way[inside("IT")][cai_scale] {
+	throwWarning: tr("Unspecific tag {0}", "{1.key}: https://wiki.openstreetmap.org/wiki/Proposal:Cai_scale#Applies_to");
+	group: "MapThisWay (Hiking)";
 	fixRemove: "cai_scale";
 }
 
-/* mtw rnsacscale */
-relation[sac_scale],
-node[sac_scale] {
-	throwWarning: tr("{0} not on way", "{0.key}");
-	group: "MapThisWay";
-	fixRemove: "sac_scale";
-}
 
-/* mtw rntrailvisibility */
-relation[trail_visibility],
-node[trail_visibility] {
-	throwWarning: tr("{0} not on way", "{0.key}");
-	group: "MapThisWay";
-	fixRemove: "trail_visibility";
-}
+/* mtw unknowncaiscale */
 
-/* mtw highwayonrelation */
-relation[highway] {
-	throwWarning: tr("{0} on a relation", "{0.key}");
-	group: "MapThisWay";
-	fixRemove: "highway";
-}
-
-/* mtw biketrack */
-way[highway!=path][highway!=footway][bicycle=yes] {
-	throwWarning: tr("{0} is redundant", "{2.tag}");
-	group: "MapThisWay";
-	fixRemove: "bicycle";
-}
-
-/* mtw foottrack */
-way[highway!=path][highway!=cycleway][foot=yes] {
-	throwWarning: tr("{0} is redundant", "{2.tag}");
-	group: "MapThisWay";
-	fixRemove: "foot";
-}
-
-/* mtw busstopconnected */
-way[highway] > node[highway=bus_stop] {
-	throwWarning: tr("{0} collegato alla way", "{0.tag}");
-	group: "MapThisWay";
-}
-
-/* mtw sentierocai */
-/* FIXME identificare elenco tag per capire che è CAI */
-
-relation["ref:REI"] {
-	set sentiero_cai;
+relation[inside("IT")][cai_scale][cai_scale !~ /^(T|E|EE|EEA|EAI)$/] { 
+	throwWarning: tr("unusual value of {0}", "{1.tag}: https://wiki.openstreetmap.org/wiki/Proposal:Cai_scale#Examples");
+	group: "MapThisWay (Hiking)";
 }
 
 /* mtw refrei */
 
-relation["ref:REI"]["ref:REI" !~ /^((?:E(?:AL|AT|BI|CN|NO|TO|VB|VC)[A-Z][A-Z0-9]{3}[A-Z0-9])|(?:[A-DF-Z][A-Z]{2}[A-Z][A-Z0-9]{3}[A-Z0-9]))$/] {
-	throwWarning: tr("unusual value of {0}", "{1.key}");
-	group: "MapThisWay";
+relation[inside("IT")]["ref:REI"]["ref:REI" !~ /^((?:E(?:AL|AT|BI|CN|NO|TO|VB|VC)[A-Z][A-Z0-9]{3}[A-Z0-9])|(?:[A-DF-Z][A-Z]{2}[A-Z][A-Z0-9]{3}[A-Z0-9]))$/] {
+	throwWarning: tr("unusual value of {0}", "{1.key}: https://wiki.openstreetmap.org/wiki/IT:Key:ref:REI");
+	group: "MapThisWay (Hiking)";
 	set invalid_ref_rei;
+}
+
+relation[inside("IT")]["ref:REI"] {
+	set sentiero_cai;
 }
 
 /* mtw missingcairef */
 
-relation.sentiero_cai[!ref] {
-	throwWarning: tr("{0} without {1}", "Sentiero CAI", "{1.key}");
-	group: "MapThisWay";
+relation[!ref].sentiero_cai!.invalid_ref_rei {
+	throwWarning: tr("{0} without {1}", "Sentiero CAI", "{0.key}");
+	fixAdd: concat("ref=", substring(tag("ref:REI"), 4, 7), replace(substring(tag("ref:REI"), 7, 8), "0", ""));
+	group: "MapThisWay (Hiking)";
 }
 
 /* mtw invalidcairef */
 
-relation["ref:REI"]!.invalid_ref_rei[tag(ref)!=concat(substring(tag("ref:REI"), 4, 7), replace(substring(tag("ref:REI"), 7, 8), "0", ""))] {
-	throwWarning: tr("ref non compatibile con ref:REI");
+relation[ref][tag(ref)!=concat(substring(tag("ref:REI"), 4, 7), replace(substring(tag("ref:REI"), 7, 8), "0", ""))].sentiero_cai!.invalid_ref_rei {
+  throwError: tr("wrong value: {0}", "{0.tag}");
 	fixAdd: concat("ref=", substring(tag("ref:REI"), 4, 7), replace(substring(tag("ref:REI"), 7, 8), "0", ""));
-	group: "MapThisWay";
-}
-
-/* mtw wrnname */
-
-relation.sentiero_cai[!"rwn:name"] {
-	throwWarning: tr("{0} without {1}", "Sentiero CAI", "{1.key}");
-	group: "MapThisWay";
-}
-
-/* mtw cairpe */
-
-relation["rwn:name"]["ref:REI" =~ /^E/]["rwn:name"!="Rete Patrimonio Escursionistico Piemonte (RPE)"] {
-	throwWarning: tr("unusual value of {0}", "{2.key}");
-	fixAdd: "rwn:name=Rete Patrimonio Escursionistico Piemonte (RPE)";
-	group: "MapThisWay";
-}
-
-/* mtw caitagblacklist */
-
-relation.sentiero_cai[tag_regex("^(?!(type|route|network|name|ref|cai_scale|roundtrip|source|source:ref|survey:date|osmc:symbol|symbol(?::it)*|operator|old_ref|ascent|descent|distance|duration:forward|duration:backward|from|to|rwn:name|reg_ref|ref:REI|maintenance(?::it)*|state|note(?::it)*|note:project_page|website|wikimedia_commons|description(?::it)*)$)(\\w*)")] {
-	throwWarning: tr("tag non nello schema CAI");
-	group: "MapThisWay";
-}
-
-/* mtw unknowncaiscale */
-
-relation[cai_scale][cai_scale !~ /^(T|E|EE|EEA|EAI)$/] { 
-	throwWarning: tr("unusual value of {0}", "{0.tag}");
-	group: "MapThisWay";
-}
-
-/* mtw nosacscale */
-
-relation[cai_scale] > way[!sac_scale] { 
-	throwWarning: tr("strada senza {0} parte di un sentiero CAI", "{0.key}");
-	group: "MapThisWay";
-}
-
-/* mtw sacscalet */
-
-relation[cai_scale="T"] > way[sac_scale][sac_scale!="hiking"] { 
-	throwWarning: tr("strada con {0} parte di un sentiero con cai_scale=T", "{0.tag}");
-	group: "MapThisWay";
-}
-
-/* mtw sacscalee */
-relation[cai_scale="E"] > way[sac_scale][sac_scale!="hiking"] { 
-	throwWarning: tr("strada con {0} parte di un sentiero con cai_scale=E", "{0.tag}");
-	group: "MapThisWay";
-}
-
-/* mtw sacscaleee */
-
-relation[cai_scale="EE"] > way[sac_scale][sac_scale!="hiking"][sac_scale!="mountain_hiking"][sac_scale!="demanding_mountain_hiking"] { 
-	throwWarning: tr("strada con {0} parte di un sentiero con cai_scale=EE", "{0.tag}");
-	group: "MapThisWay";
-}
-
-/* mtw sacscaleeai */
-
-relation[cai_scale="EAI"] > way[sac_scale][sac_scale!="hiking"][sac_scale!="mountain_hiking"][sac_scale!="demanding_mountain_hiking"][sac_scale!="alpine_hiking"] { 
-	throwWarning: tr("strada con {0} parte di un sentiero con cai_scale=EAI", "{0.tag}");
-	group: "MapThisWay";
-}
-
-/* mtw survey:date */
-
-*["survey:date"]["survey:date" !~ /^(?:[0-9]{1,4}(?:-[0-9]{2}){0,2})$/] {
-	throwWarning: tr("{0}", "{0.key}");
-	group: "MapThisWay";
-}
-
-/* mtw refalreadyonrel */
-
-relation[type=route][ref] way[tag("ref")=parent_tag("ref")] {
-	throwWarning: tr("Ref già sulla relazione");
-	fixRemove: "ref";
-	group: "MapThisWay";
+	group: "MapThisWay (Hiking)";
 }
 
 /* mtw unknowncaisourceref */
 
-relation.sentiero_cai["source:ref"]["source:ref" !~ /^9[1-2][0-9]{5}$/] {
-	throwWarning: tr("source:ref non riconosciuto");
+relation["source:ref"]["source:ref" !~ /^9[1-2][0-9]{5}$/].sentiero_cai {
+  throwError: tr("wrong value: {0}", "{0.tag}");
+	group: "MapThisWay (Hiking)";
+}
+
+/* mtw refalreadyonrel */
+
+relation[type=route][route =~ /bicycle|mtb|foot|hiking|running/][ref] way[highway][tag("ref")=parent_tag("ref")] {
+  throwWarning: tr("{0} is unnecessary for {1}", "ref", "{0.key}");
+	fixRemove: "ref";
+	group: "MapThisWay (Hiking)";
+}
+
+/* mtw wrongroleguidepost - Suggested by Ivo Reano */
+
+relation[type=route][route =~ /bicycle|mtb|foot|hiking|running/] >[role != "guidepost"] node[tourism=information][information=guidepost] {
+  throwWarning: tr("{0} without {1}", "{1.value}", "role=guidepost");
+	group: "MapThisWay (Hiking)";
+}
+
+/****************************/
+/* landuses.validator.mapcss */
+/****************************/
+
+/* mtw farmyardwithoutfarm - Suggested by Andrea Musuruane */
+
+node[place=farm] ⊈ area:closed2[landuse=farmyard] {
+	throwWarning: tr("{0} without {1}", "{1.tag}", "place=farm");
+	group: "MapThisWay (Landuses)";
+}
+
+/* mtw farmnotinsidefarmyard - Suggested by Andrea Musuruane */
+
+area[landuse=farmyard] ⊉ node[place=farm] {
+	throwWarning: tr("{0} without {1}", "{0.tag}", "landuse=farmyard");
+	group: "MapThisWay (Landuses)";
+}
+
+/****************************/
+/* natural.validator.mapcss */
+/****************************/
+
+node[inside("IT")][natural=tree][denotation=natural_monument],
+relation[inside("IT")][type=site][natural=tree_group][denotation=natural_monument] {
+	set albero_monumentale;
+}
+
+/* mtw nomasaf */
+
+*[!ref:masaf].albero_monumentale {
+	throwWarning: tr("{0} without {1}", "Albero monumentale", "{0.key}");
+	group: "MapThisWay (Natural)";
+}
+
+/* mtw nospecies - suggested by canfe */
+
+node[!tag_regex("^species")].albero_monumentale {
+	throwWarning: tr("{0} without {1}", "Albero monumentale", "species");
+	group: "MapThisWay (Natural)";
+}
+
+/* mtw unknowntree */
+
+*[inside("IT")][ref:masaf]!.albero_monumentale {
+	throwWarning: tr("{0} on suspicious object", "{1.key}");
+	group: "MapThisWay (Natural)";
+}
+
+/******************************/
+/* phones.validator.mapcss */
+/******************************/
+
+/* mtw invalidphone */
+
+*[inside("IT")][phone][phone !~ /^(?:(?:(?:\+39-0[0-9]{1,3}-[0-9]+)|(?:\+39 0[0-9]{1,3} [0-9]{3,}(?: [0-9]{4,})?)))(?:;(?:\+39-0[0-9]{1,3}-[0-9]+|(?:\+39 0[0-9]{1,3} [0-9]{3,}(?: [0-9]{4,})?)))*$/],
+*[inside("IT")]["contact:phone"]["contact:phone" !~ /^(?:(?:(?:\+39-0[0-9]{1,3}-[0-9]+)|(?:\+39 0[0-9]{1,3} [0-9]{3,}(?: [0-9]{4,})?)))(?:;(?:\+39-0[0-9]{1,3}-[0-9]+|(?:\+39 0[0-9]{1,3} [0-9]{3,}(?: [0-9]{4,})?)))*$/] {
+	throwWarning: tr("unusual value of {0}", "{1.key}: https://wiki.openstreetmap.org/wiki/Key:phone#Italy");
+	group: "MapThisWay (Phones)";
+	assertNoMatch: "node phone=\"+39 0171 123456\"";
+	assertNoMatch: "node phone=\"+39-0171-123456\"";
+	assertNoMatch: "node phone=\"+39 0171 123 4567\"";
+	assertNoMatch: "node phone=\"+39 0171 12345\"";
+	assertNoMatch: "node phone=\"+39-0171-12345\"";
+	assertNoMatch: "node phone=\"+39 02 12345\"";
+	assertNoMatch: "node phone=\"+39 0171 12345678\"";
+	assertMatch: "node phone=\"+39-0171-123 4567\"";
+	assertMatch: "node phone=\"+39 0171-123456\"";
+	assertMatch: "node phone=\"+39-0171 123456\"";
+	assertMatch: "node phone=\"+45 0171 123 4567\"";
+	assertMatch: "node phone=\"+39 0171-123 4567\"";
+	assertNoMatch: "node \"contact:phone\"=\"+39 0171 123456\"";
+	assertNoMatch: "node \"contact:phone\"=\"+39-0171-123456\"";
+	assertNoMatch: "node \"contact:phone\"=\"+39 0171 123 4567\"";
+	assertNoMatch: "node \"contact:phone\"=\"+39 0171 12345\"";
+	assertNoMatch: "node \"contact:phone\"=\"+39-0171-12345\"";
+	assertNoMatch: "node \"contact:phone\"=\"+39 02 12345\"";
+	assertNoMatch: "node \"contact:phone\"=\"+39 0171 12345678\"";
+	assertMatch: "node \"contact:phone\"=\"+39-0171-123 4567\"";
+	assertMatch: "node \"contact:phone\"=\"+39 0171-123456\"";
+	assertMatch: "node \"contact:phone\"=\"+39-0171 123456\"";
+	assertMatch: "node \"contact:phone\"=\"+45 0171 123 4567\"";
+	assertMatch: "node \"contact:phone\"=\"+39 0171-123 4567\"";
+	assertNoMatch: "node phone=\"+39 0171 123456;+39 0171 123457\"";
+	assertMatch: "node phone=\"+39 0171 123456,+39 0171 123457\"";
+	assertNoMatch: "node \"contact:phone\"=\"+39 0171 123456;+39 0171 123457\"";
+	assertMatch: "node \"contact:phone\"=\"+39 0171 123456,+39 0171 123457\"";
+}
+
+/* mtw invalidmobilephone */
+
+*[inside("IT")]["contact:mobile"]["contact:mobile" !~ /^(?:(?:\+39-3[0-9]{2}-[0-9]{6,7})|(?:\+39 3[0-9]{2} [0-9]{6,7})|(?:\+39 3[0-9]{2} [0-9]{3} [0-9]{3,4}))(?:;(?:\+39-3[0-9]{2}-[0-9]{6,7}|(?:\+39 3[0-9]{2} [0-9]{6,7})|(?:\+39 3[0-9]{2} [0-9]{3} [0-9]{3,4})))*$/],
+*[inside("IT")]["phone:mobile"]["phone:mobile" !~ /^(?:(?:\+39-3[0-9]{2}-[0-9]{6,7})|(?:\+39 3[0-9]{2} [0-9]{6,7})|(?:\+39 3[0-9]{2} [0-9]{3} [0-9]{3,4}))(?:;(?:\+39-3[0-9]{2}-[0-9]{6,7}|(?:\+39 3[0-9]{2} [0-9]{6,7})|(?:\+39 3[0-9]{2} [0-9]{3} [0-9]{3,4})))*$/] {
+	throwWarning: tr("unusual value of {0}", "{1.key}");
+	group: "MapThisWay (Phones)";
+	assertNoMatch: "node \"contact:mobile\"=\"+39 349 123456\"";
+	assertNoMatch: "node \"contact:mobile\"=\"+39-349-123456\"";
+	assertNoMatch: "node \"contact:mobile\"=\"+39 349 123 4567\"";
+	assertNoMatch: "node \"contact:mobile\"=\"+39 349 123 456\"";
+	assertMatch: "node \"contact:mobile\"=\"+39 349 1234 567\"";
+	assertMatch: "node \"contact:mobile\"=\"+39 349 12345\"";
+	assertMatch: "node \"contact:mobile\"=\"+39-349-12345\"";
+	assertMatch: "node \"contact:mobile\"=\"+39 39 123456\"";
+	assertMatch: "node \"contact:mobile\"=\"+39 444 12345\"";
+	assertMatch: "node \"contact:mobile\"=\"+39-349-123 4567\"";
+	assertMatch: "node \"contact:mobile\"=\"+39 349-123456\"";
+	assertMatch: "node \"contact:mobile\"=\"+39-349 123456\"";
+	assertMatch: "node \"contact:mobile\"=\"+45 349 123 4567\"";
+	assertMatch: "node \"contact:mobile\"=\"+39 349-123 4567\"";
+	assertMatch: "node \"contact:mobile\"=\"+39 349 12345678\"";
+	assertNoMatch: "node \"phone:mobile\"=\"+39 349 123456\"";
+	assertNoMatch: "node \"phone:mobile\"=\"+39-349-123456\"";
+	assertNoMatch: "node \"phone:mobile\"=\"+39 349 123 4567\"";
+	assertNoMatch: "node \"phone:mobile\"=\"+39 349 123 456\"";
+	assertMatch: "node \"phone:mobile\"=\"+39 349 1234 567\"";
+	assertMatch: "node \"phone:mobile\"=\"+39 349 12345\"";
+	assertMatch: "node \"phone:mobile\"=\"+39-349-12345\"";
+	assertMatch: "node \"phone:mobile\"=\"+39 39 123456\"";
+	assertMatch: "node \"phone:mobile\"=\"+39 444 12345\"";
+	assertMatch: "node \"phone:mobile\"=\"+39-349-123 4567\"";
+	assertMatch: "node \"phone:mobile\"=\"+39 349-123456\"";
+	assertMatch: "node \"phone:mobile\"=\"+39-349 123456\"";
+	assertMatch: "node \"phone:mobile\"=\"+45 349 123 4567\"";
+	assertMatch: "node \"phone:mobile\"=\"+39 349-123 4567\"";
+	assertMatch: "node \"phone:mobile\"=\"+39 349 12345678\"";
+	assertNoMatch: "node \"contact:mobile\"=\"+39 349 123456;+39-349-123457\"";
+	assertMatch: "node \"contact:mobile\"=\"+39 349 123456,+39-349-123457\"";
+}
+
+/* mtw invalidtollfree */
+
+*[inside("IT")]["contact:phone:IT"]["contact:phone:IT" !~ /^(?:8[0-9]{2}[- ][0-9]+)(?:;8[0-9]{2}[- ][0-9]+)*$/],
+*[inside("IT")]["phone:IT"]["phone:IT" !~ /^(?:8[0-9]{2}[- ][0-9]+)(?:;8[0-9]{2}[- ][0-9]+)*$/] {
+	throwWarning: tr("unusual value of {0}", "{1.key}");
+	group: "MapThisWay (Phones)";
+}
+
+/****************************/
+/* schools.validator.mapcss */
+/****************************/
+
+/* mtw ischedit */
+
+*[inside("IT")]["isced:level"]["isced:level" !~ /^[0-3]$/] {
+	throwWarning: tr("unusual value of {0}", "{1.tag}: https://wiki.openstreetmap.org/wiki/Key:isced:level#Conversion_of_local_terms");
+	group: "MapThisWay (Schools)";
+}
+
+*[inside("IT")]["isced:level"=0] {
+  set scuola_infanzia;
+}
+
+*[inside("IT")]["isced:level"=1] {
+	set scuola_elementare;
+}
+
+*[inside("IT")]["isced:level"=2] {
+	set scuola_media;
+}
+
+*[inside("IT")]["isced:level"=3] {
+	set scuola_superiore;
+}
+
+/* mtw scuolainfanzia */
+
+*[amenity!=kindergarten].scuola_infanzia {
+	throwWarning: tr("{0} without {1}", "Scuola Infanzia", "{0.tag}");
+	group: "MapThisWay (Schools)";
+	fixAdd: "amenity=kindergarten";
+}
+
+/* mtw nidonotnursery */
+
+*[amenity=kindergarten]["name" =~ /(?i)nido/][nursery!=yes].scuola_infanzia {
+	throwWarning: tr("{0} without {1}", "{0.value}", "{2.tag}");
+	group: "MapThisWay (Schools)";
+	fixAdd: "nursery=yes";
+}
+
+/* mtw scuolainfanzianoisced */
+
+*[inside("IT")][amenity=kindergarten]!.scuola_infanzia {
+	throwWarning: tr("{0} without {1}", "{1.tag}", "isced:level=0");
+	group: "MapThisWay (Schools)";
+	fixRemove: "isced:level";
+	fixAdd: "isced:level=0";
+}
+
+/* mtw unkwnownschool */
+
+*[inside("IT")][amenity=school]!.scuola_superiore!.scuola_media!.scuola_elementare!.scuola_infanzia {
+	throwWarning: tr("{0} without {1}", "{1.tag}", "isced:level: https://wiki.openstreetmap.org/wiki/Key:isced:level#Conversion_of_local_terms");
+	group: "MapThisWay (Schools)";
+}
+
+/* mtw ischiednoscuole */
+
+*[amenity!=school][amenity!=kindergarten].scuola_elementare,
+*[amenity!=school][amenity!=kindergarten].scuola_media,
+*[amenity!=school][amenity!=kindergarten].scuola_superiore {
+	throwWarning: tr("{0} without {1}", "Scuola", "{0.tag}");
+	group: "MapThisWay (Schools)";
+	fixAdd: "amenity=school";
+}
+
+/* mtw schoolbadname */
+
+*[amenity=kindergarten][name][name !~ /(?i)(scuola (materna|dell'infanzia))|asilo/].scuola_infanzia,
+*[amenity=school][name][name !~ /(?i)scuola (primaria|elementare)/].scuola_elementare,
+*[amenity=school][name][name !~ /(?i)scuola (media( inferiore)?)|(secondaria)/].scuola_media,
+*[amenity=school][name][name !~ /(?i)(istituto (magistrale|(di istruzione superiore)|tecnico|commerciale))|liceo/].scuola_superiore {
+	throwWarning: tr("unusual value of {0}", "{2.key}");
+	group: "MapThisWay (Schools)";
+}
+
+/* mtw schoolnoref */
+
+*[inside("IT")][amenity=kindergarten][!ref],
+*[inside("IT")][amenity=school][!ref],
+*[inside("IT")][office=educational_institution][!ref] {
+	throwWarning: tr("{0} without {1}", "{1.tag}", "{2.key}: cercare su https://unica.istruzione.gov.it/sic");
+	group: "MapThisWay (Schools)";
+}
+
+*[inside("IT")][office=educational_institution] {
+	set istituto_comprensivo;
+}
+
+/* mtw unknownschoolref */
+
+*[ref][ref !~ /^[A-Z]{2}I[CS][A-Z0-9]{6}$/].istituto_comprensivo,
+*[ref][ref !~ /^[A-Z]{2}[1A]A[A-Z0-9]{6}$/].scuola_infanzia,
+*[ref][ref !~ /^[A-Z]{2}[1E]E[A-Z0-9]{6}$/].scuola_elementare,
+*[ref][ref !~ /^[A-Z]{2}[1M]M[A-Z0-9]{6}$/].scuola_media,
+*[ref][ref !~ /^[A-Z]{2}[A-Z0-9]{8}$/].scuola_superiore {
+  throwError: tr("wrong value: {0}", "{0.tag}");
+	group: "MapThisWay (Schools)";
+}
+
+/********************************/
+/* unnecessary.validator.mapcss */
+/********************************/
+
+/* mtw amenitywithname */
+
+*[inside("IT")][name][name=~/^(?i)(fontana)$/][amenity=fountain],
+*[inside("IT")][name][name=~/^(?i)(fontanella)$/][amenity=drinking_water],
+*[inside("IT")][name][name=~/^(?i)(lavatoio)$/][amenity=lavoir],
+*[inside("IT")][name][name=~/^(?i)(peso pubblico)$/][amenity=weighbridge],
+*[inside("IT")][name][name=~/^(?i)(parco)$/][leisure=park],
+*[inside("IT")][name][name=~/^(?i)(laghetto)$/][water=pond],
+*[inside("IT")][name][name=~/^(?i)(parcheggio)$/][amenity=parking],
+*[inside("IT")][name][name=~/^(?i)(parco giochi)$/][leisure=playground],
+*[inside("IT")][name][name=~/^(?i)(area( per)? cani)$/][leisure=dog_park],
+*[inside("IT")][name][name=~/^(?i)(casa)$/][building=house],
+*[inside("IT")][name][name=~/^(?i)(municipio)$/][amenity=townhall],
+*[inside("IT")][name][name=~/^(?i)(ufficio postale)$/][amenity=post_office],
+*[inside("IT")][name][name=~/^(?i)(bar)$/][amenity=cafe],
+*[inside("IT")][name][name=~/^(?i)(edicola)$/][shop=newsagent],
+*[inside("IT")][name][name=~/^(?i)(sentiero)$/][highway=path],
+*[inside("IT")][name][name=~/^(?i)(cimitero)$/][amenity=grave_yard],
+*[inside("IT")][name][name=~/^(?i)(cimitero)$/][landuse=cemetery],
+*[inside("IT")][name][name=~/^(?i)(monumento ai caduti)$/][historic=memorial][memorial=war_memorial] {
+  throwWarning: tr("descriptive name");
+  group: "MapThisWay (Unnecessary)";
+  fixRemove: "name";
+}
+
+/* the following without fixRemove to avoid information loss, should be checked manually */
+*[inside("IT")][name][name=~/^(?i)(fontana|acqua potabile)$/][tag("amenity")=="drinking_water"||tag("drinking_water")=="yes"],
+*[inside("IT")][name][name=~/^(?i)(cappella)$/][tag("building")=="chapel"||tag("amenity")=="place_of_worship"] {
+  throwWarning: tr("descriptive name");
+  group: "MapThisWay (Unnecessary)";
+}
+
+/**
+ * See: https://github.com/openstreetmap/iD/issues/7524
+ */
+
+/* mtw busonwrongelement */
+node[highway=bus_stop][bus=yes] {
+  throwWarning: tr("{0} on suspicious object", "{1.tag}");
+	group: "MapThisWay";
+	fixRemove: "bus";
+}
+
+/**
+ * See: https://wiki.openstreetmap.org/wiki/Tag:highway%3Dbus_stop
+ */
+
+/* mtw busstopconnected */
+way[highway] > node[highway=bus_stop] {
+  throwWarning: tr("{0} node connected to a highway", "{0.tag}");
 	group: "MapThisWay";
 }
 
-/* addr:unit senza addr:housenumber */
-
-*[addr:unit][!addr:housenumber] {
-	throwWarning: tr("{0} without {1}", "{0.key}", "{1.key}");
-	group: "MapThisWay";
-}
-
-/* place con addr:postcode */
-
-*[place]["addr:postcode"] {
-	throwWarning: tr("{0} with {1}", "{0.key}", "{1.key}");
-	group: "MapThisWay";
-}
-
-/* name che contiene le virgolette */
-
-*["name" =~ /"/] {
-	throwWarning: tr("{0} with quotation mark(s)", "{0.key}");
-	group: "MapThisWay";
-}
-
-/* mtw refvatin */
-*[ref:vatin][ref:vatin !~ /^IT[0-9]{11}$/][inside("IT")] {
-	throwWarning: tr("ref:vatin deve essere IT seguito da 11 cifre");
-	group: "MapThisWay";
-}
-
-/* mtw guidepostontheway - suggested by Ivo Reano */
-way[highway] > node[information=guidepost] {
-	throwWarning: tr("scollegare il segnavia");
-	group: "MapThisWay";
-}
-
-/* mtw historicamenity */
-*[historic][amenity] {	
-	throwWarning: tr("{0} together with {1}", "{0.key}", "{1.key}");
-	group: "MapThisWay";
-}
-
-/* mtw churchnobuilding */
-way[amenity=place_of_worship][!building] {	
-	throwWarning: tr("{0} without {1}", "{0.tag}", "{1.key}");
-	group: "MapThisWay";
-}
+/*
+ * See: https://wiki.openstreetmap.org/wiki/Key:parking:condition
+ */
 
 /* mtw oldparkingschema */
 way[tag_regex("^parking:lane:(both|left|right)")] {
@@ -1197,38 +963,73 @@ way["parking:condition:both" = free] {
 	fixRemove: "parking:condition:both";
 }
 
-/* mtw wrongroleguidepost - Suggested by Ivo Reano */
-relation[type=route] >[role != "guidepost"] node[information=guidepost] {
-  throwWarning: tr("Segnavia senza ruolo guidepost");
+/**
+ * See: https://wiki.openstreetmap.org/wiki/Tag:office%3Dtravel_agent
+ */
+
+/* mtw officetravelagent */
+*[office=travel_agent] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "shop=travel_agency";
 	group: "MapThisWay";
+	fixRemove: "office";
+	fixAdd: "shop=travel_agency";
 }
 
-/* mtw unusualmaxspeed */
-way[maxspeed][maxspeed =~ /^(?!5$|10$|15$|20$|30$|40$|50$|60$|70$|80$|90$|100$|110$|120$|130$).*/][inside("IT")] {
-	throwWarning: tr("unusual value of {0}", "{0.tag}");
+/**
+ * See: https://wiki.openstreetmap.org/wiki/Tag:shop%3Dlamps
+ */
+
+/* mtw shoplamps */
+*[shop=lamps] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "shop=lighting";
 	group: "MapThisWay";
+	fixRemove: "shop";
+	fixAdd: "shop=lighting";
 }
 
-/* mtw unusualmaxspeedp */
-way[highway=primary][maxspeed][maxspeed > 110][inside("IT")] {
-	throwWarning: tr("highway=secondary with maxspeed > 110", "{0.tag}");
+/**
+ * See: https://wiki.openstreetmap.org/wiki/Key:social_facility#Different_types_of_social_facilities
+ */
+
+/* mtw clinicnothealthcare */
+*[social_facility][social_facility=healthcare] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "amenity=clinic";
 	group: "MapThisWay";
+	fixRemove: "social_facility";
+	fixAdd: "amenity=clinic";
 }
 
-/* mtw unusualmaxspeeds */
-way[highway=secondary][maxspeed][maxspeed > 90][inside("IT")] {
-	throwWarning: tr("highway=secondary with maxspeed > 90", "{0.tag}");
+/**
+ * See: https://wiki.openstreetmap.org/wiki/Key:wifi
+ */
+
+/* mtw wifiyes */
+*[wifi=yes] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "internet_access=wlan";
 	group: "MapThisWay";
+	fixRemove: "wifi";
+	fixAdd: "internet_access=wlan";
 }
 
-/* mtw unusualmaxspeedt */
-way[highway=tertiary][maxspeed][maxspeed > 90][inside("IT")] {
-	throwWarning: tr("highway=tertiary with maxspeed > 90", "{0.tag}");
+/* mtw wifino */
+*[wifi=no] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "internet_access";
 	group: "MapThisWay";
+	fixChangeKey: "wifi => internet_access";
 }
 
-/* mtw unusualmaxspeedr */
-way[highway=residential][maxspeed][maxspeed > 50][inside("IT")] {
-	throwWarning: tr("highway=residential with maxspeed > 50", "{0.tag}");
+/* mtw wififree */
+*[wifi=free] {
+	throwWarning: tr("{0} is deprecated", "{0.tag}");
+	suggestAlternative: "internet_access=wlan";
 	group: "MapThisWay";
+	fixRemove: "wifi";
+	fixAdd: "internet_access=wlan";
+	fixAdd: "internet_access:fee=no";
 }
+

@@ -136,3 +136,31 @@ way[highway][lanes<2][lane_markings=yes] {
 	group: "MapThisWay (Highways)";
 }
 
+/* mtw passingplacesmanylanes */
+
+way[highway][lanes>=2][passing_places] {
+  throwWarning: tr("{0} together with {1} and {2}", "{0.tag}", "{1.key}>=2", "{2.key}");
+	group: "MapThisWay (Highways)";
+}
+
+/* mtw citylimitwithoutdirection */
+
+way[highway][oneway!=yes] > node[traffic_sign=city_limit][!direction] {
+  throwWarning: tr("{0} without {1}", "{1.key}");
+	group: "MapThisWay (Highways)";
+}
+
+/* mtw citylimitwithoutcitylimit */
+
+way[highway][oneway=yes] > node[traffic_sign=city_limit][!city_limit] {
+  throwWarning: tr("{0} without {1}", "{0.tag}", "{1.key}");
+	group: "MapThisWay (Highways)";
+}
+
+/* mtw trafficsingunconnected - suggested by Andrea Musuruane */
+
+node:unconnected[traffic_sign=city_limit] {
+	throwWarning: tr("isolated node which must be connected to a way");
+	group: "MapThisWay (Highways)";
+}
+
