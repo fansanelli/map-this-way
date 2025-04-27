@@ -106,13 +106,20 @@ way[inside("IT")][highway][foot=no][motorroad=yes],
 way[inside("IT")][highway][foot=yes][motorroad!=yes][highway!=cycleway],
 way[inside("IT")][highway=cycleway][foot=no],
 way[inside("IT")][highway=cycleway][bicycle=designated],
-way[inside("IT")][highway][bicycle=no][motorroad=yes],
-way[inside("IT")][highway][bicycle=yes][motorroad!=yes][highway!=footway],
+way[inside("IT")][highway][bicycle=no][motorroad=yes][highway!=pedestrian],
+way[inside("IT")][highway][bicycle=yes][motorroad!=yes][highway!=footway][highway!=pedestrian],
 way[inside("IT")][highway=footway][bicycle=no],
 way[inside("IT")][highway=footway][foot=designated] {
   throwWarning: tr("{0} is unnecessary", "{2.tag}");
 	group: "MapThisWay (Highways)";
 	fixRemove: "{2.key}";
+}
+
+/* mtw pedestrianwithoutbicycle */
+
+way[inside("IT")][highway=pedestrian][!bicycle] {
+	throwWarning: tr("{0} without {1}", "{1.tag}", "{2.key}");
+	group: "MapThisWay (Highways)";
 }
 
 /* mtw onelanenooneway - Suggested by Volker */

@@ -73,6 +73,11 @@ Verifica se le chiavi foot e bicycle sono uguali al valore default confrontandol
 Per i valori default far riferimento alla wiki:
 https://wiki.openstreetmap.org/wiki/OSM_tags_for_routing/Access_restrictions#Italy
 
+- pedestrianwithoutbicycle
+
+Secondo la wiki è meglio sempre specificare se è consentita la bici su aree pedonali: 
+https://wiki.openstreetmap.org/wiki/Tag:highway%3Dpedestrian#Italy
+
 - onelanenooneway
 
 Quando su una highway è indicata solo una corsia è meglio definire anche se è una strada a senso unico.
