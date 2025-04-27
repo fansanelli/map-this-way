@@ -5,7 +5,14 @@
 /* mtw refvatin */
 
 *[inside("IT")][ref:vatin][ref:vatin !~ /^IT[0-9]{11}$/] {
-	  throwError: tr("wrong value: {0}", "{1.tag}: deve essere IT seguito da 11 cifre");
+	throwError: tr("wrong value: {0}", "{1.tag}: deve essere IT seguito da 11 cifre");
+	group: "MapThisWay (Amenities)";
+}
+
+/* mtw namenotcapitalized2 */
+
+*[inside("IT")][name =~ /^[a-z]/] {
+	throwWarning: tr("unusual value of {0}", "{1.key}: iniziale non in maiuscolo");
 	group: "MapThisWay (Amenities)";
 }
 

@@ -73,3 +73,19 @@ Verifica se le chiavi foot e bicycle sono uguali al valore default confrontandol
 Per i valori default far riferimento alla wiki:
 https://wiki.openstreetmap.org/wiki/OSM_tags_for_routing/Access_restrictions#Italy
 
+- onelanenooneway
+
+Quando su una highway è indicata solo una corsia è meglio definire anche se è una strada a senso unico.
+NOTA: Questo controllo non è specifico per l'Italia
+
+- onelanenopassingplaces
+
+Se una strada con una sola corsia è a senso unico, meglio definire anche se sono frequenti degli slarghi, tramite il tag: passing_places=*.
+Vedi: https://wiki.openstreetmap.org/wiki/Key:passing_places
+NOTA: Questo controllo non è specifico per l'Italia
+
+- onelanelanemarkings
+
+Se una strada ha una sola corsia, non ha senso specificare il tag lane_markings=yes.
+NOTA: Questo controllo non è specifico per l'Italia
+

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-25674' action='modify' visible='true' lat='44.42028151371' lon='7.81443452913'>
+    <tag k='amenity' v='cafe' />
+    <tag k='name' v='nome non valido' />
+  </node>
+  <node id='-25903' action='modify' visible='true' lat='44.41720175641' lon='7.81802779026'>
+    <tag k='amenity' v='cafe' />
+    <tag k='name' v='Nome valido' />
+  </node>
+</osm>

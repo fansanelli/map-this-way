@@ -115,3 +115,24 @@ way[inside("IT")][highway=footway][foot=designated] {
 	fixRemove: "{2.key}";
 }
 
+/* mtw onelanenooneway - Suggested by Volker */
+
+way[highway][lanes<2][!oneway][junction!=roundabout] {
+  throwWarning: tr("{0} together with {1} but without {2}", "{0.key}", "{1.key}<2", "{2.key}");
+	group: "MapThisWay (Highways)";
+}
+
+/* mtw onelanenopassingplaces - Suggested by Andrea Musuruane */
+
+way[highway][lanes<2][oneway=no][!passing_places] {
+	throwWarning: tr("{0} together with {1} but without {2}", "{0.key}", "{1.key}<2", "{3.key}");
+	group: "MapThisWay (Highways)";
+}
+
+/* mtw onelanelanemarkings */
+
+way[highway][lanes<2][lane_markings=yes] {
+  throwWarning: tr("{0} together with {1} and {2}", "{0.tag}", "{1.key}<2", "{2.tag}");
+	group: "MapThisWay (Highways)";
+}
+
