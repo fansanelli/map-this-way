@@ -17,6 +17,7 @@
 *[inside("IT")][name][name=~/^(?i)(municipio)$/][amenity=townhall],
 *[inside("IT")][name][name=~/^(?i)(ufficio postale)$/][amenity=post_office],
 *[inside("IT")][name][name=~/^(?i)(bar)$/][amenity=cafe],
+*[inside("IT")][name][name=~/^(?i)(edicola)$/][shop=newsagent],
 *[inside("IT")][name][name=~/^(?i)(sentiero)$/][highway=path],
 *[inside("IT")][name][name=~/^(?i)(cimitero)$/][amenity=grave_yard],
 *[inside("IT")][name][name=~/^(?i)(cimitero)$/][landuse=cemetery],
