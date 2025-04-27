@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-967286' action='modify' visible='true' lat='44.42528577333' lon='7.82853807909'>
+    <tag k='bicycle' v='yes' />
+  </node>
+  <node id='-967287' action='modify' visible='true' lat='44.39518960285' lon='7.78739523908'>
+    <tag k='bicycle' v='yes' />
+  </node>
+  <node id='-967473' action='modify' visible='true' lat='44.42711414596' lon='7.83716190582'>
+    <tag k='bicycle' v='yes' />
+  </node>
+  <node id='-967474' action='modify' visible='true' lat='44.39701891657' lon='7.7960190658'>
+    <tag k='bicycle' v='yes' />
+  </node>
+  <node id='-967491' action='modify' visible='true' lat='44.42935943761' lon='7.84641455324'>
+    <tag k='bicycle' v='yes' />
+  </node>
+  <node id='-967492' action='modify' visible='true' lat='44.39926536395' lon='7.80527171323'>
+    <tag k='bicycle' v='yes' />
+  </node>
+  <way id='-676441' action='modify' visible='true'>
+    <nd ref='-967286' />
+    <nd ref='-967287' />
+    <tag k='bicycle' v='no' />
+    <tag k='foot' v='yes' />
+    <tag k='highway' v='pedestrian' />
+    <tag k='noname' v='yes' />
+  </way>
+  <way id='-676497' action='modify' visible='true'>
+    <nd ref='-967473' />
+    <nd ref='-967474' />
+    <tag k='bicycle' v='yes' />
+    <tag k='highway' v='pedestrian' />
+    <tag k='noname' v='yes' />
+  </way>
+  <way id='-676528' action='modify' visible='true'>
+    <nd ref='-967491' />
+    <nd ref='-967492' />
+    <tag k='highway' v='pedestrian' />
+    <tag k='noname' v='yes' />
+  </way>
+</osm>

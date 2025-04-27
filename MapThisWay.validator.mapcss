@@ -4,7 +4,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.132";
+  version: "0.133";
   description: "Controlli \"mapcss\" pensati per chi mappa in Italia";
   author: "francians";
   watch-modified: true;
