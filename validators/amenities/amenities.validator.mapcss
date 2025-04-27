@@ -1,0 +1,11 @@
+/******************************/
+/* amenities.validator.mapcss */
+/******************************/
+
+/* mtw refvatin */
+
+*[inside("IT")][ref:vatin][ref:vatin !~ /^IT[0-9]{11}$/] {
+	  throwError: tr("wrong value: {0}", "{1.tag}: deve essere IT seguito da 11 cifre");
+	group: "MapThisWay (Amenities)";
+}
+

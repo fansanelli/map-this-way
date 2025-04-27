@@ -17,6 +17,7 @@ ATTENZIONE: tutti i controlli utilizzano almeno il livello di validazione errore
 I controlli sono suddivisi per tipologia e si trovano nella cartella validators:
 
 - [addresses](validators/addresses/addresses.md)
+- [amenities](validators/amenities/amenities.md)
 - [combinations](validators/combinations/combinations.md)
 - [highways](validators/highways/highways.md)
 - [hiking](validators/hiking/hiking.md)

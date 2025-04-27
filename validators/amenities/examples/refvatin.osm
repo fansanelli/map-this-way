@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <bounds minlat='44.4104857' minlon='7.8089619' maxlat='44.4114053' maxlon='7.8111935' origin='openstreetmap-cgimap 2.0.1 (2270282 spike-07.openstreetmap.org)' />
+  <bounds minlat='44.4104857' minlon='7.8089619' maxlat='44.4114053' maxlon='7.8111935' origin='OpenStreetMap server' />
+  <node id='-25667' action='modify' visible='true' lat='44.41099330617' lon='7.8103155061'>
+    <tag k='name' v='Invalid' />
+    <tag k='ref:vatin' v='123' />
+  </node>
+  <node id='-25673' action='modify' visible='true' lat='44.4109552255' lon='7.81031107385'>
+    <tag k='name' v='Valid' />
+    <tag k='ref:vatin' v='IT12345678901' />
+  </node>
+</osm>
