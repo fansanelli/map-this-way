@@ -4,7 +4,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.133";
+  version: "0.134";
   description: "Controlli \"mapcss\" pensati per chi mappa in Italia";
   author: "francians";
   watch-modified: true;
@@ -601,6 +601,8 @@ node[!tag_regex("^species")].albero_monumentale {
 *[inside("IT")][name][name=~/^(?i)(fontanella)$/][amenity=drinking_water],
 *[inside("IT")][name][name=~/^(?i)(lavatoio)$/][amenity=lavoir],
 *[inside("IT")][name][name=~/^(?i)(peso pubblico)$/][amenity=weighbridge],
+*[inside("IT")][name][name=~/^(?i)(gelateria)$/][amenity=ice_cream],
+*[inside("IT")][name][name=~/^(?i)(pizzeria)$/][tag(amenity)=="restaurant"||tag(amenity)=="fast_food"][cuisine~=pizza],
 *[inside("IT")][name][name=~/^(?i)(parco)$/][leisure=park],
 *[inside("IT")][name][name=~/^(?i)(laghetto)$/][water=pond],
 *[inside("IT")][name][name=~/^(?i)(parcheggio)$/][amenity=parking],
@@ -610,10 +612,21 @@ node[!tag_regex("^species")].albero_monumentale {
 *[inside("IT")][name][name=~/^(?i)(municipio)$/][amenity=townhall],
 *[inside("IT")][name][name=~/^(?i)(ufficio postale)$/][amenity=post_office],
 *[inside("IT")][name][name=~/^(?i)(bar)$/][amenity=cafe],
+*[inside("IT")][name][name=~/^(?i)(panettiere|panetteria)$/][shop=bakery],
 *[inside("IT")][name][name=~/^(?i)(edicola)$/][shop=newsagent],
+*[inside("IT")][name][name=~/^(?i)(macelleria)$/][shop=butcher],
+*[inside("IT")][name][name=~/^(?i)(pasticceria)$/][shop=pastry],
+*[inside("IT")][name][name=~/^(?i)(ferramenta)$/][shop=hardware],
+*[inside("IT")][name][name=~/^(?i)(parrucchier[ae])$/][shop=hairdresser],
+*[inside("IT")][name][name=~/^(?i)(agenzia immobiliare)$/][office=estate_agent],
+*[inside("IT")][name][name=~/^(?i)(banca)$/][amenity=bank],
+*[inside("IT")][name][name=~/^(?i)(fermata (auto)?bus)$/][highway=bus_stop],
 *[inside("IT")][name][name=~/^(?i)(sentiero)$/][highway=path],
+*[inside("IT")][name][name=~/^(?i)(marciapiede)$/][highway=footway][footway=sidewalk],
 *[inside("IT")][name][name=~/^(?i)(cimitero)$/][amenity=grave_yard],
 *[inside("IT")][name][name=~/^(?i)(cimitero)$/][landuse=cemetery],
+*[inside("IT")][name][name=~/^(?i)(idrante)$/][emergency=fire_hydrant],
+*[inside("IT")][name][name=~/^(?i)(cancello)$/][barrier=gate],
 *[inside("IT")][name][name=~/^(?i)(monumento ai caduti)$/][historic=memorial][memorial=war_memorial] {
   throwWarning: tr("descriptive name");
   group: "MapThisWay (Unnecessary)";
