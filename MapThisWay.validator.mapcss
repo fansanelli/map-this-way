@@ -4,7 +4,7 @@
 meta
 {
   title: "MapThisWay";
-  version: "0.134";
+  version: "0.135";
   description: "Controlli \"mapcss\" pensati per chi mappa in Italia";
   author: "francians";
   watch-modified: true;
@@ -235,7 +235,8 @@ way[inside("IT")][highway=pedestrian][!bicycle] {
 
 /* mtw onelanenooneway - Suggested by Volker */
 
-way[highway][lanes<2][!oneway][junction!=roundabout] {
+way[highway][lanes<2][!oneway][junction!=roundabout],
+way[highway][lanes<2][!oneway][junction!=circular] {
   throwWarning: tr("{0} together with {1} but without {2}", "{0.key}", "{1.key}<2", "{2.key}");
 	group: "MapThisWay (Highways)";
 }
