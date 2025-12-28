@@ -18,7 +18,7 @@ way[inside("IT")][building][tag_regex("^addr:*")] {
 
 /* mtw numerocivicoerrato */
 
-*[inside("IT")][addr:housenumber][addr:housenumber !~ /^((0|[1-9][0-9]*)([a-z]?|(\/[1-9][0-9]*[a-z]?)|bis|((qua)?ter))(\b rosso\b)?)([;,](0|[1-9][0-9]*([a-z]?|(\/[1-9][0-9]*[a-z]?)|bis|((qua)?ter))(\b rosso\b)?))*$/] {
+*[inside("IT")][addr:housenumber][addr:housenumber !~ /^((0(?!0)|[1-9][0-9]*)([a-z]?|(\/[1-9][0-9]*[a-z]?)|bis|((qua)?ter))(\b rosso\b)?)([;,](0(?!0)|[1-9][0-9]*)([a-z]?|(\/[1-9][0-9]*[a-z]?)|bis|((qua)?ter))(\b rosso\b)?)*$/] {
 	throwWarning: tr("unusual value of {0}", "{1.key}: https://wiki.openstreetmap.org/wiki/IT:Addresses#Come_inserire_gli_indirizzi_2");
 	group: "MapThisWay (Addresses)";
 	assertMatch: "node \"addr:housenumber\"=\"00\"";

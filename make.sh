@@ -1,7 +1,7 @@
 #!/bin/bash
 
 TARGET="MapThisWay"
-VERSION="0.135"
+VERSION="0.136"
 
 cat /dev/null > "$TARGET".validator.mapcss
 cat <<EOF >> "$TARGET".validator.mapcss
