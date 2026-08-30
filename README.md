@@ -54,7 +54,7 @@ Le regole sorgente sono divise per argomento nella cartella [`validators`](valid
 - [phones](validators/phones)
 - [schools](validators/schools)
 - [unnecessary](validators/unnecessary)
-- [extras](validators/extras) — controlli non specifici per l’Italia che potrebbero trovare posto direttamente in JOSM o in un’altra raccolta.
+- [zzz-extras](validators/zzz-extras) — controlli non specifici per l’Italia che potrebbero trovare posto direttamente in JOSM o in un’altra raccolta.
 
 Il file [`MapThisWay.validator.mapcss`](MapThisWay.validator.mapcss) è generato automaticamente concatenando i file sorgente. Non va modificato direttamente.
 
@@ -81,7 +81,7 @@ Puoi:
 - aprire una issue per segnalare un falso positivo o un caso non riconosciuto;
 - proporre un nuovo controllo spiegando la convenzione o la fonte sulla quale si basa;
 - inviare una pull request con la regola e i relativi dati di test;
-- proporre lo spostamento in `extras` o verso JOSM dei controlli di interesse generale.
+- proporre lo spostamento in `zzz-extras` o verso JOSM dei controlli di interesse generale.
 
 Le regole di validazione devono aiutare il mapper a prendere una decisione, non sostituirla: messaggi chiari, fonti verificabili e falsi positivi ridotti sono parte del progetto quanto il codice MapCSS.
 
